@@ -89,7 +89,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `${normalizeApiBase()}/:path*`,
+        destination: `${normalizeApiBase()}/api/:path*`,
       },
     ];
   },
