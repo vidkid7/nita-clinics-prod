@@ -1,0 +1,762 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand tokens — mirrors tailwind `primary` (#01ada5) for non-Tailwind contexts */
+:root {
+  --color-brand: #01ada5;
+  --color-brand-rgb: 1, 173, 165;
+  --color-brand-dark: #017f78;
+  --color-brand-light: #ecfffd;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-neutral-900 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-primary-200 text-primary-950;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+
+  /* Respect prefers-reduced-motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-primary-50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-500;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+  }
+}
+
+@layer components {
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn relative overflow-hidden bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 shadow-[0_12px_30px_-14px_rgba(1,173,165,0.9)] hover:shadow-[0_18px_38px_-18px_rgba(1,173,165,0.95)] hover:-translate-y-0.5;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
+    transform: translateX(-130%);
+    transition: transform 0.7s ease;
+  }
+  .btn-primary:hover::after {
+    transform: translateX(130%);
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-primary-700 border border-primary-200 hover:bg-primary-50 hover:border-primary-300 focus:ring-primary-500 shadow-sm hover:-translate-y-0.5;
+  }
+
+  .btn-accent {
+    @apply btn relative overflow-hidden bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500 shadow-md hover:shadow-lg;
+  }
+  .btn-accent::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
+    transform: translateX(-130%);
+    transition: transform 0.7s ease;
+  }
+  .btn-accent:hover::after {
+    transform: translateX(130%);
+  }
+
+  .btn-white {
+    @apply btn bg-white text-neutral-900 hover:bg-neutral-50 focus:ring-white shadow-[0_18px_40px_-22px_rgba(0,0,0,0.45)] hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-neutral-700 hover:bg-neutral-100 focus:ring-neutral-500;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+
+  /* Cards */
+  .card {
+    @apply relative bg-white/[0.62] rounded-2xl border border-white/70 backdrop-blur-xl transition-all duration-300;
+    box-shadow:
+      0 8px 32px -16px rgba(1,173,165,0.28),
+      0 1px 2px rgba(0,0,0,0.04),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+  }
+
+  .card-hover {
+    @apply hover:shadow-card hover:-translate-y-1;
+  }
+
+  /* Form elements */
+  .input {
+    @apply w-full px-4 py-3 border border-neutral-300 rounded-lg transition-colors duration-200 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 outline-none;
+  }
+
+  .input-error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-neutral-700 mb-2;
+  }
+
+  .error-message {
+    @apply text-sm text-red-600 mt-1;
+  }
+
+  /* Section titles */
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight text-balance;
+  }
+
+  .section-subtitle {
+    @apply text-base md:text-lg text-neutral-600 max-w-3xl leading-relaxed;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-700;
+  }
+
+  .badge-accent {
+    @apply badge bg-accent-100 text-accent-700;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-700;
+  }
+
+  .badge-warning {
+    @apply badge bg-yellow-100 text-yellow-700;
+  }
+
+  /* Links */
+  .link {
+    @apply text-primary-600 hover:text-primary-700 transition-colors duration-200 underline-offset-4 hover:underline;
+  }
+
+  /* Overlay */
+  .overlay {
+    @apply absolute inset-0 bg-black/50;
+  }
+
+  /* ── Liquid glass system ── */
+  .glass {
+    @apply relative bg-white/[0.72] backdrop-blur-2xl border border-white/60;
+    box-shadow:
+      0 22px 70px -36px rgba(15,23,42,0.45),
+      inset 0 1px 0 rgba(255,255,255,0.75),
+      inset 0 0 0 1px rgba(255,255,255,0.06);
+  }
+
+  .clinical-glass {
+    @apply relative bg-white/[0.12] backdrop-blur-2xl border border-white/20;
+    box-shadow:
+      0 28px 90px -40px rgba(0,0,0,0.7),
+      inset 0 1px 0 rgba(255,255,255,0.16);
+  }
+
+  /* Translucent frosted card — liquid glass over the global aurora backdrop */
+  .glass-card {
+    @apply relative bg-white/[0.62] backdrop-blur-2xl border border-white/70;
+    box-shadow:
+      0 18px 50px -34px rgba(15,23,42,0.35),
+      inset 0 1px 0 rgba(255,255,255,0.9),
+      inset 0 -1px 0 rgba(255,255,255,0.45);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+  }
+  .glass-card-hover:hover {
+    border-color: rgba(1,173,165,0.45);
+    background-color: rgba(255,255,255,0.78);
+    box-shadow:
+      0 28px 80px -40px rgba(1,173,165,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.95);
+    transform: translateY(-4px);
+  }
+
+  /* Dark-section glass (translucent white over dark bands) */
+  .glass-dark {
+    @apply relative bg-white/[0.08] backdrop-blur-2xl border border-white/15;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.14),
+      0 22px 60px -40px rgba(0,0,0,0.8);
+  }
+
+  /* Glassy sticky navigation bar */
+  .glass-nav {
+    @apply bg-white/[0.7] backdrop-blur-2xl border-b border-white/60;
+    box-shadow: 0 18px 44px -34px rgba(15,23,42,0.45), inset 0 -1px 0 rgba(255,255,255,0.4);
+  }
+
+  /* Glassy primary button with liquid sheen sweep */
+  .glass-btn {
+    @apply relative inline-flex items-center justify-center overflow-hidden rounded-xl font-semibold text-white;
+    background: linear-gradient(135deg, rgba(1,173,165,0.94), rgba(1,127,120,0.94));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.35),
+      0 14px 34px -16px rgba(1,173,165,0.85);
+    backdrop-filter: blur(12px);
+  }
+  .glass-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
+    transform: translateX(-130%);
+    transition: transform 0.7s ease;
+  }
+  .glass-btn:hover::after {
+    transform: translateX(130%);
+  }
+
+  /* Glassy form input */
+  .glass-input {
+    @apply w-full px-4 py-3 rounded-xl border border-white/70 bg-white/65 backdrop-blur-xl outline-none transition-all duration-200;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.9), 0 2px 10px -4px rgba(1,173,165,0.12);
+  }
+  .glass-input:focus {
+    border-color: rgba(1,173,165,0.55);
+    box-shadow: 0 0 0 3px rgba(1,173,165,0.14), inset 0 1px 2px rgba(255,255,255,0.9);
+  }
+
+  .hero-kicker {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold text-white/[0.88] border border-white/25 bg-white/10 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.18)];
+  }
+
+  .hero-title {
+    @apply text-[1.85rem] sm:text-5xl xl:text-6xl font-heading font-extrabold text-white leading-[1.06] tracking-tight text-balance;
+  }
+
+  .hero-copy {
+    @apply text-white/[0.82] text-base sm:text-lg leading-relaxed max-w-[500px] mx-auto;
+  }
+}
+
+@layer utilities {
+  /* ── Liquid glass utilities ── */
+  /* Ambient aurora wash — animated soft teal gradient */
+  .aurora {
+    background: linear-gradient(
+      120deg,
+      rgba(1,173,165,0.14),
+      rgba(94,234,212,0.12),
+      rgba(1,127,120,0.14),
+      rgba(1,173,165,0.1)
+    );
+    background-size: 300% 300%;
+    animation: aurora 14s ease infinite;
+  }
+
+  /* Liquid gradient — slower flow for large bands */
+  .liquid-gradient {
+    background: linear-gradient(
+      120deg,
+      rgba(1,173,165,0.16),
+      rgba(94,234,212,0.12),
+      rgba(1,173,165,0.18),
+      rgba(30,204,190,0.1)
+    );
+    background-size: 300% 300%;
+    animation: liquidFlow 16s ease infinite;
+  }
+
+  /* Morphing blob shape (for decorative images/avatars) */
+  .liquid-blob {
+    animation: morph 10s ease-in-out infinite;
+  }
+
+  /* Drifting liquid blob (for background decoration) */
+  .liquid-drift {
+    animation: blobFloat 12s ease-in-out infinite;
+  }
+
+  /* Animated rotating conic border — liquid edge highlight */
+  .liquid-border {
+    position: relative;
+  }
+  .liquid-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--angle),
+      transparent 0deg,
+      rgba(1,173,165,0.9) 90deg,
+      rgba(94,234,212,0.95) 180deg,
+      rgba(1,173,165,0.9) 270deg,
+      transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderSpin 6s linear infinite;
+    pointer-events: none;
+  }
+
+  /* Infinite liquid sheen sweeping across a surface */
+  .glass-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .glass-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60%;
+    background: linear-gradient(105deg, transparent, rgba(255,255,255,0.35), transparent);
+    transform: translateX(-130%) skewX(-12deg);
+    animation: sheen 4.5s ease-in-out infinite;
+  }
+
+  /* Text balance for better readability */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* ── Medical motif system ── */
+  /* Plus/cross grid — subtle clinical texture for dark bands */
+  .plus-pattern {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.13) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+
+  .plus-pattern-light {
+    background-image: radial-gradient(circle, rgba(1,173,165,0.10) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+
+  /* ECG heartbeat line — animated stroke draw */
+  .ecg-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: ecgDraw 5s ease-in-out forwards;
+  }
+
+  .ecg-line-loop {
+    stroke-dasharray: 120 180;
+    stroke-dashoffset: 0;
+    animation: ecgFlow 12s linear infinite;
+  }
+
+  /* Soft diagonal "clinical" streak */
+  .clinical-streak {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.035) 0px,
+      rgba(255,255,255,0.035) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  }
+
+  .medical-grid {
+    background-image:
+      linear-gradient(rgba(1,173,165,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(1,173,165,0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* Pulse ring for "live/vital" indicators */
+  .vital-pulse {
+    position: relative;
+  }
+  .vital-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    box-shadow: 0 0 0 0 rgba(1,173,165,0.45);
+    animation: vitalPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Section kicker — small clinical chip with cross icon */
+  .section-kicker {
+    @apply inline-flex items-center gap-2 rounded-full bg-primary-50/70 backdrop-blur-md text-primary-700 text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 border border-primary-100/80;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 6px 16px -8px rgba(1,173,165,0.35);
+  }
+  .section-kicker-light {
+    @apply inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md text-primary-200 text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 border border-white/15;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.16);
+  }
+
+  /* Animated gradient shift for headline accents */
+  .gradient-shift {
+    background-size: 200% 200%;
+    animation: gradientShift 7s ease infinite;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Animation delay utilities */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* ── Liquid / aurora keyframes ── */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes sheen {
+  0%, 55% { transform: translateX(-130%) skewX(-12deg); }
+  90%, 100% { transform: translateX(320%) skewX(-12deg); }
+}
+
+@keyframes aurora {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes borderSpin {
+  to { --angle: 360deg; }
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(44px, -32px) scale(1.08); }
+  66% { transform: translate(-32px, 22px) scale(0.94); }
+}
+
+@keyframes liquidFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+/* ── Health-art animations (hand-drawn service illustrations) ── */
+@keyframes pulseRing {
+  0%   { transform: translate(-50%, -50%) scale(0.55); opacity: 0.85; }
+  70%  { opacity: 0.25; }
+  100% { transform: translate(-50%, -50%) scale(1.75); opacity: 0; }
+}
+
+@keyframes svgScan {
+  0%   { transform: translateY(-16px); opacity: 0; }
+  15%  { opacity: 0.85; }
+  85%  { opacity: 0.85; }
+  100% { transform: translateY(16px); opacity: 0; }
+}
+
+@keyframes dropFall {
+  0%   { transform: translateY(-5px); opacity: 0; }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translateY(22px); opacity: 0; }
+}
+
+@keyframes sparkFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+  50%      { transform: translateY(-6px) rotate(14deg); opacity: 1; }
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  12%      { transform: scale(1.08); }
+  24%      { transform: scale(1); }
+  36%      { transform: scale(1.05); }
+  48%      { transform: scale(1); }
+}
+
+@keyframes wavePulse {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.85; }
+}
+
+@keyframes pulseDot {
+  0%   { transform: scale(1); opacity: 1; }
+  50%  { transform: scale(1.6); opacity: 0.45; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes brandLoaderSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Safety-net: the brand loader always fades out 2.6s after mount, even if
+   JavaScript is broken or hydration fails. The JS path in BrandLoader.tsx
+   normally removes the node from the DOM earlier; this is a fallback only. */
+@keyframes brandLoaderAutoHide {
+  0%, 92% { opacity: 1; visibility: visible; }
+  100%    { opacity: 0; visibility: hidden; }
+}
+
+/* Utility classes for the artwork animations */
+.pulse-ring  { animation: pulseRing 3.4s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.svg-scan    { animation: svgScan 3.4s ease-in-out infinite; transform-box: fill-box; }
+.drop-fall   { animation: dropFall 2.3s ease-in infinite; transform-box: fill-box; }
+.spark-float { animation: sparkFloat 4s ease-in-out infinite; transform-box: fill-box; }
+.heart-beat  { animation: heartBeat 1.9s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.wave-pulse  { animation: wavePulse 2.5s ease-in-out infinite; transform-box: fill-box; }
+.pulse-dot   { animation: pulseDot 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+
+.anim-delay-1 { animation-delay: 0.4s; }
+.anim-delay-2 { animation-delay: 0.8s; }
+.anim-delay-3 { animation-delay: 1.2s; }
+
+.animate-[brand-loader-spin_1.6s_linear_infinite] {
+  animation: brandLoaderSpin 1.6s linear infinite;
+  transform-origin: center;
+}
+
+.brand-loader-auto-hide {
+  animation: brandLoaderAutoHide 2.6s ease-out forwards;
+}
+
+/* React DatePicker custom styles */
+.react-datepicker-wrapper {
+  @apply w-full;
+}
+
+.react-datepicker__input-container input {
+  @apply input;
+}
+
+.react-datepicker {
+  @apply font-sans border-neutral-200 shadow-card rounded-xl overflow-hidden;
+}
+
+.react-datepicker__header {
+  @apply bg-primary-50 border-b-neutral-200;
+}
+
+.react-datepicker__day--selected {
+  @apply bg-primary-600 hover:bg-primary-700;
+}
+
+.react-datepicker__day--keyboard-selected {
+  @apply bg-primary-100;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  @apply bg-primary-600;
+}
+
+/* Blog Content Styling */
+.blog-content {
+  @apply text-neutral-700 leading-relaxed;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  @apply font-heading font-bold text-neutral-900 mt-8 mb-4;
+}
+
+.blog-content h1 {
+  @apply text-4xl;
+}
+
+.blog-content h2 {
+  @apply text-3xl;
+}
+
+.blog-content h3 {
+  @apply text-2xl;
+}
+
+.blog-content h4 {
+  @apply text-xl;
+}
+
+.blog-content p {
+  @apply mb-6 text-lg leading-relaxed;
+}
+
+.blog-content ul,
+.blog-content ol {
+  @apply mb-6 ml-6 space-y-2;
+}
+
+.blog-content ul {
+  @apply list-disc;
+}
+
+.blog-content ol {
+  @apply list-decimal;
+}
+
+.blog-content li {
+  @apply text-lg leading-relaxed;
+}
+
+.blog-content a {
+  @apply text-primary-600 hover:text-primary-700 underline underline-offset-2;
+}
+
+.blog-content blockquote {
+  @apply border-l-4 border-primary-500 pl-6 py-4 my-6 italic bg-primary-50 rounded-r-lg;
+}
+
+.blog-content code {
+  @apply bg-neutral-100 px-2 py-1 rounded text-sm font-mono text-primary-700;
+}
+
+.blog-content pre {
+  @apply bg-neutral-900 text-neutral-100 p-6 rounded-lg overflow-x-auto mb-6;
+}
+
+.blog-content pre code {
+  @apply bg-transparent p-0 text-neutral-100;
+}
+
+.blog-content img {
+  @apply rounded-xl my-8 shadow-card max-w-full h-auto;
+}
+
+.blog-content table {
+  @apply w-full border-collapse mb-6;
+}
+
+.blog-content th,
+.blog-content td {
+  @apply border border-neutral-300 px-4 py-2;
+}
+
+.blog-content th {
+  @apply bg-neutral-100 font-semibold;
+}
+
+.blog-content hr {
+  @apply my-8 border-neutral-200;
+}
+
+.blog-content strong {
+  @apply font-semibold text-neutral-900;
+}
+
+.blog-content em {
+  @apply italic;
+}
+
+/* ──────────────────────────────────────────────────────────
+   Print styles — health card pickup
+   Hides everything except the card itself when printing from
+   the patient portal's "Print Card" action.
+────────────────────────────────────────────────────────── */
+@media print {
+  body {
+    @apply bg-white;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .health-card-print, .health-card-print * {
+    visibility: visible;
+  }
+  .health-card-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  /* Show both front and back when printing (no flip) */
+  .health-card-print [data-card-back] {
+    display: block !important;
+    margin-top: 1.5rem;
+  }
+}

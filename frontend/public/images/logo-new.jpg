@@ -1,0 +1,16 @@
+// This is a placeholder for the Om Chabahil Dental logo image
+// Please manually save the logo image you provided to this location:
+// frontend/public/images/logo-new.jpg
+
+// The logo shows:
+// - Om Chabahil Dental text in a circular border
+// - A gradient tooth icon (pink/purple) in the center
+// - Blue circular border with a star on top
+// - Professional dental branding design
+
+// To use this logo:
+// 1. Save the logo image file to: frontend/public/images/logo-new.jpg
+// 2. Go to: http://localhost:3002/admin/settings
+// 3. Click "Change" button under Logo
+// 4. Select the saved logo file
+// 5. It will upload and save automatically

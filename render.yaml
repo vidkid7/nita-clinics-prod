@@ -1,0 +1,56 @@
+# Render Blueprint for Nita Clinics backend (NestJS + TypeORM)
+# Deploy: https://dashboard.render.com/blueprints → New Blueprint Instance → pick this repo
+#
+# BEFORE clicking Apply, make sure these env vars are set in the Render dashboard
+# (the Blueprint only declares the *shape*; secrets are entered manually OR injected
+# from a Render Environment Group). The values you need to set on the service:
+#
+#   DATABASE_URL        — Supabase Postgres pooled connection string
+#                         (Project Settings → Database → Connection string → Transaction pooler)
+#                         MUST point to the same DB that holds the `nita` schema (see DATABASE_SCHEMA below)
+#   REDIS_URL           — Upstash Redis URL (rediss://default:<pwd>@<host>.upstash.io:6379)
+#   JWT_SECRET          — any 32+ char random string; same value used by the auth module
+#   FRONTEND_URL        — your Vercel frontend URL once it's deployed
+#                         (e.g. https://nita-clinics-prod.vercel.app)
+#
+# Optional (skip if you don't use the feature):
+#   CLOUDINARY_CLOUD_NAME / CLOUDINARY_API_KEY / CLOUDINARY_API_SECRET
+#   SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS / SMTP_FROM
+#   OPENAI_API_KEY
+#   KHALTI_PUBLIC_KEY / KHALTI_SECRET_KEY
+#   ESEWA_MERCHANT_CODE / ESEWA_SECRET
+#   FONEPAY_MERCHANT_ID / FONEPAY_SECRET_KEY
+
+services:
+  - type: web
+    name: nita-backend
+    runtime: node
+    plan: free
+    region: singapore
+    branch: main
+    # Build & start are taken from nixpacks.toml (already in repo).
+    # Render auto-detects nixpacks.toml when no buildCommand/startCommand is set.
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: API_PREFIX
+        value: api/v1
+      - key: THROTTLE_TTL
+        value: 60
+      - key: THROTTLE_LIMIT
+        value: 100
+      - key: DATABASE_SCHEMA
+        value: nita
+      - key: DATABASE_SYNCHRONIZE
+        value: "false"  # we manage schema via migrations / seed, not auto-sync
+      - key: DATABASE_URL
+        sync: false   # set this in the dashboard after Apply
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false

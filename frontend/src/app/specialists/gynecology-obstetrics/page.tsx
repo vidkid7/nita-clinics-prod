@@ -1,0 +1,16 @@
+import type { Metadata } from 'next';
+import { SPECIALIST_META } from '@/lib/specialist-data';
+import { SpecialistDetailPage } from '@/components/specialists/SpecialistDetailPage';
+
+const data = SPECIALIST_META['gynecology-obstetrics'];
+
+export const metadata: Metadata = {
+  title: data.title,
+  description: data.description,
+  alternates: { canonical: 'https://nitaclinics.com/specialists/gynecology-obstetrics' },
+};
+
+export default function GynecologyObstetricsPage() {
+  return <SpecialistDetailPage slug="gynecology-obstetrics" data={data} />;
+}
+

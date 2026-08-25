@@ -1,0 +1,57 @@
+=================================================================
+ Render Environment Variables — Nita Clinics Backend
+ Copy each row into Render Dashboard → Environment → Add Variable
+=================================================================
+
+# ---- REQUIRED: Database (Supabase direct connection, port 5432) ----
+# Get from: Supabase → Settings → Database → Connection string → Direct
+# Replace [YOUR-PASSWORD] with the database password you set when
+# creating the Supabase project
+DATABASE_URL=postgresql://postgres.egkdaebiwaamwgkgnuav:[YOUR-PASSWORD]@db.egkdaebiwaamwgkgnuav.supabase.co:5432/postgres
+
+# ---- REQUIRED: Redis (Upstash or any Redis provider) ----
+# Get from: Upstash → your-database → Connect → Redis URL
+# Format: rediss://default:<password>@<host>.upstash.io:6379
+REDIS_URL=rediss://default:YOUR_PASSWORD@YOUR_HOST.upstash.io:6379
+
+# ---- REQUIRED: JWT secret (any 32+ char random string) ----
+# Generate with:  node -e "console.log(require('crypto').randomBytes(48).toString('base64'))"
+JWT_SECRET=GENERATE_A_RANDOM_64_CHAR_STRING_AND_PASTE_HERE_xxxxxxxxxxxxxxxxx
+
+# ---- REQUIRED: CORS allowed origin (your Vercel frontend) ----
+FRONTEND_URL=https://nita-clinics-prod.vercel.app
+
+# ---- Already set by render.yaml (verify they exist, don't duplicate) ----
+NODE_ENV=production
+PORT=3001
+DATABASE_SCHEMA=nita
+DATABASE_SYNCHRONIZE=false
+API_PREFIX=api/v1
+THROTTLE_TTL=60
+THROTTLE_LIMIT=100
+
+# ---- OPTIONAL: payment / cloud / email / openai (only if you use them) ----
+PAYMENT_SANDBOX_MODE=true
+ESEWA_MERCHANT_CODE=EPAYTEST
+ESEWA_SECRET_KEY=8gBm/:&EnhH.1/q
+ESEWA_BASE_URL=https://rc-epay.esewa.com.np
+APP_URL=https://nita-clinics-prod.vercel.app
+
+# ---- OPTIONAL: SMTP for transactional email ----
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASS=
+SMTP_FROM=noreply@nitaclinics.com
+
+# ---- OPTIONAL: Cloudinary for image uploads (else Unsplash fallback) ----
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+# ---- OPTIONAL: OpenAI / Azure OpenAI for chatbot ----
+OPENAI_API_KEY=
+AZURE_OPENAI_ENDPOINT=
+AZURE_OPENAI_API_KEY=
+AZURE_OPENAI_DEPLOYMENT=
+AZURE_OPENAI_API_VERSION=2024-12-01-preview

@@ -1,0 +1,23 @@
+node_modules
+.next
+out
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+.vscode
+.idea
+coverage
+*.tsbuildinfo
+next-env.d.ts
+
+# Duplicated media — same files exist in public/videos/ and the app only references /videos/*.
+# Excluding the upload keeps the deploy under Railway's size limit; source files untouched.
+public/video
+
+# Unreferenced WhatsApp duplicates in public/videos; the deployed site uses
+# the curated hero videos and public/videos/tour-1.mp4 only.
+public/videos/WhatsApp*

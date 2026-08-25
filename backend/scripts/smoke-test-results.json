@@ -1,0 +1,110 @@
+﻿{
+    "/health-card/applications/my":  {
+                                         "detail":  "200",
+                                         "ok":  true
+                                     },
+    "/appointments/my-appointments":  {
+                                          "detail":  "200",
+                                          "ok":  true
+                                      },
+    "/home-collection/my-requests":  {
+                                         "detail":  "200",
+                                         "ok":  true
+                                     },
+    "/partners":  {
+                      "detail":  "200",
+                      "ok":  true
+                  },
+    "http://localhost:3002/patients":  {
+                                           "detail":  "The remote server returned an error: (404) Not Found.",
+                                           "ok":  false
+                                       },
+    "/auth/login [POST]":  {
+                               "detail":  "200/201",
+                               "ok":  true
+                           },
+    "/payments/my-transactions":  {
+                                      "detail":  "200",
+                                      "ok":  true
+                                  },
+    "/health":  {
+                    "detail":  404,
+                    "ok":  false
+                },
+    "http://localhost:3002/admin":  {
+                                        "detail":  200,
+                                        "ok":  true
+                                    },
+    "http://localhost:3002/":  {
+                                   "detail":  200,
+                                   "ok":  true
+                               },
+    "/subscriptions/plans [POST]":  {
+                                        "detail":  "200/201",
+                                        "ok":  true
+                                    },
+    "/":  {
+              "detail":  404,
+              "ok":  false
+          },
+    "http://localhost:3002/patients/login":  {
+                                                 "detail":  200,
+                                                 "ok":  true
+                                             },
+    "/auth/register/patient [POST]":  {
+                                          "detail":  "200/201",
+                                          "ok":  true
+                                      },
+    "/health-card/categories":  {
+                                    "detail":  "200",
+                                    "ok":  true
+                                },
+    "/admin/dashboard/stats":  {
+                                   "detail":  "200",
+                                   "ok":  true
+                               },
+    "/appointments/available-doctors?date=2026-04-06\u0026time=10:00":  {
+                                                                            "detail":  "200",
+                                                                            "ok":  true
+                                                                        },
+    "/settings/object":  {
+                             "detail":  "200",
+                             "ok":  true
+                         },
+    "/home-collection [POST]":  {
+                                    "detail":  "200/201",
+                                    "ok":  true
+                                },
+    "/blog?limit=1":  {
+                          "detail":  "200",
+                          "ok":  true
+                      },
+    "/doctors?limit=1":  {
+                             "detail":  "200",
+                             "ok":  true
+                         },
+    "/subscriptions/plans":  {
+                                 "detail":  "200",
+                                 "ok":  true
+                             },
+    "/packages":  {
+                      "detail":  "200",
+                      "ok":  true
+                  },
+    "/subscriptions/my":  {
+                              "detail":  "200",
+                              "ok":  true
+                          },
+    "/subscriptions/plans/a4d98cca-35e1-409f-99d2-b6bc98f864cb":  {
+                                                                      "detail":  "200",
+                                                                      "ok":  true
+                                                                  },
+    "http://localhost:3002/services":  {
+                                           "detail":  200,
+                                           "ok":  true
+                                       },
+    "/media/public":  {
+                          "detail":  "200",
+                          "ok":  true
+                      }
+}

@@ -1,0 +1,2111 @@
+-- Dental College Database Initialization Script
+-- This script creates the initial database structure and seed data
+
+-- Enable UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Note: Tables are created automatically by TypeORM synchronize in development
+-- This file is used for initial database setup and seeding
+
+-- Insert default admin user (password: Admin@123)
+INSERT INTO users (id, email, password, name, role, is_active, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'admin@nitaclinics.local',
+  '$2b$10$ikUlxQ8UQd4aDIU2jRqoBOGIhgEgc7INYc4jjPMOqSQKP63PxqgNe',
+  'System Administrator',
+  'super_admin',
+  true,
+  NOW(),
+  NOW()
+) ON CONFLICT (email) DO NOTHING;
+
+-- Insert default departments
+INSERT INTO departments (id, name, slug, description, is_active, "order", created_at, updated_at)
+VALUES 
+  (uuid_generate_v4(), 'General Dentistry', 'general-dentistry', 'Comprehensive dental care including preventive and restorative treatments', true, 1, NOW(), NOW()),
+  (uuid_generate_v4(), 'Orthodontics', 'orthodontics', 'Correction of teeth and jaw alignment using braces and aligners', true, 2, NOW(), NOW()),
+  (uuid_generate_v4(), 'Oral & Maxillofacial Surgery', 'oral-surgery', 'Surgical procedures for the mouth, jaw, and face', true, 3, NOW(), NOW()),
+  (uuid_generate_v4(), 'Pediatric Dentistry', 'pediatric-dentistry', 'Specialized dental care for children and adolescents', true, 4, NOW(), NOW()),
+  (uuid_generate_v4(), 'Periodontics', 'periodontics', 'Treatment of gum diseases and dental implants', true, 5, NOW(), NOW()),
+  (uuid_generate_v4(), 'Prosthodontics', 'prosthodontics', 'Restoration and replacement of teeth with prosthetics', true, 6, NOW(), NOW()),
+  (uuid_generate_v4(), 'Endodontics', 'endodontics', 'Root canal treatments and related procedures', true, 7, NOW(), NOW()),
+  (uuid_generate_v4(), 'Oral Pathology', 'oral-pathology', 'Diagnosis and treatment of oral diseases', true, 8, NOW(), NOW())
+ON CONFLICT DO NOTHING;
+
+-- Insert default academic programs
+INSERT INTO academic_programs (id, name, slug, type, duration, description, eligibility, is_active, created_at, updated_at)
+VALUES 
+  (
+    uuid_generate_v4(), 
+    'Bachelor of Dental Surgery (BDS)', 
+    'bds', 
+    'bds', 
+    '5 years (4 years + 1 year internship)',
+    'The BDS program provides comprehensive education in dental sciences, combining theoretical knowledge with practical clinical experience. Our flagship undergraduate program providing comprehensive education in dental sciences with extensive clinical training.',
+    '10+2 with Physics, Chemistry, Biology with minimum 50% marks. Valid entrance exam score. Age: 17-25 years.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Master of Dental Surgery (MDS) - Orthodontics', 
+    'mds-orthodontics', 
+    'mds', 
+    '3 years',
+    'Advanced specialization in orthodontics, focusing on diagnosis and treatment of dental and facial irregularities. Advanced specialization programs in various dental disciplines for those seeking expertise in specific areas.',
+    'BDS degree from recognized university. Valid entrance exam score.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Master of Dental Surgery (MDS) - Oral Surgery', 
+    'mds-oral-surgery', 
+    'mds', 
+    '3 years',
+    'Advanced specialization in oral and maxillofacial surgery, including complex surgical procedures.',
+    'BDS degree from recognized university. Valid entrance exam score.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Master of Dental Surgery (MDS) - Prosthodontics', 
+    'mds-prosthodontics', 
+    'mds', 
+    '3 years',
+    'Advanced specialization in prosthodontics and crown bridge procedures.',
+    'BDS degree from recognized university. Valid entrance exam score.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Master of Dental Surgery (MDS) - Endodontics', 
+    'mds-endodontics', 
+    'mds', 
+    '3 years',
+    'Advanced specialization in conservative dentistry and endodontics.',
+    'BDS degree from recognized university. Valid entrance exam score.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Master of Dental Surgery (MDS) - Periodontics', 
+    'mds-periodontics', 
+    'mds', 
+    '3 years',
+    'Advanced specialization in periodontics and gum disease treatment.',
+    'BDS degree from recognized university. Valid entrance exam score.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Master of Dental Surgery (MDS) - Pedodontics', 
+    'mds-pedodontics', 
+    'mds', 
+    '3 years',
+    'Advanced specialization in pedodontics and preventive dentistry.',
+    'BDS degree from recognized university. Valid entrance exam score.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Master of Dental Surgery (MDS) - Oral Pathology', 
+    'mds-oral-pathology', 
+    'mds', 
+    '3 years',
+    'Advanced specialization in oral pathology and microbiology.',
+    'BDS degree from recognized university. Valid entrance exam score.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Master of Dental Surgery (MDS) - Public Health Dentistry', 
+    'mds-public-health', 
+    'mds', 
+    '3 years',
+    'Advanced specialization in public health dentistry.',
+    'BDS degree from recognized university. Valid entrance exam score.',
+    true, NOW(), NOW()
+  ),
+  (
+    uuid_generate_v4(), 
+    'Dental Internship Program', 
+    'internship', 
+    'internship', 
+    '1 year',
+    'Mandatory rotational internship program providing hands-on clinical experience across all dental specialties. Comprehensive rotational internship providing hands-on experience across all dental specialties.',
+    'Final year BDS students or recent graduates.',
+    true, NOW(), NOW()
+  )
+ON CONFLICT DO NOTHING;
+
+-- Insert default clinic (Om Chabahil Dental Hospital)
+INSERT INTO clinics (id, name, slug, address, city, state, postal_code, country, phone, email, latitude, longitude, working_hours, is_main, is_active, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'Om Chabahil Dental Hospital',
+  'om-chabahil-dental',
+  'Chabahil, Koteshwor',
+  'Kathmandu',
+  'Bagmati',
+  '44600',
+  'Nepal',
+  '+977 01-4812345',
+  'info@omchabahildental.com.np',
+  27.7172,
+  85.3450,
+  '[{"dayOfWeek": 0, "openTime": "07:00", "closeTime": "19:00", "isClosed": false}, {"dayOfWeek": 1, "openTime": "07:00", "closeTime": "19:00", "isClosed": false}, {"dayOfWeek": 2, "openTime": "07:00", "closeTime": "19:00", "isClosed": false}, {"dayOfWeek": 3, "openTime": "07:00", "closeTime": "19:00", "isClosed": false}, {"dayOfWeek": 4, "openTime": "07:00", "closeTime": "19:00", "isClosed": false}, {"dayOfWeek": 5, "openTime": "07:00", "closeTime": "19:00", "isClosed": false}, {"dayOfWeek": 6, "openTime": "08:00", "closeTime": "17:00", "isClosed": false}]',
+  true,
+  true,
+  NOW(),
+  NOW()
+) ON CONFLICT DO NOTHING;
+
+-- Insert sample testimonials
+INSERT INTO testimonials (id, name, role, content, rating, is_active, "order", created_at, updated_at)
+VALUES 
+  (uuid_generate_v4(), 'Sarah Johnson', 'Patient', 'The care I received at Premier Dental was exceptional. The staff was incredibly professional, and the dentist took the time to explain every procedure. I''ve never felt more comfortable at a dental clinic.', 5, true, 1, NOW(), NOW()),
+  (uuid_generate_v4(), 'Dr. James Wilson', 'BDS Alumni 2018', 'My education at Premier Dental College prepared me exceptionally well for my career. The clinical exposure and mentorship I received were invaluable. I''m now running my own successful practice.', 5, true, 2, NOW(), NOW()),
+  (uuid_generate_v4(), 'Emily Chen', 'Parent', 'Finding a dentist my kids actually want to visit was a miracle! The pediatric team is amazing - patient, gentle, and great at making dental visits fun. Both my children now love going to the dentist.', 5, true, 3, NOW(), NOW()),
+  (uuid_generate_v4(), 'Michael Rodriguez', 'Patient', 'After years of avoiding dentists, I finally found one I trust. The entire team made me feel at ease, and the results of my smile makeover exceeded all my expectations.', 5, true, 4, NOW(), NOW()),
+  (uuid_generate_v4(), 'Dr. Michael Chen', 'BDS Alumni 2020', 'Premier Dental College provided me with the best education and clinical experience. I am now running my own successful practice.', 5, true, 5, NOW(), NOW()),
+  (uuid_generate_v4(), 'Emily Williams', 'Patient', 'My children love visiting this dental clinic. The pediatric team is amazing with kids!', 5, true, 6, NOW(), NOW())
+ON CONFLICT DO NOTHING;
+
+-- Insert default page content for public site (home page)
+-- Home page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'hero',
+  '{
+    "badgeText": "Open 7 Days a Week - Quality Dental Care",
+    "title": "Your Smile, Our Priority",
+    "highlightText": "Our Priority",
+    "subtitle": "Om Chabahil Dental Hospital - Providing quality dental care with modern technology and experienced professionals in Kathmandu, Nepal.",
+    "primaryCtaText": "Book Appointment",
+    "secondaryCtaText": "Call Now",
+    "stats": {
+      "yearsExperience": "10+",
+      "expertDentists": "15+",
+      "happyPatients": "5000+"
+    }
+  }'::jsonb,
+  '{
+    "title": "Om Chabahil Dental Hospital | Quality Dental Care in Kathmandu",
+    "description": "Om Chabahil Dental Hospital provides quality dental care with modern technology and experienced professionals in Kathmandu, Nepal.",
+    "keywords": ["dental hospital", "Om Chabahil Dental", "dentist Kathmandu"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Home page about section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'about',
+  '{
+    "badgeLabel": "About Us",
+    "title": "Your Trusted Dental Care Partner",
+    "paragraph1": "Om Chabahil Dental Hospital has been serving the Kathmandu community with quality dental care services. Our clinic in Koteshwor is equipped with modern technology and staffed by experienced dental professionals.",
+    "paragraph2": "We believe in providing personalized care to each patient, ensuring comfort and satisfaction. From routine check-ups to complex dental procedures, we offer comprehensive dental services for the whole family.",
+    "features": [
+      "Modern dental equipment and sterilization",
+      "Experienced and certified dentists",
+      "Comfortable and hygienic environment",
+      "Affordable treatment options",
+      "Emergency dental services available",
+      "Personalized patient care"
+    ],
+    "experienceYears": "10+"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Home page services summary section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'services',
+  '{
+    "badgeLabel": "Our Services",
+    "title": "Comprehensive Dental Care",
+    "subtitle": "From routine checkups to advanced procedures, we offer a full range of dental services to meet all your oral health needs."
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Home page statistics section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'stats',
+  '{
+    "heading": "Numbers That Speak for Themselves",
+    "subtitle": "Our track record of success in dental education and patient care",
+    "items": [
+      {
+        "label": "Graduates",
+        "value": 5000,
+        "suffix": "+",
+        "description": "Successful dental professionals"
+      },
+      {
+        "label": "Expert Faculty",
+        "value": 50,
+        "suffix": "+",
+        "description": "Experienced specialists"
+      },
+      {
+        "label": "Happy Patients",
+        "value": 100000,
+        "suffix": "+",
+        "description": "Treated successfully"
+      },
+      {
+        "label": "Years",
+        "value": 25,
+        "suffix": "+",
+        "description": "Of excellence"
+      }
+    ]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Home page contact teaser
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'contact',
+  '{
+    "title": "Get in Touch",
+    "subtitle": "We''re Here to Help",
+    "phone": "+977 01-4812345",
+    "whatsapp": "+977 9841234567",
+    "email": "info@omchabahildental.com.np",
+    "address": "Chabahil, Kathmandu, Nepal",
+    "workingHours": "Mon-Fri: 9AM-6PM, Sat: 9AM-4PM"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Home page doctors section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'doctors',
+  '{
+    "badgeLabel": "Our Team",
+    "title": "Meet Our Expert Dentists",
+    "subtitle": "Our team of experienced and qualified dental professionals is dedicated to providing you with the best possible care."
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Home page testimonials section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'testimonials',
+  '{
+    "badgeLabel": "Testimonials",
+    "title": "What Our Patients & Students Say",
+    "subtitle": "Hear from those who have experienced our care and education firsthand."
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Home page blog section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'blog',
+  '{
+    "badgeLabel": "Blog & News",
+    "title": "Dental Knowledge Hub",
+    "subtitle": "Stay informed with the latest dental health tips, news, and educational content from our experts."
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Home page CTA section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'home',
+  'cta',
+  '{
+    "title": "Ready to Start Your Dental Journey?",
+    "highlightText": "Dental Journey?",
+    "subtitle": "Whether you''re looking for quality dental care or pursuing a career in dentistry, we''re here to help you every step of the way.",
+    "primaryCtaText": "Book Appointment",
+    "secondaryCtaText": "Apply for Admission",
+    "contactCards": {
+      "phone": {
+        "label": "Call us anytime",
+        "value": "+977 9841-234567"
+      },
+      "location": {
+        "label": "Visit us at",
+        "value": "Chabahil, Koteshwor, Kathmandu, Nepal"
+      },
+      "hours": {
+        "weekdays": "Sunday - Friday: 7:00 AM - 7:00 PM",
+        "saturday": "Saturday: 8:00 AM - 5:00 PM"
+      }
+    }
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- About page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'about',
+  'hero',
+  '{
+    "title": "About Om Chabahil Dental Hospital",
+    "subtitle": "Your trusted dental care partner in Kathmandu. Providing quality dental services with modern technology and experienced professionals."
+  }'::jsonb,
+  '{
+    "title": "About Us | Om Chabahil Dental Hospital",
+    "description": "Learn about Om Chabahil Dental Hospital - Your trusted dental care partner in Kathmandu, Nepal. Quality dental services with modern technology.",
+    "keywords": ["about", "dental hospital", "Kathmandu", "dental care"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- About page main content section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'about',
+  'main',
+  '{
+    "title": "Our Story",
+    "paragraph1": "Om Chabahil Dental Hospital was established with a vision to provide accessible, affordable, and quality dental care to the people of Kathmandu. Located in the heart of Koteshwor, we have been serving the community for over a decade.",
+    "paragraph2": "Our clinic is equipped with modern dental equipment and follows international standards of sterilization and hygiene. We believe in providing personalized care to each patient, understanding their unique needs and concerns.",
+    "paragraph3": "From routine dental check-ups to complex procedures like dental implants and orthodontic treatments, our experienced team is here to help you achieve and maintain a healthy, beautiful smile.",
+    "address": "Chabahil, Koteshwor, Kathmandu, Nepal",
+    "imagePath": "/images/team.jpg"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- About page values section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'about',
+  'values',
+  '{
+    "title": "Why Choose Us",
+    "subtitle": "We are committed to providing the best dental care experience.",
+    "values": [
+      {
+        "title": "Quality Care",
+        "description": "We maintain the highest standards in dental treatment and patient care."
+      },
+      {
+        "title": "Expert Team",
+        "description": "Our experienced dentists and staff work together for your health."
+      },
+      {
+        "title": "Modern Technology",
+        "description": "We use the latest dental equipment and techniques."
+      },
+      {
+        "title": "Patient First",
+        "description": "Your comfort and satisfaction is our top priority."
+      }
+    ]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- About page services overview section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'about',
+  'services-overview',
+  '{
+    "title": "Our Services",
+    "description": "We offer a comprehensive range of dental services to meet all your oral health needs. Our team is trained in the latest techniques and uses modern equipment for optimal results.",
+    "services": [
+      "General Dentistry & Check-ups",
+      "Root Canal Treatment (RCT)",
+      "Dental Implants",
+      "Orthodontics (Braces)",
+      "Cosmetic Dentistry",
+      "Pediatric Dentistry",
+      "Oral Surgery",
+      "Teeth Whitening"
+    ],
+    "imagePaths": ["/images/clinic-1.jpg", "/images/clinic-2.jpg", "/images/clinic-3.jpg", "/images/clinic-4.jpg"]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- About page video section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'about',
+  'video',
+  '{
+    "title": "Take a Virtual Tour",
+    "subtitle": "Experience our clinic facilities from the comfort of your home.",
+    "videoPath": "/videos/tour-1.mp4",
+    "posterImage": "/images/clinic-1.jpg"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- About page CTA section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'about',
+  'cta',
+  '{
+    "title": "Ready to Visit Us?",
+    "subtitle": "Book your appointment today and experience quality dental care at Om Chabahil Dental Hospital.",
+    "primaryCtaText": "Book Appointment",
+    "secondaryCtaText": "Call Now",
+    "phone": "+977 9841-234567"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Services page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'services',
+  'hero',
+  '{
+    "title": "Our Dental Services",
+    "subtitle": "Comprehensive dental care for the whole family, from routine checkups to advanced treatments, delivered with expertise and compassion."
+  }'::jsonb,
+  '{
+    "title": "Dental Services | Om Chabahil Dental Hospital",
+    "description": "Comprehensive dental services in Kathmandu including general dentistry, orthodontics, root canal, dental implants, cosmetic dentistry, and more.",
+    "keywords": ["dental services", "dentistry", "dental treatments", "Kathmandu"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Services page CTA section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'services',
+  'cta',
+  '{
+    "title": "Need Help Choosing a Treatment?",
+    "subtitle": "Our experienced dental team is here to help you find the best treatment option for your needs. Schedule a consultation today.",
+    "primaryCtaText": "Schedule Consultation",
+    "secondaryCtaText": "Contact Us"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Doctors page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'doctors',
+  'hero',
+  '{
+    "title": "Our Dental Team",
+    "subtitle": "Meet our experienced team of dental professionals dedicated to providing you with the best possible care at Om Chabahil Dental Hospital."
+  }'::jsonb,
+  '{
+    "title": "Our Doctors | Om Chabahil Dental Hospital",
+    "description": "Meet our experienced team of dental professionals dedicated to providing quality dental care.",
+    "keywords": ["dentists", "dental team", "dental professionals", "Kathmandu"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Doctors page CTA section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'doctors',
+  'cta',
+  '{
+    "title": "Need Help Finding the Right Doctor?",
+    "subtitle": "Our team is here to help you find the right specialist for your dental needs. Contact us for a consultation.",
+    "primaryCtaText": "Book Appointment",
+    "secondaryCtaText": "Call Now",
+    "phone": "+977 9841-234567"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Patients page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'patients',
+  'hero',
+  '{
+    "title": "Patient Information",
+    "subtitle": "Everything you need to know for a comfortable and informed dental visit at Om Chabahil Dental Hospital."
+  }'::jsonb,
+  '{
+    "title": "Patient Information | Om Chabahil Dental Hospital",
+    "description": "Everything you need to know for a comfortable and informed dental visit. Appointment booking, clinic hours, treatment prices, and FAQs.",
+    "keywords": ["patient information", "dental visit", "appointment", "patient guide"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Patients page guides section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'patients',
+  'guides',
+  '{
+    "guides": [
+      {
+        "title": "Appointment Booking",
+        "description": "Book your appointment online or call us. Walk-ins are also welcome during clinic hours."
+      },
+      {
+        "title": "Clinic Hours",
+        "description": "Sunday - Friday: 7:00 AM - 7:00 PM, Saturday: 8:00 AM - 5:00 PM"
+      },
+      {
+        "title": "First Visit",
+        "description": "Bring your ID, any previous dental records, and list of current medications."
+      },
+      {
+        "title": "Insurance & Payment",
+        "description": "We accept cash, cards, and major insurance providers. Payment plans available."
+      }
+    ]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Patients page price guide section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'patients',
+  'price-guide',
+  '{
+    "title": "Treatment Price Guide",
+    "subtitle": "Transparent pricing for our dental services. Actual costs may vary based on individual cases.",
+    "disclaimer": "* Prices are indicative and may vary. Please consult with our doctors for accurate estimates.",
+    "treatments": [
+      {
+        "name": "Dental Check-up",
+        "duration": "30-45 mins",
+        "price": "Rs. 500 - 1,000",
+        "description": "Comprehensive oral examination and consultation"
+      },
+      {
+        "name": "Teeth Cleaning",
+        "duration": "45-60 mins",
+        "price": "Rs. 1,200 - 2,000",
+        "description": "Professional scaling and polishing"
+      },
+      {
+        "name": "Dental Filling",
+        "duration": "30-60 mins",
+        "price": "Rs. 1,500 - 3,000",
+        "description": "Composite or amalgam filling for cavities"
+      },
+      {
+        "name": "Root Canal Treatment",
+        "duration": "60-90 mins",
+        "price": "Rs. 5,000 - 15,000",
+        "description": "Single or multi-visit RCT procedure"
+      },
+      {
+        "name": "Tooth Extraction",
+        "duration": "30-60 mins",
+        "price": "Rs. 1,000 - 5,000",
+        "description": "Simple to surgical extraction"
+      },
+      {
+        "name": "Dental Crown",
+        "duration": "Multiple visits",
+        "price": "Rs. 4,000 - 15,000",
+        "description": "PFM, Zirconia, or E-max crown"
+      },
+      {
+        "name": "Orthodontic Braces",
+        "duration": "12-24 months",
+        "price": "Rs. 35,000 - 80,000",
+        "description": "Metal, ceramic, or clear aligners"
+      },
+      {
+        "name": "Dental Implant",
+        "duration": "3-6 months",
+        "price": "Rs. 40,000 - 80,000",
+        "description": "Complete implant with crown"
+      }
+    ]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Patients page before/after visit section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'patients',
+  'before-after',
+  '{
+    "beforeVisit": {
+      "title": "Before Your Visit",
+      "items": [
+        "Brush and floss your teeth before your appointment",
+        "Arrive 15 minutes early for paperwork (first visit)",
+        "Bring a list of current medications",
+        "Note any dental concerns or symptoms",
+        "Avoid eating heavily right before procedures"
+      ]
+    },
+    "afterCare": {
+      "title": "After Care Tips",
+      "items": [
+        "Follow post-treatment instructions carefully",
+        "Take prescribed medications as directed",
+        "Maintain good oral hygiene",
+        "Attend follow-up appointments",
+        "Contact us immediately if you experience complications"
+      ]
+    }
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Patients page video section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'patients',
+  'video',
+  '{
+    "title": "Take a Virtual Tour",
+    "subtitle": "Explore our modern clinic facilities from the comfort of your home.",
+    "videoPath": "/videos/tour-1.mp4",
+    "posterImage": "/images/clinic-1.jpg"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Patients page FAQs section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'patients',
+  'faqs',
+  '{
+    "title": "Frequently Asked Questions",
+    "subtitle": "Common questions from our patients answered.",
+    "faqs": [
+      {
+        "question": "How do I book an appointment?",
+        "answer": "You can book an appointment through our website, call us at +977 9841-234567, or visit our clinic directly. Online booking is available 24/7."
+      },
+      {
+        "question": "What should I bring for my first visit?",
+        "answer": "Please bring a valid ID, any previous dental X-rays or records, a list of current medications, and your insurance card if applicable."
+      },
+      {
+        "question": "Do you accept insurance?",
+        "answer": "Yes, we accept most major insurance providers. Please contact our front desk to verify your coverage before your appointment."
+      },
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept cash, credit/debit cards, eSewa, Khalti, and bank transfers. Payment plans are available for major treatments."
+      },
+      {
+        "question": "Is emergency dental care available?",
+        "answer": "Yes, we provide emergency dental services. Please call our emergency line for immediate assistance outside regular hours."
+      },
+      {
+        "question": "How often should I visit the dentist?",
+        "answer": "We recommend a dental check-up every 6 months for optimal oral health. Some patients may need more frequent visits based on their dental condition."
+      }
+    ]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Patients page CTA section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'patients',
+  'cta',
+  '{
+    "title": "Ready to Schedule Your Visit?",
+    "subtitle": "Book your appointment online or give us a call. We look forward to caring for your smile!",
+    "primaryCtaText": "Book Appointment",
+    "secondaryCtaText": "Call Now",
+    "phone": "+977 9841-234567"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Contact page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'contact',
+  'hero',
+  '{
+    "title": "Contact Us",
+    "subtitle": "Have questions? We''d love to hear from you. Visit our clinic or send us a message."
+  }'::jsonb,
+  '{
+    "title": "Contact Us | Om Chabahil Dental Hospital",
+    "description": "Get in touch with Om Chabahil Dental Hospital. Visit our clinic in Kathmandu or send us a message.",
+    "keywords": ["contact", "dental hospital", "Kathmandu", "appointment"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Contact page contact info section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'contact',
+  'info',
+  '{
+    "title": "Get in Touch",
+    "contactInfo": [
+      {
+        "title": "Visit Us",
+        "lines": ["Chabahil, Koteshwor", "Kathmandu, Nepal"]
+      },
+      {
+        "title": "Call Us",
+        "lines": ["+977 9841-234567", "+977 01-4567890"]
+      },
+      {
+        "title": "Email Us",
+        "lines": ["info@omchabahildental.com.np", "appointment@omchabahildental.com.np"]
+      },
+      {
+        "title": "Working Hours",
+        "lines": ["Sun - Fri: 7:00 AM - 7:00 PM", "Saturday: 8:00 AM - 5:00 PM"]
+      }
+    ],
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.456!2d85.3451!3d27.7102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1900db123456%3A0x1234567890abcdef!2sChabahil%2C%20Kathmandu!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Contact page quick contact section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'contact',
+  'quick-contact',
+  '{
+    "title": "Need Immediate Assistance?",
+    "subtitle": "For appointments and urgent dental queries, call us directly",
+    "phone": "+977 9841-234567",
+    "whatsapp": "+977 9841-234567"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Academics page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'academics',
+  'hero',
+  '{
+    "title": "Academic Programs",
+    "subtitle": "World-class dental education combining rigorous academics with hands-on clinical experience to prepare you for a successful career in dentistry."
+  }'::jsonb,
+  '{
+    "title": "Academic Programs | Premier Dental College",
+    "description": "Explore our BDS, MDS, and internship programs. World-class dental education with experienced faculty and modern facilities.",
+    "keywords": ["academic programs", "BDS", "MDS", "dental education"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Academics page stats section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'academics',
+  'stats',
+  '{
+    "stats": [
+      {
+        "label": "Programs Offered",
+        "value": "10+"
+      },
+      {
+        "label": "Expert Faculty",
+        "value": "50+"
+      },
+      {
+        "label": "Alumni Network",
+        "value": "5000+"
+      },
+      {
+        "label": "Years of Excellence",
+        "value": "25+"
+      }
+    ]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Academics page programs section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'academics',
+  'programs',
+  '{
+    "title": "Our Programs",
+    "subtitle": "Choose from our range of undergraduate, postgraduate, and certificate programs."
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Academics page MDS specializations section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'academics',
+  'mds-specializations',
+  '{
+    "title": "MDS Specializations",
+    "subtitle": "Choose from our comprehensive range of postgraduate specialization programs.",
+    "specializations": [
+      "Orthodontics & Dentofacial Orthopedics",
+      "Oral & Maxillofacial Surgery",
+      "Prosthodontics & Crown Bridge",
+      "Conservative Dentistry & Endodontics",
+      "Periodontics",
+      "Pedodontics & Preventive Dentistry",
+      "Oral Pathology & Microbiology",
+      "Public Health Dentistry"
+    ]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Academics page CTA section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'academics',
+  'cta',
+  '{
+    "title": "Ready to Begin Your Dental Journey?",
+    "subtitle": "Take the first step towards a rewarding career in dentistry. Apply now for our upcoming academic session.",
+    "primaryCtaText": "Apply Now",
+    "secondaryCtaText": "Request Information"
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Gallery page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'gallery',
+  'hero',
+  '{
+    "title": "Photo & Video Gallery",
+    "subtitle": "Explore our clinic, meet our team, and see the quality care we provide at Om Chabahil Dental Hospital."
+  }'::jsonb,
+  '{
+    "title": "Gallery | Om Chabahil Dental Hospital",
+    "description": "Explore our clinic, meet our team, and see the quality care we provide through our photo and video gallery.",
+    "keywords": ["gallery", "clinic photos", "dental clinic", "virtual tour"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Blog page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'blog',
+  'hero',
+  '{
+    "title": "Dental Knowledge Hub",
+    "subtitle": "Expert insights, dental health tips, and the latest news from our team of dental professionals."
+  }'::jsonb,
+  '{
+    "title": "Blog & Dental Tips | Om Chabahil Dental Hospital",
+    "description": "Explore dental health tips, oral care advice, and the latest news from Om Chabahil Dental Hospital in Kathmandu.",
+    "keywords": ["blog", "dental tips", "oral health", "dental news"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Blog page newsletter section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'blog',
+  'newsletter',
+  '{
+    "title": "Subscribe to Our Newsletter",
+    "subtitle": "Get the latest dental health tips and news delivered to your inbox."
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Admissions page hero section
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'academics/admissions',
+  'hero',
+  '{
+    "title": "Online Admission Application",
+    "subtitle": "Apply for BDS, MDS, and other dental programs"
+  }'::jsonb,
+  '{
+    "title": "Online Admission Application | Premier Dental College",
+    "description": "Apply for BDS, MDS, and other dental programs online. Complete your admission application in simple steps.",
+    "keywords": ["admission", "application", "BDS", "MDS", "dental college"]
+  }'::jsonb,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Insert doctors (8 doctors from frontend)
+-- Using simple INSERT with subqueries - if department doesn't exist, skip that doctor
+INSERT INTO doctors (id, name, email, phone, qualification, specialization, department_id, experience, consultation_fee, bio, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'Dr. Bikash Sharma',
+  'bikash.sharma@omchabahildental.com.np',
+  '+977 9841-234567',
+  'BDS, NMC Registered',
+  'General Dentistry',
+  (SELECT id FROM departments WHERE name = 'General Dentistry' LIMIT 1),
+  12,
+  500,
+  'Expert in general dental care, preventive dentistry, and restorative treatments.',
+  true,
+  NOW(),
+  NOW()
+WHERE NOT EXISTS (SELECT 1 FROM doctors WHERE email = 'bikash.sharma@omchabahildental.com.np')
+  AND EXISTS (SELECT 1 FROM departments WHERE name = 'General Dentistry');
+
+INSERT INTO doctors (id, name, email, phone, qualification, specialization, department_id, experience, consultation_fee, bio, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'Dr. Sunita Thapa',
+  'sunita.thapa@omchabahildental.com.np',
+  '+977 9841-234568',
+  'BDS, MDS (Orthodontics)',
+  'Orthodontics',
+  (SELECT id FROM departments WHERE name = 'Orthodontics' LIMIT 1),
+  8,
+  800,
+  'Specialist in braces, aligners, and teeth alignment treatments.',
+  true,
+  NOW(),
+  NOW()
+WHERE NOT EXISTS (SELECT 1 FROM doctors WHERE email = 'sunita.thapa@omchabahildental.com.np')
+  AND EXISTS (SELECT 1 FROM departments WHERE name = 'Orthodontics');
+
+INSERT INTO doctors (id, name, email, phone, qualification, specialization, department_id, experience, consultation_fee, bio, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'Dr. Ram Prasad KC',
+  'ram.kc@omchabahildental.com.np',
+  '+977 9841-234569',
+  'BDS, MDS (OMFS)',
+  'Oral Surgery',
+  (SELECT id FROM departments WHERE name = 'Oral & Maxillofacial Surgery' LIMIT 1),
+  15,
+  1000,
+  'Experienced oral surgeon specializing in extractions, implants, and jaw surgeries.',
+  true,
+  NOW(),
+  NOW()
+WHERE NOT EXISTS (SELECT 1 FROM doctors WHERE email = 'ram.kc@omchabahildental.com.np')
+  AND EXISTS (SELECT 1 FROM departments WHERE name = 'Oral & Maxillofacial Surgery');
+
+INSERT INTO doctors (id, name, email, phone, qualification, specialization, department_id, experience, consultation_fee, bio, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'Dr. Anita Gurung',
+  'anita.gurung@omchabahildental.com.np',
+  '+977 9841-234570',
+  'BDS, MDS (Endodontics)',
+  'Endodontics',
+  (SELECT id FROM departments WHERE name = 'Endodontics' LIMIT 1),
+  10,
+  700,
+  'Root canal specialist with expertise in saving damaged teeth.',
+  true,
+  NOW(),
+  NOW()
+WHERE NOT EXISTS (SELECT 1 FROM doctors WHERE email = 'anita.gurung@omchabahildental.com.np')
+  AND EXISTS (SELECT 1 FROM departments WHERE name = 'Endodontics');
+
+INSERT INTO doctors (id, name, email, phone, qualification, specialization, department_id, experience, consultation_fee, bio, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'Dr. Suman Adhikari',
+  'suman.adhikari@omchabahildental.com.np',
+  '+977 9841-234571',
+  'BDS, MDS (Prostho)',
+  'Prosthodontics',
+  (SELECT id FROM departments WHERE name = 'Prosthodontics' LIMIT 1),
+  9,
+  600,
+  'Expert in dental crowns, bridges, dentures, and smile makeovers.',
+  true,
+  NOW(),
+  NOW()
+WHERE NOT EXISTS (SELECT 1 FROM doctors WHERE email = 'suman.adhikari@omchabahildental.com.np')
+  AND EXISTS (SELECT 1 FROM departments WHERE name = 'Prosthodontics');
+
+INSERT INTO doctors (id, name, email, phone, qualification, specialization, department_id, experience, consultation_fee, bio, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'Dr. Priya Shrestha',
+  'priya.shrestha@omchabahildental.com.np',
+  '+977 9841-234572',
+  'BDS, MDS (Pedo)',
+  'Pediatric Dentistry',
+  (SELECT id FROM departments WHERE name = 'Pediatric Dentistry' LIMIT 1),
+  7,
+  550,
+  'Child-friendly dentist specializing in dental care for kids and adolescents.',
+  true,
+  NOW(),
+  NOW()
+WHERE NOT EXISTS (SELECT 1 FROM doctors WHERE email = 'priya.shrestha@omchabahildental.com.np')
+  AND EXISTS (SELECT 1 FROM departments WHERE name = 'Pediatric Dentistry');
+
+INSERT INTO doctors (id, name, email, phone, qualification, specialization, department_id, experience, consultation_fee, bio, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'Dr. Rajesh Maharjan',
+  'rajesh.maharjan@omchabahildental.com.np',
+  '+977 9841-234573',
+  'BDS, MDS (Perio)',
+  'Periodontics',
+  (SELECT id FROM departments WHERE name = 'Periodontics' LIMIT 1),
+  11,
+  900,
+  'Gum specialist treating gum diseases and performing dental implants.',
+  true,
+  NOW(),
+  NOW()
+WHERE NOT EXISTS (SELECT 1 FROM doctors WHERE email = 'rajesh.maharjan@omchabahildental.com.np')
+  AND EXISTS (SELECT 1 FROM departments WHERE name = 'Periodontics');
+
+INSERT INTO doctors (id, name, email, phone, qualification, specialization, department_id, experience, consultation_fee, bio, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'Dr. Maya Tamang',
+  'maya.tamang@omchabahildental.com.np',
+  '+977 9841-234574',
+  'BDS, Certified Cosmetic Dentist',
+  'Cosmetic Dentistry',
+  (SELECT id FROM departments WHERE name = 'General Dentistry' LIMIT 1),
+  6,
+  750,
+  'Specializing in teeth whitening, veneers, and smile enhancement procedures.',
+  true,
+  NOW(),
+  NOW()
+WHERE NOT EXISTS (SELECT 1 FROM doctors WHERE email = 'maya.tamang@omchabahildental.com.np')
+  AND EXISTS (SELECT 1 FROM departments WHERE name = 'General Dentistry');
+
+-- Insert services (8 services from frontend)
+INSERT INTO services (id, name, slug, short_description, description, image, department_id, is_active, "order", created_at, updated_at)
+VALUES 
+  (
+    uuid_generate_v4(),
+    'General Dentistry',
+    'general-dentistry',
+    'Comprehensive dental care including cleanings, fillings, and preventive treatments.',
+    'Our general dentistry services cover all aspects of preventive and restorative dental care to maintain your oral health. We provide dental examinations and cleanings, cavity fillings and restorations, tooth extractions, gum disease treatment, and dental X-rays and diagnostics.',
+    '/images/service-general.jpg',
+    (SELECT id FROM departments WHERE name = 'General Dentistry' LIMIT 1),
+    true,
+    1,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Orthodontics',
+    'orthodontics',
+    'Braces, aligners, and teeth straightening solutions for a perfect smile.',
+    'Achieve a perfect smile with our comprehensive orthodontic treatments using the latest techniques and technology. We offer traditional metal braces, ceramic braces, clear aligners (Invisalign), lingual braces, and retainers with follow-up care.',
+    '/images/service-orthodontics.jpg',
+    (SELECT id FROM departments WHERE name = 'Orthodontics' LIMIT 1),
+    true,
+    2,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Oral & Maxillofacial Surgery',
+    'oral-maxillofacial-surgery',
+    'Expert surgical procedures including extractions, implants, and jaw surgery.',
+    'Expert surgical solutions for complex dental and facial conditions by our experienced oral surgeons. Services include wisdom tooth extraction, dental implant placement, jaw surgery (orthognathic), facial trauma treatment, and TMJ disorder treatment.',
+    '/images/service-surgery.jpg',
+    (SELECT id FROM departments WHERE name = 'Oral & Maxillofacial Surgery' LIMIT 1),
+    true,
+    3,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Pediatric Dentistry',
+    'pediatric-dentistry',
+    'Gentle, specialized dental care designed for children of all ages.',
+    'Gentle, child-friendly dental care designed to make your little ones feel comfortable and happy. We provide first dental visit guidance, preventive treatments, fluoride application, dental sealants, and behavior management.',
+    '/images/service-pediatric.jpg',
+    (SELECT id FROM departments WHERE name = 'Pediatric Dentistry' LIMIT 1),
+    true,
+    4,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Cosmetic Dentistry',
+    'cosmetic-dentistry',
+    'Teeth whitening, veneers, and smile makeovers for your dream smile.',
+    'Transform your smile with our range of cosmetic procedures designed to enhance your appearance. We offer teeth whitening, porcelain veneers, dental bonding, smile makeovers, and gum contouring.',
+    '/images/service-cosmetic.jpg',
+    (SELECT id FROM departments WHERE name = 'General Dentistry' LIMIT 1),
+    true,
+    5,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Endodontics',
+    'endodontics',
+    'Root canal treatments and other procedures to save damaged teeth.',
+    'Save your natural teeth with our specialized root canal treatments and endodontic procedures. We provide root canal treatment, endodontic retreatment, apicoectomy, dental trauma management, and pulp therapy.',
+    '/images/service-endodontics.jpg',
+    (SELECT id FROM departments WHERE name = 'Endodontics' LIMIT 1),
+    true,
+    6,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Prosthodontics',
+    'prosthodontics',
+    'Dental crowns, bridges, dentures, and full mouth rehabilitation.',
+    'Restore function and aesthetics with our comprehensive prosthetic dental solutions. We offer dental crowns and bridges, complete dentures, partial dentures, implant-supported prosthetics, and full mouth rehabilitation.',
+    '/images/service-prosthodontics.jpg',
+    (SELECT id FROM departments WHERE name = 'Prosthodontics' LIMIT 1),
+    true,
+    7,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Periodontics',
+    'periodontics',
+    'Specialized care for your gums and supporting structures.',
+    'Specialized care for your gums and supporting structures to maintain a healthy foundation for your teeth. We provide scaling and root planing, gum grafting, crown lengthening, pocket reduction surgery, and dental implants.',
+    '/images/service-periodontics.jpg',
+    (SELECT id FROM departments WHERE name = 'Periodontics' LIMIT 1),
+    true,
+    8,
+    NOW(),
+    NOW()
+  )
+ON CONFLICT (slug) DO NOTHING;
+
+-- Insert blog posts (3 sample posts from frontend BlogSection)
+INSERT INTO blog_posts (id, title, slug, excerpt, content, featured_image, author, category, tags, is_published, published_at, reading_time, views, created_at, updated_at)
+VALUES 
+  (
+    uuid_generate_v4(),
+    '10 Essential Tips for Maintaining Oral Health',
+    '10-essential-tips-for-oral-health',
+    'Discover the key practices that can help you maintain a healthy smile and prevent dental problems.',
+    '<h2>Introduction</h2><p>Maintaining good oral health is essential for your overall well-being. Here are 10 essential tips to keep your teeth and gums healthy.</p><h2>1. Brush Twice Daily</h2><p>Brush your teeth at least twice a day with fluoride toothpaste. Use a soft-bristled toothbrush and replace it every three to four months.</p><h2>2. Floss Regularly</h2><p>Flossing removes plaque and food particles between teeth that brushing cannot reach. Make it a daily habit.</p><h2>3. Use Mouthwash</h2><p>Antimicrobial mouthwash can help reduce bacteria and prevent gum disease.</p><h2>4. Eat a Balanced Diet</h2><p>Limit sugary and acidic foods. Eat plenty of fruits, vegetables, and calcium-rich foods.</p><h2>5. Stay Hydrated</h2><p>Drinking water helps wash away food particles and keeps your mouth moist.</p><h2>6. Avoid Tobacco</h2><p>Smoking and chewing tobacco increase the risk of gum disease and oral cancer.</p><h2>7. Limit Alcohol</h2><p>Excessive alcohol consumption can lead to oral health problems.</p><h2>8. Protect Your Teeth</h2><p>Wear a mouthguard during sports and avoid using your teeth as tools.</p><h2>9. Regular Dental Checkups</h2><p>Visit your dentist every six months for professional cleanings and examinations.</p><h2>10. Address Problems Early</h2><p>Don''t ignore dental pain or problems. Early treatment prevents more serious issues.</p><h2>Conclusion</h2><p>Following these tips can help you maintain excellent oral health and a beautiful smile for years to come.</p>',
+    '/images/blog-1.jpg',
+    'Dr. Sarah Johnson',
+    'Dental Care',
+    ARRAY['oral health', 'dental tips', 'prevention', 'hygiene'],
+    true,
+    NOW(),
+    5,
+    0,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Understanding the BDS Program: A Complete Guide',
+    'understanding-bds-program',
+    'Everything you need to know about pursuing a Bachelor of Dental Surgery degree at our institution.',
+    '<h2>What is BDS?</h2><p>The Bachelor of Dental Surgery (BDS) is an undergraduate degree program that prepares students for a career in dentistry.</p><h2>Program Duration</h2><p>The BDS program typically lasts 5 years, including 4 years of academic study and 1 year of mandatory internship.</p><h2>Curriculum Overview</h2><p>Our BDS program covers:</p><ul><li>Basic medical sciences</li><li>Dental sciences</li><li>Clinical training</li><li>Research methodology</li></ul><h2>Career Opportunities</h2><p>BDS graduates can work as general dentists, pursue specializations, or enter research and academia.</p><h2>Admission Requirements</h2><p>To apply for BDS, you need:</p><ul><li>10+2 with Physics, Chemistry, and Biology</li><li>Minimum 50% marks</li><li>Valid entrance exam score</li><li>Age between 17-25 years</li></ul><h2>Why Choose Our Program?</h2><p>Our BDS program offers comprehensive education, hands-on clinical experience, modern facilities, and expert faculty mentorship.</p>',
+    '/images/blog-2.jpg',
+    'Admin',
+    'Education',
+    ARRAY['BDS', 'dental education', 'academics', 'career'],
+    true,
+    NOW(),
+    8,
+    0,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'Modern Orthodontics: Beyond Traditional Braces',
+    'modern-orthodontics-beyond-braces',
+    'Explore the latest advancements in orthodontic treatment, from clear aligners to lingual braces.',
+    '<h2>Introduction to Modern Orthodontics</h2><p>Orthodontic treatment has evolved significantly, offering patients more options than ever before.</p><h2>Clear Aligners (Invisalign)</h2><p>Clear aligners are virtually invisible, removable, and comfortable. They are perfect for adults and teens who want a discreet treatment option.</p><h2>Ceramic Braces</h2><p>Ceramic braces use tooth-colored brackets that blend with your natural teeth, making them less noticeable than traditional metal braces.</p><h2>Lingual Braces</h2><p>Lingual braces are placed on the back of your teeth, making them completely invisible from the front.</p><h2>Self-Ligating Braces</h2><p>These braces use a special clip instead of elastic bands, reducing friction and potentially shortening treatment time.</p><h2>Digital Treatment Planning</h2><p>Modern orthodontics uses 3D imaging and digital planning for more precise and predictable results.</p><h2>Choosing the Right Option</h2><p>Your orthodontist will help you choose the best treatment option based on your specific needs, lifestyle, and treatment goals.</p><h2>Conclusion</h2><p>With so many options available, achieving a straight, healthy smile is more accessible than ever.</p>',
+    '/images/blog-3.jpg',
+    'Dr. Michael Chen',
+    'Orthodontics',
+    ARRAY['orthodontics', 'braces', 'clear aligners', 'smile correction'],
+    true,
+    NOW(),
+    6,
+    0,
+    NOW(),
+    NOW()
+  )
+ON CONFLICT (slug) DO NOTHING;
+
+-- Insert gallery items metadata (images/videos remain in frontend, only metadata stored)
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'gallery',
+  'items',
+  '{
+    "items": [
+      {
+        "id": 1,
+        "type": "image",
+        "src": "/images/team.jpg",
+        "title": "Our Dental Team",
+        "category": "Team",
+        "description": "The dedicated team at Om Chabahil Dental Hospital"
+      },
+      {
+        "id": 2,
+        "type": "image",
+        "src": "/images/clinic-1.jpg",
+        "title": "Modern Treatment Room",
+        "category": "Clinic",
+        "description": "State-of-the-art dental treatment facility"
+      },
+      {
+        "id": 3,
+        "type": "image",
+        "src": "/images/clinic-2.jpg",
+        "title": "Reception Area",
+        "category": "Clinic",
+        "description": "Welcoming reception and waiting area"
+      },
+      {
+        "id": 4,
+        "type": "image",
+        "src": "/images/clinic-3.jpg",
+        "title": "Dental Equipment",
+        "category": "Clinic",
+        "description": "Advanced dental technology and equipment"
+      },
+      {
+        "id": 5,
+        "type": "image",
+        "src": "/images/clinic-4.jpg",
+        "title": "Treatment in Progress",
+        "category": "Treatments",
+        "description": "Professional dental care procedures"
+      },
+      {
+        "id": 6,
+        "type": "image",
+        "src": "/images/clinic-5.jpg",
+        "title": "Clinic Interior",
+        "category": "Clinic",
+        "description": "Clean and modern clinic environment"
+      },
+      {
+        "id": 7,
+        "type": "video",
+        "src": "/videos/tour-1.mp4",
+        "thumbnail": "/images/clinic-1.jpg",
+        "title": "Clinic Tour Video",
+        "category": "Clinic",
+        "description": "Take a virtual tour of our dental clinic"
+      },
+      {
+        "id": 8,
+        "type": "video",
+        "src": "/videos/tour-2.mp4",
+        "thumbnail": "/images/clinic-2.jpg",
+        "title": "Treatment Procedure",
+        "category": "Treatments",
+        "description": "Overview of our treatment procedures"
+      }
+    ],
+    "categories": ["All", "Clinic", "Team", "Treatments", "Events"]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Insert site-wide settings/configuration
+INSERT INTO page_content (id, page_slug, section_key, content, seo, created_at, updated_at)
+VALUES (
+  uuid_generate_v4(),
+  'settings',
+  'general',
+  '{
+    "siteName": "Om Chabahil Dental Hospital",
+    "siteTagline": "Your Smile, Our Priority",
+    "primaryPhone": "+977 01-4812345",
+    "secondaryPhone": "+977 01-4567890",
+    "whatsappNumber": "+977 9841-234567",
+    "primaryEmail": "info@omchabahildental.com.np",
+    "appointmentEmail": "appointment@omchabahildental.com.np",
+    "address": "Chabahil, Koteshwor, Kathmandu, Nepal",
+    "city": "Kathmandu",
+    "state": "Bagmati",
+    "country": "Nepal",
+    "postalCode": "44600",
+    "workingHours": {
+      "weekdays": "Sunday - Friday: 7:00 AM - 7:00 PM",
+      "saturday": "Saturday: 8:00 AM - 5:00 PM",
+      "emergency": "24/7 Emergency Services Available"
+    },
+    "socialMedia": {
+      "facebook": "",
+      "instagram": "",
+      "twitter": "",
+      "linkedin": "",
+      "youtube": ""
+    },
+    "whatsappQuickMessages": [
+      "I want to book an appointment",
+      "I need information about BDS admission",
+      "What are your clinic timings?",
+      "I have a dental emergency"
+    ]
+  }'::jsonb,
+  NULL,
+  NOW(),
+  NOW()
+)
+ON CONFLICT (page_slug, section_key) DO NOTHING;
+
+-- Insert sample appointments (various statuses and dates)
+INSERT INTO appointments (id, doctor_id, patient_name, patient_email, patient_phone, date, start_time, end_time, status, notes, reminder_sent, confirmation_sent, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'bikash.sharma@omchabahildental.com.np' LIMIT 1),
+  'Ram Sharma',
+  'ram.sharma@example.com',
+  '+977 9841-111111',
+  CURRENT_DATE + INTERVAL '1 day',
+  '09:00:00'::time,
+  '09:30:00'::time,
+  'confirmed'::appointments_status_enum,
+  'Regular checkup appointment',
+  true,
+  true,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'bikash.sharma@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'ram.sharma@example.com' AND date = CURRENT_DATE + INTERVAL '1 day' AND start_time = '09:00:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'sunita.thapa@omchabahildental.com.np' LIMIT 1),
+  'Sita Thapa',
+  'sita.thapa@example.com',
+  '+977 9841-222222',
+  CURRENT_DATE + INTERVAL '2 days',
+  '10:30:00'::time,
+  '11:00:00'::time,
+  'pending'::appointments_status_enum,
+  'Orthodontic consultation',
+  false,
+  false,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'sunita.thapa@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'sita.thapa@example.com' AND date = CURRENT_DATE + INTERVAL '2 days' AND start_time = '10:30:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'ram.kc@omchabahildental.com.np' LIMIT 1),
+  'Hari Prasad',
+  'hari.prasad@example.com',
+  '+977 9841-333333',
+  CURRENT_DATE + INTERVAL '3 days',
+  '11:00:00'::time,
+  '11:30:00'::time,
+  'confirmed',
+  'Tooth extraction consultation',
+  true,
+  true,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'ram.kc@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'hari.prasad@example.com' AND date = CURRENT_DATE + INTERVAL '3 days' AND start_time = '11:00:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'anita.gurung@omchabahildental.com.np' LIMIT 1),
+  'Maya Gurung',
+  'maya.gurung@example.com',
+  '+977 9841-444444',
+  CURRENT_DATE - INTERVAL '2 days',
+  '14:00:00'::time,
+  '15:00:00'::time,
+  'completed'::appointments_status_enum,
+  'Root canal treatment completed successfully',
+  true,
+  true,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'anita.gurung@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'maya.gurung@example.com' AND date = CURRENT_DATE - INTERVAL '2 days' AND start_time = '14:00:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'suman.adhikari@omchabahildental.com.np' LIMIT 1),
+  'Krishna Adhikari',
+  'krishna.adhikari@example.com',
+  '+977 9841-555555',
+  CURRENT_DATE + INTERVAL '5 days',
+  '15:00:00'::time,
+  '15:30:00'::time,
+  'pending',
+  'Dental crown consultation',
+  false,
+  false,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'suman.adhikari@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'krishna.adhikari@example.com' AND date = CURRENT_DATE + INTERVAL '5 days' AND start_time = '15:00:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'priya.shrestha@omchabahildental.com.np' LIMIT 1),
+  'Anjali Shrestha',
+  'anjali.shrestha@example.com',
+  '+977 9841-666666',
+  CURRENT_DATE + INTERVAL '1 day',
+  '10:00:00'::time,
+  '10:30:00'::time,
+  'confirmed',
+  'Child dental checkup',
+  true,
+  true,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'priya.shrestha@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'anjali.shrestha@example.com' AND date = CURRENT_DATE + INTERVAL '1 day' AND start_time = '10:00:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'rajesh.maharjan@omchabahildental.com.np' LIMIT 1),
+  'Bikash Maharjan',
+  'bikash.maharjan@example.com',
+  '+977 9841-777777',
+  CURRENT_DATE - INTERVAL '5 days',
+  '09:30:00'::time,
+  '10:00:00'::time,
+  'completed',
+  'Gum treatment completed',
+  true,
+  true,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'rajesh.maharjan@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'bikash.maharjan@example.com' AND date = CURRENT_DATE - INTERVAL '5 days' AND start_time = '09:30:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'maya.tamang@omchabahildental.com.np' LIMIT 1),
+  'Sangita Tamang',
+  'sangita.tamang@example.com',
+  '+977 9841-888888',
+  CURRENT_DATE + INTERVAL '7 days',
+  '16:00:00'::time,
+  '17:00:00'::time,
+  'pending',
+  'Teeth whitening consultation',
+  false,
+  false,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'maya.tamang@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'sangita.tamang@example.com' AND date = CURRENT_DATE + INTERVAL '7 days' AND start_time = '16:00:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'bikash.sharma@omchabahildental.com.np' LIMIT 1),
+  'Nabin Karki',
+  'nabin.karki@example.com',
+  '+977 9841-999999',
+  CURRENT_DATE - INTERVAL '1 day',
+  '11:30:00'::time,
+  '12:00:00'::time,
+  'cancelled'::appointments_status_enum,
+  'Patient cancelled due to emergency',
+  false,
+  false,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'bikash.sharma@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'nabin.karki@example.com' AND date = CURRENT_DATE - INTERVAL '1 day' AND start_time = '11:30:00')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  (SELECT id FROM doctors WHERE email = 'sunita.thapa@omchabahildental.com.np' LIMIT 1),
+  'Prabin Thapa',
+  'prabin.thapa@example.com',
+  '+977 9841-101010',
+  CURRENT_DATE - INTERVAL '3 days',
+  '14:30:00'::time,
+  '15:00:00'::time,
+  'no_show'::appointments_status_enum,
+  'Patient did not show up',
+  true,
+  false,
+  NOW(),
+  NOW()
+WHERE EXISTS (SELECT 1 FROM doctors WHERE email = 'sunita.thapa@omchabahildental.com.np')
+  AND NOT EXISTS (SELECT 1 FROM appointments WHERE patient_email = 'prabin.thapa@example.com' AND date = CURRENT_DATE - INTERVAL '3 days' AND start_time = '14:30:00');
+
+-- Insert sample enquiries (various types and statuses)
+INSERT INTO enquiries (id, type, name, email, phone, subject, message, status, created_at, updated_at)
+VALUES 
+  (
+    uuid_generate_v4(),
+    'appointment',
+    'Rajesh Kumar',
+    'rajesh.kumar@example.com',
+    '+977 9841-123456',
+    'Need to book an appointment for dental checkup',
+    'I would like to schedule a dental checkup appointment. Please let me know the available slots for next week.',
+    'new',
+    NOW() - INTERVAL '2 days',
+    NOW() - INTERVAL '2 days'
+  ),
+  (
+    uuid_generate_v4(),
+    'services',
+    'Sita Devi',
+    'sita.devi@example.com',
+    '+977 9841-234567',
+    'Inquiry about orthodontic treatment',
+    'I am interested in getting braces. Can you please provide information about the treatment options and costs?',
+    'in_progress',
+    NOW() - INTERVAL '5 days',
+    NOW() - INTERVAL '1 day'
+  ),
+  (
+    uuid_generate_v4(),
+    'admission',
+    'Amit Shrestha',
+    'amit.shrestha@example.com',
+    '+977 9841-345678',
+    'BDS Admission Query',
+    'I want to apply for BDS program. What are the admission requirements and when is the application deadline?',
+    'new',
+    NOW() - INTERVAL '1 day',
+    NOW() - INTERVAL '1 day'
+  ),
+  (
+    uuid_generate_v4(),
+    'general',
+    'Maya Thapa',
+    'maya.thapa@example.com',
+    '+977 9841-456789',
+    'Clinic timings and location',
+    'What are your clinic hours? And can you provide directions to your clinic?',
+    'resolved',
+    NOW() - INTERVAL '7 days',
+    NOW() - INTERVAL '3 days'
+  ),
+  (
+    uuid_generate_v4(),
+    'feedback',
+    'Hari Prasad',
+    'hari.prasad@example.com',
+    '+977 9841-567890',
+    'Excellent service',
+    'I had a great experience at your clinic. The staff was very professional and the treatment was excellent. Thank you!',
+    'closed',
+    NOW() - INTERVAL '10 days',
+    NOW() - INTERVAL '8 days'
+  ),
+  (
+    uuid_generate_v4(),
+    'complaint',
+    'Bikash Maharjan',
+    'bikash.maharjan@example.com',
+    '+977 9841-678901',
+    'Long waiting time',
+    'I had to wait for more than an hour for my appointment. This is unacceptable.',
+    'in_progress',
+    NOW() - INTERVAL '3 days',
+    NOW() - INTERVAL '1 day'
+  ),
+  (
+    uuid_generate_v4(),
+    'appointment',
+    'Sunita Gurung',
+    'sunita.gurung@example.com',
+    '+977 9841-789012',
+    'Emergency dental appointment',
+    'I have severe tooth pain and need an emergency appointment as soon as possible.',
+    'new',
+    NOW() - INTERVAL '6 hours',
+    NOW() - INTERVAL '6 hours'
+  ),
+  (
+    uuid_generate_v4(),
+    'services',
+    'Ram KC',
+    'ram.kc@example.com',
+    '+977 9841-890123',
+    'Root canal treatment cost',
+    'Can you please provide information about root canal treatment costs and procedure?',
+    'resolved',
+    NOW() - INTERVAL '4 days',
+    NOW() - INTERVAL '2 days'
+  ),
+  (
+    uuid_generate_v4(),
+    'admission',
+    'Priya Shrestha',
+    'priya.shrestha@example.com',
+    '+977 9841-901234',
+    'MDS Admission Requirements',
+    'I am interested in MDS Orthodontics program. What are the eligibility criteria?',
+    'new',
+    NOW() - INTERVAL '12 hours',
+    NOW() - INTERVAL '12 hours'
+  ),
+  (
+    uuid_generate_v4(),
+    'general',
+    'Anjali Tamang',
+    'anjali.tamang@example.com',
+    '+977 9841-012345',
+    'Insurance coverage',
+    'Do you accept health insurance? Which insurance providers do you work with?',
+    'in_progress',
+    NOW() - INTERVAL '2 days',
+    NOW() - INTERVAL '1 day'
+  )
+ON CONFLICT DO NOTHING;
+
+-- Insert sample admission applications (various statuses)
+INSERT INTO admission_applications (id, application_number, program_id, first_name, last_name, email, phone, date_of_birth, gender, nationality, address, previous_education, percentage, passing_year, documents, status, remarks, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  'APP-' || TO_CHAR(NOW(), 'YYYY') || '-001',
+  (SELECT id FROM academic_programs WHERE slug = 'bds' LIMIT 1),
+  'Raj',
+  'Kumar',
+  'raj.kumar@example.com',
+  '+977 9841-111111',
+  '2005-05-15'::date,
+  'male'::admission_applications_gender_enum,
+  'Nepali',
+  'Kathmandu, Nepal',
+  '10+2 Science',
+  85.5,
+  2023,
+  '[]'::jsonb,
+  'submitted'::admission_applications_status_enum,
+  NULL,
+  NOW() - INTERVAL '10 days',
+  NOW() - INTERVAL '10 days'
+WHERE EXISTS (SELECT 1 FROM academic_programs WHERE slug = 'bds')
+  AND NOT EXISTS (SELECT 1 FROM admission_applications WHERE application_number = 'APP-' || TO_CHAR(NOW(), 'YYYY') || '-001')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  'APP-' || TO_CHAR(NOW(), 'YYYY') || '-002',
+  (SELECT id FROM academic_programs WHERE slug = 'bds' LIMIT 1),
+  'Sita',
+  'Devi',
+  'sita.devi@example.com',
+  '+977 9841-222222',
+  '2004-08-20'::date,
+  'female'::admission_applications_gender_enum,
+  'Nepali',
+  'Pokhara, Nepal',
+  '10+2 Science',
+  92.0,
+  2023,
+  '[]'::jsonb,
+  'under_review'::admission_applications_status_enum,
+  'Application under review by admission committee',
+  NOW() - INTERVAL '8 days',
+  NOW() - INTERVAL '2 days'
+WHERE EXISTS (SELECT 1 FROM academic_programs WHERE slug = 'bds')
+  AND NOT EXISTS (SELECT 1 FROM admission_applications WHERE application_number = 'APP-' || TO_CHAR(NOW(), 'YYYY') || '-002')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  'APP-' || TO_CHAR(NOW(), 'YYYY') || '-003',
+  (SELECT id FROM academic_programs WHERE slug = 'mds-orthodontics' LIMIT 1),
+  'Amit',
+  'Shrestha',
+  'amit.shrestha@example.com',
+  '+977 9841-333333',
+  '1998-03-10'::date,
+  'male',
+  'Nepali',
+  'Lalitpur, Nepal',
+  'BDS',
+  78.5,
+  2022,
+  '[]'::jsonb,
+  'shortlisted'::admission_applications_status_enum,
+  'Candidate shortlisted for interview',
+  NOW() - INTERVAL '15 days',
+  NOW() - INTERVAL '5 days'
+WHERE EXISTS (SELECT 1 FROM academic_programs WHERE slug = 'mds-orthodontics')
+  AND NOT EXISTS (SELECT 1 FROM admission_applications WHERE application_number = 'APP-' || TO_CHAR(NOW(), 'YYYY') || '-003')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  'APP-' || TO_CHAR(NOW(), 'YYYY') || '-004',
+  (SELECT id FROM academic_programs WHERE slug = 'bds' LIMIT 1),
+  'Maya',
+  'Thapa',
+  'maya.thapa@example.com',
+  '+977 9841-444444',
+  '2005-11-25'::date,
+  'female',
+  'Nepali',
+  'Bhaktapur, Nepal',
+  '10+2 Science',
+  88.0,
+  2023,
+  '[]'::jsonb,
+  'accepted'::admission_applications_status_enum,
+  'Congratulations! Your application has been accepted.',
+  NOW() - INTERVAL '20 days',
+  NOW() - INTERVAL '10 days'
+WHERE EXISTS (SELECT 1 FROM academic_programs WHERE slug = 'bds')
+  AND NOT EXISTS (SELECT 1 FROM admission_applications WHERE application_number = 'APP-' || TO_CHAR(NOW(), 'YYYY') || '-004')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  'APP-' || TO_CHAR(NOW(), 'YYYY') || '-005',
+  (SELECT id FROM academic_programs WHERE slug = 'bds' LIMIT 1),
+  'Hari',
+  'Prasad',
+  'hari.prasad@example.com',
+  '+977 9841-555555',
+  '2004-07-12'::date,
+  'male',
+  'Nepali',
+  'Kathmandu, Nepal',
+  '10+2 Science',
+  65.0,
+  2023,
+  '[]'::jsonb,
+  'rejected'::admission_applications_status_enum,
+  'Application does not meet minimum eligibility criteria',
+  NOW() - INTERVAL '12 days',
+  NOW() - INTERVAL '8 days'
+WHERE EXISTS (SELECT 1 FROM academic_programs WHERE slug = 'bds')
+  AND NOT EXISTS (SELECT 1 FROM admission_applications WHERE application_number = 'APP-' || TO_CHAR(NOW(), 'YYYY') || '-005')
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  'APP-' || TO_CHAR(NOW(), 'YYYY') || '-006',
+  (SELECT id FROM academic_programs WHERE slug = 'mds-oral-surgery' LIMIT 1),
+  'Bikash',
+  'Maharjan',
+  'bikash.maharjan@example.com',
+  '+977 9841-666666',
+  '1997-09-05'::date,
+  'male',
+  'Nepali',
+  'Kathmandu, Nepal',
+  'BDS',
+  82.0,
+  2021,
+  '[]'::jsonb,
+  'draft'::admission_applications_status_enum,
+  NULL,
+  NOW() - INTERVAL '3 days',
+  NOW() - INTERVAL '3 days'
+WHERE EXISTS (SELECT 1 FROM academic_programs WHERE slug = 'mds-oral-surgery')
+  AND NOT EXISTS (SELECT 1 FROM admission_applications WHERE application_number = 'APP-' || TO_CHAR(NOW(), 'YYYY') || '-006');
+
+-- Insert additional staff/admin users
+INSERT INTO users (id, email, password, name, role, is_active, created_at, updated_at)
+VALUES 
+  (
+    uuid_generate_v4(),
+    'admin@omchabahildental.com.np',
+    '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+    'Admin User',
+    'admin',
+    true,
+    NOW(),
+    NOW()
+  ),
+  (
+    uuid_generate_v4(),
+    'staff@omchabahildental.com.np',
+    '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+    'Staff User',
+    'staff',
+    true,
+    NOW(),
+    NOW()
+  )
+ON CONFLICT (email) DO NOTHING;
+
+-- Insert default availability for all doctors (Monday-Friday, 9 AM - 5 PM, 30-minute slots)
+-- This allows appointments to be booked even if admin hasn't configured availability yet
+INSERT INTO doctor_availabilities (id, doctor_id, day_of_week, start_time, end_time, slot_duration, is_active, created_at, updated_at)
+SELECT 
+  uuid_generate_v4(),
+  d.id,
+  1, -- Monday
+  '09:00:00'::time,
+  '17:00:00'::time,
+  30,
+  true,
+  NOW(),
+  NOW()
+FROM doctors d
+WHERE NOT EXISTS (
+  SELECT 1 FROM doctor_availabilities da 
+  WHERE da.doctor_id = d.id AND da.day_of_week = 1
+)
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  d.id,
+  2, -- Tuesday
+  '09:00:00'::time,
+  '17:00:00'::time,
+  30,
+  true,
+  NOW(),
+  NOW()
+FROM doctors d
+WHERE NOT EXISTS (
+  SELECT 1 FROM doctor_availabilities da 
+  WHERE da.doctor_id = d.id AND da.day_of_week = 2
+)
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  d.id,
+  3, -- Wednesday
+  '09:00:00'::time,
+  '17:00:00'::time,
+  30,
+  true,
+  NOW(),
+  NOW()
+FROM doctors d
+WHERE NOT EXISTS (
+  SELECT 1 FROM doctor_availabilities da 
+  WHERE da.doctor_id = d.id AND da.day_of_week = 3
+)
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  d.id,
+  4, -- Thursday
+  '09:00:00'::time,
+  '17:00:00'::time,
+  30,
+  true,
+  NOW(),
+  NOW()
+FROM doctors d
+WHERE NOT EXISTS (
+  SELECT 1 FROM doctor_availabilities da 
+  WHERE da.doctor_id = d.id AND da.day_of_week = 4
+)
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  d.id,
+  5, -- Friday
+  '09:00:00'::time,
+  '17:00:00'::time,
+  30,
+  true,
+  NOW(),
+  NOW()
+FROM doctors d
+WHERE NOT EXISTS (
+  SELECT 1 FROM doctor_availabilities da 
+  WHERE da.doctor_id = d.id AND da.day_of_week = 5
+)
+UNION ALL
+SELECT 
+  uuid_generate_v4(),
+  d.id,
+  6, -- Saturday
+  '09:00:00'::time,
+  '16:00:00'::time,
+  30,
+  true,
+  NOW(),
+  NOW()
+FROM doctors d
+WHERE NOT EXISTS (
+  SELECT 1 FROM doctor_availabilities da 
+  WHERE da.doctor_id = d.id AND da.day_of_week = 6
+);
+
+COMMIT;

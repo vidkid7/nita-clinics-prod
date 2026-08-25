@@ -1,0 +1,10 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="medical-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M40 24V56M24 40H56" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="8" cy="8" r="2" fill="white" opacity="0.35"/>
+      <circle cx="72" cy="72" r="2" fill="white" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="160" height="160" fill="url(#medical-grid)"/>
+</svg>

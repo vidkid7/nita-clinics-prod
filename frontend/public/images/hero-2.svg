@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Nita Clinic Hero Two</title>
+  <desc id="desc">Illustrative healthcare diagnostics background.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#075985" />
+      <stop offset="100%" stop-color="#082f49" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg2)" />
+  <g fill="#bae6fd" opacity="0.16">
+    <path d="M0 720c270-110 560-120 860-34s520 40 740-20v234H0z" />
+  </g>
+  <g fill="#ffffff" opacity="0.92">
+    <rect x="870" y="180" width="420" height="520" rx="30" />
+    <rect x="930" y="250" width="300" height="18" rx="9" fill="#0284c7" />
+    <rect x="930" y="300" width="240" height="10" rx="5" fill="#7dd3fc" />
+    <rect x="930" y="330" width="270" height="10" rx="5" fill="#7dd3fc" />
+    <circle cx="1020" cy="460" r="58" fill="#38bdf8" />
+    <rect x="1110" y="420" width="130" height="16" rx="8" fill="#0ea5e9" />
+    <rect x="1110" y="450" width="100" height="12" rx="6" fill="#7dd3fc" />
+  </g>
+</svg>

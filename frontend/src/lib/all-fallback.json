@@ -1,0 +1,1231 @@
+{
+  "departments": [
+    {
+      "id": "448f722e-a063-4ffe-bb2e-e9dfcd4dc1b1",
+      "slug": "general-medicine",
+      "name": "General Medicine",
+      "description": "OPD, chronic disease, preventive care",
+      "icon": null,
+      "image": null,
+      "order": 1
+    },
+    {
+      "id": "ec776559-7995-4e37-806f-38804320a162",
+      "slug": "pediatrics",
+      "name": "Pediatrics",
+      "description": "Child and adolescent health",
+      "icon": null,
+      "image": null,
+      "order": 2
+    },
+    {
+      "id": "57fad33c-e695-4a66-8b08-cb3274f2fb42",
+      "slug": "gynecology",
+      "name": "Gynecology & Obstetrics",
+      "description": "Women's health and maternity",
+      "icon": null,
+      "image": null,
+      "order": 3
+    },
+    {
+      "id": "fb304b28-85fb-44d2-92ad-79e50159bc34",
+      "slug": "laboratory",
+      "name": "Laboratory & Pathology",
+      "description": "Diagnostics and specimen testing",
+      "icon": null,
+      "image": null,
+      "order": 4
+    },
+    {
+      "id": "fe6f7af2-6f14-44e9-b583-8e122e701051",
+      "slug": "pulmonology-tb",
+      "name": "Pulmonology & TB",
+      "description": "Specialized care for respiratory conditions, tuberculosis screening, DOTS therapy, and chest medicine.",
+      "icon": null,
+      "image": null,
+      "order": 5
+    },
+    {
+      "id": "be99d17f-0360-4a0d-868f-5aea1925d352",
+      "slug": "radiology",
+      "name": "Radiology & Imaging",
+      "description": "Ultrasound, X-ray, and imaging",
+      "icon": null,
+      "image": null,
+      "order": 5
+    },
+    {
+      "id": "d55ab0d5-316f-427a-ba38-b40ae0bd5855",
+      "slug": "orthopedics",
+      "name": "Orthopedics",
+      "description": "Comprehensive musculoskeletal care covering bones, joints, muscles, spine, and trauma care.",
+      "icon": null,
+      "image": null,
+      "order": 6
+    }
+  ],
+  "doctors": [
+    {
+      "id": "4d09c636-2e2d-45ea-9116-e5a1e52d3ab7",
+      "name": "Dr. Anil Sharma",
+      "email": "dr.anil.sharma@nitaclinics.seed",
+      "phone": "+9779801000001",
+      "photo": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=80",
+      "qualification": "MD (Internal Medicine)",
+      "specialization": "General Medicine & Diabetes",
+      "experience": 18,
+      "consultation_fee": 1500.0,
+      "bio": "Seed profile \u2014 replace with your lead physician details in Admin.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "448f722e-a063-4ffe-bb2e-e9dfcd4dc1b1",
+      "department_name": "General Medicine",
+      "department_slug": "general-medicine"
+    },
+    {
+      "id": "a4d45aca-5f53-4d07-978e-d35811af9799",
+      "name": "Sita Tamang",
+      "email": "sita.tamang@nitaclinics.seed",
+      "phone": "+9779801000005",
+      "photo": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f902?w=900&q=80",
+      "qualification": "BN",
+      "specialization": "OPD Nursing",
+      "experience": 7,
+      "consultation_fee": 0.0,
+      "bio": "Seed nursing staff \u2014 edit in Admin.",
+      "is_active": true,
+      "staff_type": "nurse",
+      "department_id": "448f722e-a063-4ffe-bb2e-e9dfcd4dc1b1",
+      "department_name": "General Medicine",
+      "department_slug": "general-medicine"
+    },
+    {
+      "id": "8a178c0b-6258-4710-a0ea-18f09ad0256f",
+      "name": "Kiran Basnet",
+      "email": "kiran.basnet@nitaclinics.seed",
+      "phone": "+9779801000006",
+      "photo": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&q=80",
+      "qualification": "BBA",
+      "specialization": "Front Desk & Billing",
+      "experience": 5,
+      "consultation_fee": 0.0,
+      "bio": "Seed admin staff \u2014 edit in Admin.",
+      "is_active": true,
+      "staff_type": "admin_staff",
+      "department_id": "448f722e-a063-4ffe-bb2e-e9dfcd4dc1b1",
+      "department_name": "General Medicine",
+      "department_slug": "general-medicine"
+    },
+    {
+      "id": "7f933ea3-9d0a-44d6-af49-363c113f0c42",
+      "name": "Dr. Sunita Thapa",
+      "email": "dr.sunita.thapa@nitaclinics.seed",
+      "phone": "+9779801000003",
+      "photo": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80",
+      "qualification": "MD (OBGYN)",
+      "specialization": "Obstetrics & Gynecology",
+      "experience": 14,
+      "consultation_fee": 1500.0,
+      "bio": "Seed profile \u2014 update in Admin under Doctors.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "57fad33c-e695-4a66-8b08-cb3274f2fb42",
+      "department_name": "Gynecology & Obstetrics",
+      "department_slug": "gynecology"
+    },
+    {
+      "id": "95dc21cd-6ba3-49a6-9303-6ecbc008a843",
+      "name": "Dr. Josie R. Baral",
+      "email": "josie.baral@nitaclinics.com",
+      "phone": "+977 01-4533361",
+      "photo": null,
+      "qualification": "MD, MS Gynecology",
+      "specialization": "Gynecology & Obstetrics",
+      "experience": 14,
+      "consultation_fee": 800.0,
+      "bio": "Senior consultant in gynecology & obstetrics with 14+ years of experience in women's health, prenatal monitoring, and reproductive care.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "57fad33c-e695-4a66-8b08-cb3274f2fb42",
+      "department_name": "Gynecology & Obstetrics",
+      "department_slug": "gynecology"
+    },
+    {
+      "id": "57b0ccf6-0edc-4c7f-bed2-0267748fbd04",
+      "name": "Dr. Sajana Shrestha",
+      "email": "sajana.shrestha@nitaclinics.com",
+      "phone": "+977 01-4533361",
+      "photo": null,
+      "qualification": "MD Obstetrics & Gynecology",
+      "specialization": "Gynecology & Obstetrics",
+      "experience": 9,
+      "consultation_fee": 700.0,
+      "bio": "Obstetrician & gynecologist with strong focus on antenatal care, PCOS management, and minimally invasive procedures.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "57fad33c-e695-4a66-8b08-cb3274f2fb42",
+      "department_name": "Gynecology & Obstetrics",
+      "department_slug": "gynecology"
+    },
+    {
+      "id": "41660cb5-54d6-443f-b930-c3e76a0cd7ed",
+      "name": "Ramesh Gurung",
+      "email": "ramesh.gurung@nitaclinics.seed",
+      "phone": "+9779801000004",
+      "photo": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80",
+      "qualification": "BSc MLT",
+      "specialization": "Laboratory Services",
+      "experience": 9,
+      "consultation_fee": 0.0,
+      "bio": "Seed lab team member \u2014 edit in Admin.",
+      "is_active": true,
+      "staff_type": "technician",
+      "department_id": "fb304b28-85fb-44d2-92ad-79e50159bc34",
+      "department_name": "Laboratory & Pathology",
+      "department_slug": "laboratory"
+    },
+    {
+      "id": "0f64d409-32de-4d79-8777-9273c1d3ab81",
+      "name": "Dr. Kamal Pradhan",
+      "email": "kamal.pradhan@nitaclinics.com",
+      "phone": "+977 01-4533361",
+      "photo": null,
+      "qualification": "MS Orthopedics",
+      "specialization": "Orthopedics & Trauma",
+      "experience": 15,
+      "consultation_fee": 800.0,
+      "bio": "Senior orthopedic surgeon with expertise in trauma, fracture fixation, joint injections, and musculoskeletal imaging.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "d55ab0d5-316f-427a-ba38-b40ae0bd5855",
+      "department_name": "Orthopedics",
+      "department_slug": "orthopedics"
+    },
+    {
+      "id": "783d0c74-3d52-4dd5-bc0b-e71466793611",
+      "name": "Dr. Rita KC",
+      "email": "rita.kc@nitaclinics.com",
+      "phone": "+977 01-4533361",
+      "photo": null,
+      "qualification": "MD Orthopedics",
+      "specialization": "Orthopedics & Rehabilitation",
+      "experience": 8,
+      "consultation_fee": 700.0,
+      "bio": "Orthopedic consultant focusing on rehabilitation, posture evaluation, and non-surgical pain management.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "d55ab0d5-316f-427a-ba38-b40ae0bd5855",
+      "department_name": "Orthopedics",
+      "department_slug": "orthopedics"
+    },
+    {
+      "id": "9e5db28a-c5d2-4b85-9ab6-4cb84ea3c4dd",
+      "name": "Dr. Priya Karki",
+      "email": "dr.priya.karki@nitaclinics.seed",
+      "phone": "+9779801000002",
+      "photo": "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=900&q=80",
+      "qualification": "MD (Pediatrics)",
+      "specialization": "Child Health & Immunization",
+      "experience": 12,
+      "consultation_fee": 1200.0,
+      "bio": "Seed profile \u2014 edit photo, bio, and fee in Admin.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "ec776559-7995-4e37-806f-38804320a162",
+      "department_name": "Pediatrics",
+      "department_slug": "pediatrics"
+    },
+    {
+      "id": "56b93bee-a719-4ea4-81e3-f7fe8321bf49",
+      "name": "Dr. Mukti Ghimire",
+      "email": "mukti.ghimire@nitaclinics.com",
+      "phone": "+977 01-4533361",
+      "photo": null,
+      "qualification": "MD Pediatrics, FCPS",
+      "specialization": "Pediatrics",
+      "experience": 11,
+      "consultation_fee": 700.0,
+      "bio": "Pediatrician specializing in newborn care, growth monitoring, vaccination planning, and developmental assessments.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "ec776559-7995-4e37-806f-38804320a162",
+      "department_name": "Pediatrics",
+      "department_slug": "pediatrics"
+    },
+    {
+      "id": "b7cbc643-e6dc-4489-a67b-d9ef1f5c8e56",
+      "name": "Dr. Kosh Raj RC",
+      "email": "koshraj.rc@nitaclinics.com",
+      "phone": "+977 01-4533361",
+      "photo": null,
+      "qualification": "MD Pediatrics",
+      "specialization": "Pediatrics",
+      "experience": 7,
+      "consultation_fee": 600.0,
+      "bio": "Pediatric consultant focused on childhood nutrition, infectious diseases, and adolescent health.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "ec776559-7995-4e37-806f-38804320a162",
+      "department_name": "Pediatrics",
+      "department_slug": "pediatrics"
+    },
+    {
+      "id": "be150671-99d4-4511-b27e-d273306c6eeb",
+      "name": "Dr. Bikash Shrestha",
+      "email": "bikash.shrestha@nitaclinics.com",
+      "phone": "+977 01-4533361",
+      "photo": null,
+      "qualification": "MD Pulmonology, DTCD",
+      "specialization": "Pulmonology & TB",
+      "experience": 10,
+      "consultation_fee": 800.0,
+      "bio": "Pulmonology specialist with extensive experience in TB diagnosis, DOTS therapy, and drug-resistant TB management using GeneXpert and culture-guided protocols.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "fe6f7af2-6f14-44e9-b583-8e122e701051",
+      "department_name": "Pulmonology & TB",
+      "department_slug": "pulmonology-tb"
+    },
+    {
+      "id": "907790f3-9f0f-4823-895d-570294607c2e",
+      "name": "Dr. Anish Mahato",
+      "email": "anish.mahato@nitaclinics.com",
+      "phone": "+977 01-4533361",
+      "photo": null,
+      "qualification": "MD Internal Medicine",
+      "specialization": "Internal Medicine & TB",
+      "experience": 6,
+      "consultation_fee": 700.0,
+      "bio": "Internal medicine specialist with a focus on tuberculosis screening, ADSN monitoring, and chest cleaning procedures.",
+      "is_active": true,
+      "staff_type": "doctor",
+      "department_id": "fe6f7af2-6f14-44e9-b583-8e122e701051",
+      "department_name": "Pulmonology & TB",
+      "department_slug": "pulmonology-tb"
+    }
+  ],
+  "services": [
+    {
+      "id": "de34f81a-54b3-4407-9b58-7e86394a489a",
+      "slug": "general-consultation",
+      "name": "General Consultation",
+      "short_description": "Walk-in or scheduled consultations with our family medicine team.",
+      "description": "Our family medicine physicians offer comprehensive consultations for acute and chronic conditions, preventive care, and second opinions. Same-day appointments available with all our general medicine consultants.",
+      "icon": "stethoscope",
+      "image": "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=900&q=80",
+      "department_id": null,
+      "order": 1
+    },
+    {
+      "id": "3e79078c-269b-4fe3-bb4a-1d6011c0fcc6",
+      "slug": "specialist-consultation",
+      "name": "Specialist Consultation",
+      "short_description": "Book a focused visit with our consultant specialists.",
+      "description": "Nita Clinic brings experienced specialists across Gynecology, Pediatrics, Pulmonology, Orthopedics, Internal Medicine, and more.",
+      "icon": "user-md",
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80",
+      "department_id": null,
+      "order": 2
+    },
+    {
+      "id": "30e77b7c-3a23-4328-b7c8-95b08f98827b",
+      "slug": "pathology-diagnostics",
+      "name": "Pathology & Diagnostics",
+      "short_description": "Well-equipped lab with rapid turnaround on routine and specialised panels.",
+      "description": "NITA Path Labs offers a wide test menu: haematology, biochemistry, serology, microbiology, parasitology, and specialised panels.",
+      "icon": "microscope",
+      "image": "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80",
+      "department_id": null,
+      "order": 3
+    },
+    {
+      "id": "ec617bc2-ab72-4a84-ab17-5978a19a9faf",
+      "slug": "imaging-ultrasound",
+      "name": "Imaging & Ultrasound",
+      "short_description": "Digital X-ray, 3D/4D ultrasound, ECG, Echo, Color Doppler and PFT.",
+      "description": "Our imaging suite uses modern digital equipment and is operated by experienced radiographers and sonographers.",
+      "icon": "x-ray",
+      "image": "https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?w=900&q=80",
+      "department_id": null,
+      "order": 4
+    },
+    {
+      "id": "4cc46bfd-cc86-49a0-b007-60aaa6d7797b",
+      "slug": "vaccination",
+      "name": "Vaccination",
+      "short_description": "Adult and pediatric vaccine schedules and traveller's immunizations.",
+      "description": "We stock all major adult and pediatric vaccines including DPT, MMR, Hepatitis A & B, Typhoid, Flu, HPV, and travel-specific vaccines.",
+      "icon": "syringe",
+      "image": "https://images.unsplash.com/photo-1632053002239-c4c7a9b7b58f?w=900&q=80",
+      "department_id": null,
+      "order": 5
+    },
+    {
+      "id": "c782149c-2dc2-4ee4-806f-ca5f32230fae",
+      "slug": "health-checkup-packages",
+      "name": "Health Check-up Packages",
+      "short_description": "Curated annual check-up packages with transparent pricing.",
+      "description": "Choose from our preventive health packages for men and women, designed around age groups and risk profiles.",
+      "icon": "clipboard-check",
+      "image": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=900&q=80",
+      "department_id": null,
+      "order": 6
+    },
+    {
+      "id": "51267db5-ba17-45ad-8e2a-d187d295f642",
+      "slug": "nita-health-card",
+      "name": "NITA Health Card",
+      "short_description": "Membership benefits for doctors, staff and partner organizations.",
+      "description": "The NITA Health Card offers OPD privileges, lab & medicine discounts, priority access, and special pricing on health packages.",
+      "icon": "id-card",
+      "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80",
+      "department_id": null,
+      "order": 7
+    },
+    {
+      "id": "1ada1e5c-db87-413e-b5e7-b23d87aaa19d",
+      "slug": "home-sample-collection",
+      "name": "Home Sample Collection",
+      "short_description": "Get lab samples collected from your home, with online report delivery.",
+      "description": "Our trained phlebotomists collect samples from your home at a convenient time. Reports are delivered electronically.",
+      "icon": "house-medical",
+      "image": "https://images.unsplash.com/photo-1584515933487-779824d29309?w=900&q=80",
+      "department_id": null,
+      "order": 8
+    }
+  ],
+  "packages": [
+    {
+      "id": "d8fdf08a-bf74-4a5d-aeb5-dac2d3d647a3",
+      "name": "General Health Package - Female (Over 40)",
+      "category": "female_general",
+      "target_group": "Female",
+      "age_label": "Over 40",
+      "original_price": 6300.0,
+      "discounted_price": 4410.0,
+      "currency": "NPR",
+      "description": "Tailored for women over 40. Adds CA125 for ovarian health screening alongside the full general panel.",
+      "tests": [
+        "CBC",
+        "Glucose F",
+        "Uric Acid",
+        "RFT",
+        "LFT",
+        "Lipid Profile",
+        "TSH",
+        "Calcium",
+        "Urine R/E",
+        "CA125"
+      ],
+      "cta_label": "Book Check-up",
+      "cta_link": null,
+      "image": null,
+      "is_active": true,
+      "order": 2,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "a767e895-4024-4e85-be4e-047060800faf",
+      "name": "General Health Package - Below 40",
+      "category": "female_general",
+      "target_group": "Unisex",
+      "age_label": "Below 40",
+      "original_price": 4300.0,
+      "discounted_price": 3010.0,
+      "currency": "NPR",
+      "description": "Comprehensive essential screening panel for adults under 40. Covers core blood, kidney, liver, lipid, and thyroid markers for a complete annual preventive check-up.",
+      "tests": [
+        "CBC",
+        "Glucose F",
+        "Uric Acid",
+        "RFT",
+        "LFT",
+        "Lipid Profile",
+        "TSH",
+        "Calcium",
+        "Urine R/E"
+      ],
+      "cta_label": "Book Check-up",
+      "cta_link": null,
+      "image": null,
+      "is_active": true,
+      "order": 1,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "4169895f-d3e0-4f33-8cb6-d73e5a243d4b",
+      "name": "Premium Health Package - Female (Over 40)",
+      "category": "female_premium",
+      "target_group": "Female",
+      "age_label": "Over 40",
+      "original_price": 7300.0,
+      "discounted_price": 5110.0,
+      "currency": "NPR",
+      "description": "Top-tier panel for women over 40. Combines CA125 for ovarian health with full TFT, Albumin, and the complete premium metabolic screen.",
+      "tests": [
+        "CBC",
+        "Glucose F",
+        "Uric Acid",
+        "Albumin",
+        "Calcium",
+        "RFT",
+        "LFT",
+        "Lipid Profile",
+        "TFT",
+        "Urine R/E",
+        "CA125"
+      ],
+      "cta_label": "Book Check-up",
+      "cta_link": null,
+      "image": null,
+      "is_active": true,
+      "order": 4,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "51ec8cb0-64a6-43cd-b7b3-5b76aa9d2d2a",
+      "name": "Premium Health Package - Below 40",
+      "category": "female_premium",
+      "target_group": "Unisex",
+      "age_label": "Below 40",
+      "original_price": 5000.0,
+      "discounted_price": 3500.0,
+      "currency": "NPR",
+      "description": "Deeper screening tier for adults under 40. Upgrades TSH to a full thyroid function test (TFT) and adds Albumin for a richer metabolic picture.",
+      "tests": [
+        "CBC",
+        "Glucose F",
+        "Uric Acid",
+        "Albumin",
+        "Calcium",
+        "RFT",
+        "LFT",
+        "Lipid Profile",
+        "TFT",
+        "Urine R/E"
+      ],
+      "cta_label": "Book Check-up",
+      "cta_link": null,
+      "image": null,
+      "is_active": true,
+      "order": 3,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "0bba9080-5093-4525-b13e-4e2297f36f3d",
+      "name": "General Health Package - Male (Over 40)",
+      "category": "male_general",
+      "target_group": "Male",
+      "age_label": "Over 40",
+      "original_price": 5800.0,
+      "discounted_price": 4060.0,
+      "currency": "NPR",
+      "description": "Designed for men over 40. Adds PSA for prostate health screening alongside the full general panel.",
+      "tests": [
+        "CBC",
+        "Glucose F",
+        "Uric Acid",
+        "RFT",
+        "LFT",
+        "Lipid Profile",
+        "TSH",
+        "Calcium",
+        "Urine R/E",
+        "PSA"
+      ],
+      "cta_label": "Book Check-up",
+      "cta_link": null,
+      "image": null,
+      "is_active": true,
+      "order": 2,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "282a8a0c-143b-458b-a003-11c722696e72",
+      "name": "General Health Package - Below 40",
+      "category": "male_general",
+      "target_group": "Unisex",
+      "age_label": "Below 40",
+      "original_price": 4300.0,
+      "discounted_price": 3010.0,
+      "currency": "NPR",
+      "description": "Comprehensive essential screening panel for adults under 40. Covers core blood, kidney, liver, lipid, and thyroid markers for a complete annual preventive check-up.",
+      "tests": [
+        "CBC",
+        "Glucose F",
+        "Uric Acid",
+        "RFT",
+        "LFT",
+        "Lipid Profile",
+        "TSH",
+        "Calcium",
+        "Urine R/E"
+      ],
+      "cta_label": "Book Check-up",
+      "cta_link": null,
+      "image": null,
+      "is_active": true,
+      "order": 1,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "adcb08a8-fcfd-45fd-a639-129e06d579d4",
+      "name": "Premium Health Package - Male (Over 40)",
+      "category": "male_premium",
+      "target_group": "Male",
+      "age_label": "Over 40",
+      "original_price": 6000.0,
+      "discounted_price": 4200.0,
+      "currency": "NPR",
+      "description": "Top-tier panel for men over 40. Combines PSA for prostate health with full TFT, Albumin, and the complete premium metabolic screen.",
+      "tests": [
+        "CBC",
+        "Glucose F",
+        "Uric Acid",
+        "Albumin",
+        "Calcium",
+        "RFT",
+        "LFT",
+        "Lipid Profile",
+        "TFT",
+        "Urine R/E",
+        "PSA"
+      ],
+      "cta_label": "Book Check-up",
+      "cta_link": null,
+      "image": null,
+      "is_active": true,
+      "order": 4,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "024f710c-4b79-4e52-bfdf-ad53d2151a0d",
+      "name": "Premium Health Package - Below 40",
+      "category": "male_premium",
+      "target_group": "Unisex",
+      "age_label": "Below 40",
+      "original_price": 5000.0,
+      "discounted_price": 3500.0,
+      "currency": "NPR",
+      "description": "Deeper screening tier for adults under 40. Upgrades TSH to a full thyroid function test (TFT) and adds Albumin for a richer metabolic picture.",
+      "tests": [
+        "CBC",
+        "Glucose F",
+        "Uric Acid",
+        "Albumin",
+        "Calcium",
+        "RFT",
+        "LFT",
+        "Lipid Profile",
+        "TFT",
+        "Urine R/E"
+      ],
+      "cta_label": "Book Check-up",
+      "cta_link": null,
+      "image": null,
+      "is_active": true,
+      "order": 3,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "3bfdc28a-b13c-4f99-b5c7-5eccb4cd9573",
+      "name": "TB Workplace / Screening",
+      "category": "tuberculosis",
+      "target_group": "Unisex",
+      "age_label": null,
+      "original_price": 2800.0,
+      "discounted_price": 1650.0,
+      "currency": "NPR",
+      "description": null,
+      "tests": [
+        "Chest X-ray",
+        "IGRA or as advised",
+        "Consult"
+      ],
+      "cta_label": null,
+      "cta_link": null,
+      "image": "https://images.unsplash.com/photo-1584036561566-baf8f0f1b144?w=900&q=80",
+      "is_active": true,
+      "order": 7,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "b2b86579-1b67-443a-99da-fdc7b1882f87",
+      "name": "Pediatric Wellness Check",
+      "category": "pediatrics",
+      "target_group": "Children",
+      "age_label": "0\u201312 years",
+      "original_price": 3200.0,
+      "discounted_price": 1890.0,
+      "currency": "NPR",
+      "description": null,
+      "tests": [
+        "CBC",
+        "Urine R/E",
+        "Growth review"
+      ],
+      "cta_label": null,
+      "cta_link": null,
+      "image": "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=900&q=80",
+      "is_active": true,
+      "order": 5,
+      "free_doctor_consultation": true
+    },
+    {
+      "id": "284fec2f-f6db-4b9f-bd6c-8b0ac3511e03",
+      "name": "Gynecology Well-Woman",
+      "category": "gynecology",
+      "target_group": "Female",
+      "age_label": null,
+      "original_price": 4500.0,
+      "discounted_price": 2650.0,
+      "currency": "NPR",
+      "description": null,
+      "tests": [
+        "CBC",
+        "PAP guidance",
+        "Pelvic exam",
+        "USG if indicated"
+      ],
+      "cta_label": null,
+      "cta_link": null,
+      "image": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80",
+      "is_active": true,
+      "order": 6,
+      "free_doctor_consultation": true
+    }
+  ],
+  "vaccines": [
+    {
+      "id": "1153ad85-0eb2-4846-8a43-a804bf7d7ed3",
+      "name": "Flu Vaccine \u2013 Quadrivalent",
+      "slug": "flu-quadrivalent",
+      "short_name": "Influenza",
+      "category": [
+        "Adults",
+        "Children",
+        "Seniors"
+      ],
+      "tagline": "Annual seasonal flu protection",
+      "description": "Covers four influenza strains; recommended yearly.",
+      "long_description": "Seasonal quadrivalent influenza vaccine updated each year.",
+      "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80",
+      "who_it_is_for": "6 months and older",
+      "schedule": "Once yearly",
+      "doses": "1 dose (2 for some children)",
+      "protects_against": [
+        "Influenza A/B strains"
+      ],
+      "side_effects": [
+        "Arm soreness",
+        "Mild fever"
+      ],
+      "contraindications": [
+        "Severe allergy to components"
+      ],
+      "notes": null,
+      "availability": "Seasonal",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 1
+    },
+    {
+      "id": "b5c88389-b52f-4ac8-8dd7-ab36cd783c48",
+      "name": "Hepatitis B Vaccine",
+      "slug": "hepatitis-b",
+      "short_name": "Hep B",
+      "category": [
+        "Adults",
+        "Children"
+      ],
+      "tagline": "Prevent chronic HBV",
+      "description": "Highly effective 3-dose series.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=900&q=80",
+      "who_it_is_for": "All unvaccinated individuals",
+      "schedule": "0, 1, 6 months",
+      "doses": "3 doses",
+      "protects_against": [
+        "Hepatitis B"
+      ],
+      "side_effects": [
+        "Injection site soreness"
+      ],
+      "contraindications": [
+        "Severe prior reaction"
+      ],
+      "notes": null,
+      "availability": "Available in Clinic",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 2
+    },
+    {
+      "id": "4d62580f-360c-42c2-a9a0-4c8c24e4af71",
+      "name": "Tdap Booster",
+      "slug": "tdap",
+      "short_name": "Tdap",
+      "category": [
+        "Adults",
+        "Women"
+      ],
+      "tagline": "Diphtheria, tetanus, pertussis",
+      "description": "Adolescent and adult booster.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=900&q=80",
+      "who_it_is_for": "Adults; pregnant women 28\u201336 wk",
+      "schedule": "Every 10 years",
+      "doses": "1 dose",
+      "protects_against": [
+        "Diphtheria",
+        "Tetanus",
+        "Pertussis"
+      ],
+      "side_effects": [
+        "Sore arm",
+        "Fatigue"
+      ],
+      "contraindications": [
+        "Encephalopathy after prior dose"
+      ],
+      "notes": null,
+      "availability": "Available in Clinic",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 3
+    },
+    {
+      "id": "f33f6f0b-6d1e-40d3-9129-26c16fa12c20",
+      "name": "Hepatitis A Vaccine",
+      "slug": "hepatitis-a",
+      "short_name": "Hep A",
+      "category": [
+        "Adults",
+        "Travel"
+      ],
+      "tagline": "Food & water borne liver infection",
+      "description": "Two-dose long-term protection.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80",
+      "who_it_is_for": "Travellers, food handlers",
+      "schedule": "0 and 6\u201312 months",
+      "doses": "2 doses",
+      "protects_against": [
+        "Hepatitis A"
+      ],
+      "side_effects": [
+        "Mild local reaction"
+      ],
+      "contraindications": [
+        "Severe illness"
+      ],
+      "notes": null,
+      "availability": "Available in Clinic",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 4
+    },
+    {
+      "id": "459ccd7f-aa67-4280-bff2-b29d76de4fc5",
+      "name": "Cholera Vaccine (Oral)",
+      "slug": "cholera",
+      "short_name": "Cholera",
+      "category": [
+        "Travel"
+      ],
+      "tagline": "Travel to endemic areas",
+      "description": "Oral cholera vaccination.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=900&q=80",
+      "who_it_is_for": "Travellers",
+      "schedule": "Per manufacturer",
+      "doses": "2 oral doses",
+      "protects_against": [
+        "V. cholerae O1"
+      ],
+      "side_effects": [
+        "GI upset"
+      ],
+      "contraindications": [
+        "Acute GI illness"
+      ],
+      "notes": null,
+      "availability": "On Request",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 5
+    },
+    {
+      "id": "bd1ee020-705d-4b2a-8ed2-7d74a68ca70e",
+      "name": "HPV Vaccine",
+      "slug": "hpv",
+      "short_name": "HPV",
+      "category": [
+        "Women",
+        "Adults"
+      ],
+      "tagline": "Cervical cancer prevention",
+      "description": "Gardasil / equivalent as available.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=900&q=80",
+      "who_it_is_for": "Per national schedule",
+      "schedule": "2 or 3 doses",
+      "doses": "Per age",
+      "protects_against": [
+        "HPV types in vaccine"
+      ],
+      "side_effects": [
+        "Local reaction"
+      ],
+      "contraindications": [
+        "Pregnancy"
+      ],
+      "notes": null,
+      "availability": "Available in Clinic",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 6
+    },
+    {
+      "id": "10ec73b5-f350-4ccf-8486-e2093108390a",
+      "name": "MMR Vaccine",
+      "slug": "mmr",
+      "short_name": "MMR",
+      "category": [
+        "Children",
+        "Adults"
+      ],
+      "tagline": "Measles, mumps, rubella",
+      "description": "Live attenuated combination vaccine.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=900&q=80",
+      "who_it_is_for": "Per national immunization schedule",
+      "schedule": "1\u20132 doses",
+      "doses": "1\u20132 doses",
+      "protects_against": [
+        "Measles",
+        "Mumps",
+        "Rubella"
+      ],
+      "side_effects": [
+        "Fever",
+        "Rash (rare)"
+      ],
+      "contraindications": [
+        "Pregnancy",
+        "Severe immunosuppression"
+      ],
+      "notes": null,
+      "availability": "Available in Clinic",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 7
+    },
+    {
+      "id": "3b0d546d-516e-4bb3-9dce-32c36143095d",
+      "name": "Typhoid Vaccine",
+      "slug": "typhoid",
+      "short_name": "Typhoid",
+      "category": [
+        "Travel",
+        "Adults"
+      ],
+      "tagline": "Enteric fever prevention",
+      "description": "Injectable or oral per availability.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1584036561566-baf8f0f1b144?w=900&q=80",
+      "who_it_is_for": "Endemic areas, travellers",
+      "schedule": "Per product",
+      "doses": "1\u20134 doses (oral) or 1 (injectable)",
+      "protects_against": [
+        "Salmonella Typhi"
+      ],
+      "side_effects": [
+        "Fever",
+        "Headache"
+      ],
+      "contraindications": [
+        "Acute illness"
+      ],
+      "notes": null,
+      "availability": "On Request",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 8
+    },
+    {
+      "id": "0d7c3a44-7fc5-493a-b589-475d1af88106",
+      "name": "Pneumococcal Vaccine",
+      "slug": "pneumococcal",
+      "short_name": "PCV/PPSV",
+      "category": [
+        "Adults",
+        "Seniors",
+        "Children"
+      ],
+      "tagline": "Pneumonia prevention",
+      "description": "Conjugate or polysaccharide per age and risk.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=900&q=80",
+      "who_it_is_for": "Infants, elderly, high-risk adults",
+      "schedule": "Per schedule",
+      "doses": "1\u20134 doses",
+      "protects_against": [
+        "Streptococcus pneumoniae (covered serotypes)"
+      ],
+      "side_effects": [
+        "Local soreness",
+        "Fever"
+      ],
+      "contraindications": [
+        "Severe allergy to vaccine"
+      ],
+      "notes": null,
+      "availability": "Available in Clinic",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 9
+    },
+    {
+      "id": "2578c3c9-4e46-48b1-96af-04a28777dd78",
+      "name": "Varicella (Chickenpox) Vaccine",
+      "slug": "varicella",
+      "short_name": "Varicella",
+      "category": [
+        "Children",
+        "Adults"
+      ],
+      "tagline": "Chickenpox protection",
+      "description": "Live vaccine for varicella-zoster virus.",
+      "long_description": null,
+      "image": "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=900&q=80",
+      "who_it_is_for": "Unvaccinated children and susceptible adults",
+      "schedule": "2 doses",
+      "doses": "2 doses",
+      "protects_against": [
+        "Varicella (chickenpox)"
+      ],
+      "side_effects": [
+        "Mild rash",
+        "Fever"
+      ],
+      "contraindications": [
+        "Pregnancy",
+        "Immunosuppression"
+      ],
+      "notes": null,
+      "availability": "On Request",
+      "price_note": "Contact clinic",
+      "is_active": true,
+      "order": 10
+    }
+  ],
+  "health_card_categories": [
+    {
+      "id": "f15c4de3-4741-4fa2-b21b-09d4a452402d",
+      "name": "Doctors' Card",
+      "type": "licensed_doctors",
+      "opd_discount": "100% Free OPD",
+      "lab_discount": "50% Off lab tests",
+      "medicine_discount": "10% Off pharmacy",
+      "queue_benefit": "Priority queue",
+      "summary": "Licensed medical practitioners",
+      "notes": "NMC registration required.",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&q=80",
+      "price": null,
+      "total_cards": 0,
+      "issued_cards": 0,
+      "is_active": true,
+      "order": 1
+    },
+    {
+      "id": "a4faeff9-b53d-4f8e-ae07-0bea228bcb45",
+      "name": "Doctor's Family",
+      "type": "family",
+      "opd_discount": "50% Off OPD",
+      "lab_discount": "35% Off lab",
+      "medicine_discount": "10% Off pharmacy",
+      "queue_benefit": "Priority access",
+      "summary": "Spouse, parents, children",
+      "notes": "Eligibility verified on application.",
+      "image": "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=900&q=80",
+      "price": null,
+      "total_cards": 0,
+      "issued_cards": 0,
+      "is_active": true,
+      "order": 2
+    },
+    {
+      "id": "378316a7-d0e3-4a5e-8b6f-0b19136a6d59",
+      "name": "Partner Staff",
+      "type": "partner_staff",
+      "opd_discount": "50% off",
+      "lab_discount": "50% Off lab tests",
+      "medicine_discount": "10% Off pharmacy",
+      "queue_benefit": "Priority queue",
+      "summary": "For permanent staff and their immediate family of Nita Clinic partner organisations.",
+      "notes": "Eligible: permanent staff of Engineering Nita, Him River Power, SN Energy Ltd, and other Nita Clinic partner organisations. 50% off OPD, 50% off labs, 10% off pharmacy. Valid ID from the partner organisation required at enrolment.",
+      "image": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&q=80",
+      "price": null,
+      "total_cards": 0,
+      "issued_cards": 0,
+      "is_active": true,
+      "order": 3
+    },
+    {
+      "id": "ff58e318-3f85-408b-b3aa-4e65033bea76",
+      "name": "General Public",
+      "type": "general_public",
+      "opd_discount": "Queue benefits",
+      "lab_discount": "10\u201320% selected tests",
+      "medicine_discount": "5\u201310% pharmacy",
+      "queue_benefit": "Queue skip + rates",
+      "summary": "Open to everyone",
+      "notes": "Apply online or at reception.",
+      "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80",
+      "price": null,
+      "total_cards": 0,
+      "issued_cards": 0,
+      "is_active": true,
+      "order": 4
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "6f7e6808-2605-4ead-af32-25f9fce2ef6c",
+      "name": "Sujan K.",
+      "role": "Patient \u00b7 Family Medicine",
+      "content": "The consultation was smooth and well-organised. Lab reports were delivered quickly and the doctors explained everything clearly. I highly recommend this clinic for any routine or specialist consultation.",
+      "rating": 5,
+      "photo": null,
+      "is_active": true,
+      "order": 1
+    },
+    {
+      "id": "92c9e97c-8f84-4406-a71b-a3f9190d8dd8",
+      "name": "Mina R.",
+      "role": "Health Package Client",
+      "content": "I booked a complete health check-up package and finished all tests in one visit. The staff were polite, the facility was clean, and the pricing was very transparent. Excellent service.",
+      "rating": 5,
+      "photo": null,
+      "is_active": true,
+      "order": 2
+    },
+    {
+      "id": "e418849a-6153-423b-8c6e-4941281be7e6",
+      "name": "Ritesh P.",
+      "role": "Parent \u00b7 Pediatrics",
+      "content": "Our child's vaccination follow-up was handled efficiently. The pediatric team was reassuring and very helpful. We feel confident in the care quality here.",
+      "rating": 5,
+      "photo": null,
+      "is_active": true,
+      "order": 3
+    }
+  ],
+  "blog_posts": [
+    {
+      "id": "e84f888f-a625-4d66-ab38-2ccd3e4cb50b",
+      "slug": "daily-habits-for-better-heart-and-metabolic-health",
+      "title": "Daily Habits for Better Heart and Metabolic Health",
+      "excerpt": "Small changes to movement, diet, and sleep can reduce blood pressure and diabetes risk over time.",
+      "content": "<h2>Move consistently</h2>\n<p>Aim for brisk walking or equivalent activity most days \u2014 even 20\u201330 minutes helps cardiovascular and metabolic health.</p>\n<h2>Balanced plates</h2>\n<p>Include vegetables, adequate protein, and whole grains; limit sugary drinks and ultra-processed snacks.</p>\n<h2>Sleep and stress</h2>\n<p>Regular sleep patterns and simple stress-reduction techniques support blood pressure and glucose control.</p>\n<p>Book a check-up or lab package at Nita Clinic to monitor lipids, glucose, and blood pressure with your clinician.</p>",
+      "featured_image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=85",
+      "author": "Dr. Nita Clinic Team",
+      "category": "Heart Health",
+      "tags": "heart health,diabetes,check-up",
+      "is_published": true,
+      "published_at": "2026-08-07T10:54:04.584",
+      "views": 0,
+      "reading_time": 1
+    },
+    {
+      "id": "d003e200-e853-4f82-a834-7ff60854f6d2",
+      "slug": "stay-safe-this-monsoon-season-health-tips-from-our-doctors",
+      "title": "Stay Safe This Monsoon Season: Health Tips from Our Doctors",
+      "excerpt": "Monsoon brings waterborne and respiratory illnesses. Here are simple steps to protect your family throughout the season.",
+      "content": "<h2>Why monsoon matters</h2>\n<p>During the rainy months in Nepal, waterborne diseases and respiratory infections rise. These simple, doctor-approved habits help you stay healthy.</p>\n<h2>Safe water and food</h2>\n<p>Drink boiled or purified water, wash fruits and vegetables well, and prefer freshly cooked meals. Avoid street drinks and raw salads from unknown vendors when hygiene is uncertain.</p>\n<h2>Vector-borne illness</h2>\n<p>Empty containers that collect rainwater, use mosquito nets, and seek care early for fever with body aches or rash.</p>\n<p>Visit Nita Clinic for vaccines, lab tests, or if symptoms persist \u2014 our team is here to help.</p>",
+      "featured_image": "https://images.unsplash.com/photo-1576671081837-49000212a370?w=1200&q=85",
+      "author": "Dr. Nita Clinic Team",
+      "category": "Preventive Health",
+      "tags": "monsoon,prevention,Nepal",
+      "is_published": true,
+      "published_at": "2026-08-07T10:54:04.271",
+      "views": 0,
+      "reading_time": 1
+    }
+  ],
+  "partners": [
+    {
+      "id": "01a01b8d-fea0-4603-b388-3423de941c76",
+      "name": "Engineering Nita Pvt. Ltd.",
+      "logo_url": "https://engineeringnita.com/css/images/mainlogo.png",
+      "alt": "Engineering Nita",
+      "url": "https://engineeringnita.com",
+      "description": null,
+      "section": "homepage",
+      "is_active": true,
+      "order": 1
+    },
+    {
+      "id": "d16b05b1-31e0-43ff-9f64-2ad65c033a3b",
+      "name": "Him River Power Limited",
+      "logo_url": "https://himriverpower.com/wp-content/themes/him-river/assets/images/logo.png",
+      "alt": "Him River Power",
+      "url": "https://himriverpower.com",
+      "description": null,
+      "section": "homepage",
+      "is_active": true,
+      "order": 2
+    },
+    {
+      "id": "4beeb2b4-ee96-4635-877e-e8c00713d69d",
+      "name": "SN Energy Limited",
+      "logo_url": "https://www.snenergyltd.com/img/logo.png",
+      "alt": "SN Energy",
+      "url": "https://www.snenergyltd.com",
+      "description": null,
+      "section": "homepage",
+      "is_active": true,
+      "order": 3
+    }
+  ],
+  "media": [],
+  "settings": [
+    {
+      "key": "payment_esewa_enabled",
+      "value": "false",
+      "category": "payment_gateway",
+      "description": "Enable eSewa gateway"
+    },
+    {
+      "key": "payment_khalti_enabled",
+      "value": "false",
+      "category": "payment_gateway",
+      "description": "Enable Khalti gateway"
+    },
+    {
+      "key": "payment_fonepay_enabled",
+      "value": "false",
+      "category": "payment_gateway",
+      "description": "Enable Fonepay gateway"
+    },
+    {
+      "key": "payment_sandbox_mode",
+      "value": "true",
+      "category": "payment_gateway",
+      "description": "Use sandbox/test mode for payments"
+    },
+    {
+      "key": "payment_default_currency",
+      "value": "NPR",
+      "category": "payment_gateway",
+      "description": "Default payment currency"
+    },
+    {
+      "key": "home_services",
+      "value": "{\"badge\":\"Our Services\",\"heading\":\"Comprehensive Clinical Services\",\"subheading\":\"From diagnostics to specialist consultations, we offer a full range of modern healthcare services for individuals and families.\",\"items\":[{\"iconKey\":\"microscope\",\"colorKey\":\"primary\",\"title\":\"NITA Path Labs\",\"desc\":\"Leading pathology & diagnostic center offering advanced testing for early disease detection, treatment monitoring, and preventive healthcare.\",\"href\":\"/diagnostic-test\",\"tag\":\"Diagnostics\"},{\"iconKey\":\"female\",\"colorKey\":\"rose\",\"title\":\"Women's Health Clinic\",\"desc\":\"Comprehensive gynecological care for all ages \u2014 from routine check-ups to specialist treatment and prenatal support.\",\"href\":\"/specialists/gynecology-obstetrics\",\"tag\":\"Specialists\"},{\"iconKey\":\"heartbeat\",\"colorKey\":\"emerald\",\"title\":\"Family Medicine & Wellness\",\"desc\":\"Accurate diagnosis and prevention-focused primary care for your whole family, including chronic disease management.\",\"href\":\"/checkup\",\"tag\":\"Check-up\"},{\"iconKey\":\"creditCard\",\"colorKey\":\"sky\",\"title\":\"NITA Health Card\",\"desc\":\"Membership benefits for doctors, staff, and partner organizations \u2014 including OPD privileges, lab discounts, priority access, and savings on health packages.\",\"href\":\"/health-card\",\"tag\":\"Health Card\"},{\"iconKey\":\"xray\",\"colorKey\":\"primary\",\"title\":\"Imaging & Ultrasound\",\"desc\":\"Digital X-ray, 3D/4D ultrasound, color Doppler, ECG, Echo, and PFT under one roof with fast report delivery.\",\"href\":\"/diagnostic-test\",\"tag\":\"Imaging\"},{\"iconKey\":\"syringe\",\"colorKey\":\"amber\",\"title\":\"Vaccination Clinic\",\"desc\":\"Adult and pediatric vaccine schedules, immunization records, and traveler's health immunization in a safe environment.\",\"href\":\"/vaccination\",\"tag\":\"Vaccination\"}]}",
+      "category": "homepage",
+      "description": "Home page Our Services section (JSON)"
+    }
+  ]
+}

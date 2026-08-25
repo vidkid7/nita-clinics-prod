@@ -1,0 +1,61 @@
+node_modules
+.env
+.env.local
+.env.*.local
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Backend
+backend/.env
+backend/.env.local
+backend/.env.local.backup
+backend/.env.railway
+backend/dist
+backend/backups/*.sql
+backend/backups/*.json
+backend/local_data.sql
+
+# Frontend
+frontend/.next
+frontend/out
+frontend/.env.local
+
+# Playwright E2E (credentials)
+e2e/.env
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Supabase CLI local state
+/supabase/
+
+# Temp / scratch files
+*.tmp.txt
+*.tmp
+jwt_secret.*
+.vercel
+.env*
+
+# Logs and runtime artifacts
+*.err
+*.err.log
+railway-*.txt
+backend.err.log
+backend.log
+frontend-err.log
+frontend.log
+
+# Local database backups
+*.dump
+
+# Command Code local state
+.commandcode/
