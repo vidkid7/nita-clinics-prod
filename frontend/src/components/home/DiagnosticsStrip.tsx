@@ -9,8 +9,8 @@ import type { PaginatedResponse } from '@/lib/api';
 import {
   getSavingsPercent,
   mapLabTestFromApi,
+  resolveLabTestImage,
   testDetailPath,
-  testImageOrPlaceholder,
   type DiagnosticTest,
 } from '@/lib/diagnostic-data';
 import { FALLBACK_LAB_TESTS } from '@/lib/diagnostic-data-fallback';
@@ -239,7 +239,7 @@ export function DiagnosticsStrip() {
                           <div className="relative mx-3 mt-3 h-32 overflow-hidden rounded-xl">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
-                              src={testImageOrPlaceholder(test)}
+                              src={resolveLabTestImage(test)}
                               alt={test.name}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />

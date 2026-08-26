@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react';
 import {
   getSavingsPercent,
   mapLabTestFromApi,
+  resolveLabTestImage,
   testDetailPath,
-  testImageOrPlaceholder,
   type DiagnosticTest,
 } from '@/lib/diagnostic-data';
 import { get } from '@/lib/api';
@@ -232,7 +232,7 @@ export default function TestDetailPage() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={testImageOrPlaceholder(test)}
+                  src={resolveLabTestImage(test)}
                   alt={test.name}
                   className="w-full h-full object-cover"
                 />
@@ -407,7 +407,7 @@ export default function TestDetailPage() {
                       >
                         <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={testImageOrPlaceholder(t)} alt={t.name} className="w-full h-full object-cover" />
+                          <img src={resolveLabTestImage(t)} alt={t.name} className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-semibold text-neutral-900 group-hover:text-primary-700 transition-colors line-clamp-2">{t.name}</p>

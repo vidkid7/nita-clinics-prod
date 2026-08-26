@@ -31,8 +31,48 @@ export type DiagnosticTest = {
   includes?: string[];
 };
 
-const PLACEHOLDER_IMG =
-  'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80';
+export const LAB_CATALOG_IMAGES = {
+  specimen: '/videos/hero/diagnostics-lab.jpg',
+  microscopy: '/videos/hero/lab-microscope.jpg',
+  imaging: '/videos/hero/tb-xray-review.jpg',
+} as const;
+
+const GENERIC_CATALOG_IMAGE_RE = /(?:images\.)?unsplash\.com|source\.unsplash\.com/i;
+
+function isGenericCatalogImage(image: string | undefined): boolean {
+  return !image || GENERIC_CATALOG_IMAGE_RE.test(image);
+}
+
+/**
+ * Resolve the catalogue image once for every lab surface.
+ * API media is kept when it is a deliberate custom upload; generic catalogue
+ * placeholders are replaced by the local stock image that best fits the test.
+ */
+export function resolveLabTestImage(test: Pick<DiagnosticTest, 'image' | 'category' | 'categorySlug' | 'name' | 'description' | 'sampleType' | 'tags'>): string {
+  const customImage = test.image?.trim();
+  if (customImage && !isGenericCatalogImage(customImage)) return customImage;
+
+  const searchableText = [
+    test.categorySlug,
+    test.category,
+    test.name,
+    test.description,
+    test.sampleType,
+    ...(test.tags ?? []),
+  ]
+    .join(' ')
+    .toLowerCase();
+
+  if (/x[- ]?ray|xray|radiolog|imaging|ultrasound|sonograph|mri|ct scan|ecg|echocardi|scan/.test(searchableText)) {
+    return LAB_CATALOG_IMAGES.imaging;
+  }
+
+  if (/microbiolog|parasitolog|microscop|patholog|stool|urine|semen|culture|sputum|fungal|parasite|malaria|body fluid|smear|gram/.test(searchableText)) {
+    return LAB_CATALOG_IMAGES.microscopy;
+  }
+
+  return LAB_CATALOG_IMAGES.specimen;
+}
 
 /** Map API lab test + joined category to list/detail card shape */
 export function mapLabTestFromApi(raw: Record<string, unknown>): DiagnosticTest {
@@ -90,8 +130,4 @@ export function getSavingsPercent(price: number, original: number): number {
 export function testDetailPath(test: DiagnosticTest): string {
   const seg = test.slug || test.id;
   return `/diagnostic-test/${seg}`;
-}
-
-export function testImageOrPlaceholder(test: DiagnosticTest): string {
-  return test.image?.trim() || PLACEHOLDER_IMG;
 }

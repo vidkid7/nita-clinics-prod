@@ -7,6 +7,7 @@ import * as path from 'path';
 import { MediaFile, MediaType } from './entities/media.entity';
 import { PaginationDto, PaginatedResponseDto } from '@/common/dto/pagination.dto';
 import { v2 as cloudinary } from 'cloudinary';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable()
 export class MediaService {
@@ -15,6 +16,9 @@ export class MediaService {
   private readonly MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100MB
   private readonly uploadPath = path.join(process.cwd(), '..', 'frontend', 'public');
   private readonly useCloudinary: boolean;
+  private readonly useSupabaseStorage: boolean;
+  private readonly supabaseStorage?: SupabaseClient;
+  private readonly supabaseBucket: string;
 
   constructor(
     @InjectRepository(MediaFile)
@@ -24,19 +28,34 @@ export class MediaService {
     const cloudName = this.configService.get('CLOUDINARY_CLOUD_NAME');
     const apiKey = this.configService.get('CLOUDINARY_API_KEY');
     const apiSecret = this.configService.get('CLOUDINARY_API_SECRET');
+    const supabaseUrl = this.configService.get<string>('SUPABASE_URL');
+    const supabaseServiceKey =
+      this.configService.get<string>('SUPABASE_SERVICE_ROLE_KEY') ||
+      this.configService.get<string>('SUPABASE_SECRET_KEY');
 
     this.useCloudinary = !!(cloudName && apiKey && apiSecret);
+    this.useSupabaseStorage = !!(supabaseUrl && supabaseServiceKey);
+    this.supabaseBucket =
+      this.configService.get<string>('SUPABASE_STORAGE_BUCKET') || 'nita-media';
+
+    if (this.useSupabaseStorage) {
+      this.supabaseStorage = createClient(supabaseUrl!, supabaseServiceKey!, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      });
+    }
 
     const nodeEnv = this.configService.get('NODE_ENV');
-    if (nodeEnv === 'production' && !this.useCloudinary) {
+    if (nodeEnv === 'production' && !this.useCloudinary && !this.useSupabaseStorage) {
       // Do not throw here — that prevents the API from booting (Railway health checks fail).
-      // Uploads are rejected in uploadFile() until Cloudinary is configured.
+      // Uploads are rejected in uploadFile() until a cloud storage provider is configured.
       console.error(
-        '❌ Production: set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET. Admin uploads are disabled until then.',
+        '❌ Production: configure Supabase Storage or Cloudinary. Admin uploads are disabled until then.',
       );
     }
 
-    if (this.useCloudinary) {
+    if (this.useSupabaseStorage) {
+      console.log(`✅ Media: Supabase Storage (${this.supabaseBucket})`);
+    } else if (this.useCloudinary) {
       cloudinary.config({
         cloud_name: cloudName,
         api_key: apiKey,
@@ -55,7 +74,7 @@ export class MediaService {
       }
 
       console.warn(
-        '⚠️  Media: local disk fallback (dev only). Set Cloudinary env vars so uploads match production.',
+        '⚠️  Media: local disk fallback (dev only). Configure Supabase Storage or Cloudinary for production.',
       );
       console.log(`   Images: ${imagePath}`);
       console.log(`   Videos: ${videoPath}`);
@@ -79,9 +98,9 @@ export class MediaService {
     }
 
     const nodeEnv = this.configService.get('NODE_ENV');
-    if (nodeEnv === 'production' && !this.useCloudinary) {
+    if (nodeEnv === 'production' && !this.useCloudinary && !this.useSupabaseStorage) {
       throw new BadRequestException(
-        'File uploads require Cloudinary. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET on the server.',
+        'File uploads require cloud storage. Configure Supabase Storage on the server.',
       );
     }
 
@@ -121,8 +140,30 @@ export class MediaService {
     let url: string;
     let publicId: string;
 
-    // Upload to Cloudinary if configured, otherwise use local storage
-    if (this.useCloudinary) {
+    // Prefer Supabase Storage in production; keep Cloudinary and local disk as fallbacks.
+    if (this.useSupabaseStorage) {
+      const timestamp = Date.now();
+      const sanitizedName = file.originalname.replace(/[^a-zA-Z0-9.-]/g, '_');
+      const storagePath = `${uploadDir}/${folder}/${timestamp}-${sanitizedName}`;
+      const { error } = await this.supabaseStorage!.storage
+        .from(this.supabaseBucket)
+        .upload(storagePath, file.buffer, {
+          contentType: file.mimetype,
+          upsert: false,
+        });
+
+      if (error) {
+        console.error('Supabase Storage upload failed:', error);
+        throw new BadRequestException('Failed to upload file to cloud storage');
+      }
+
+      const publicUrl = this.supabaseStorage!.storage
+        .from(this.supabaseBucket)
+        .getPublicUrl(storagePath).data.publicUrl;
+      url = publicUrl;
+      publicId = storagePath;
+      console.log(`✅ Uploaded ${mediaType} to Supabase Storage: ${storagePath}`);
+    } else if (this.useCloudinary) {
       try {
         const resourceType = this.cloudinaryResourceType(mediaType);
         const uploadResult = await new Promise<any>((resolve, reject) => {
@@ -232,7 +273,17 @@ export class MediaService {
     const file = await this.findOne(id);
     
     // Delete from storage
-    if (this.useCloudinary) {
+    if (this.useSupabaseStorage) {
+      try {
+        const { error } = await this.supabaseStorage!.storage
+          .from(this.supabaseBucket)
+          .remove([file.publicId]);
+        if (error) throw error;
+        console.log(`✅ Deleted from Supabase Storage: ${file.publicId}`);
+      } catch (error) {
+        console.error('Failed to delete file from Supabase Storage:', error);
+      }
+    } else if (this.useCloudinary) {
       try {
         await cloudinary.uploader.destroy(file.publicId, {
           resource_type: this.cloudinaryResourceType(file.type),

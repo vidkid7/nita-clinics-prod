@@ -17,7 +17,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import type { DiagnosticTest } from '@/lib/diagnostic-data';
-import { getSavingsPercent, testDetailPath, testImageOrPlaceholder } from '@/lib/diagnostic-data';
+import { getSavingsPercent, resolveLabTestImage, testDetailPath } from '@/lib/diagnostic-data';
 import { getCatalogVisual } from '@/lib/catalog-visuals';
 import { IconTileList } from '@/components/ui/IconTileList';
 
@@ -50,7 +50,7 @@ function getSampleIcon(sampleType: string) {
 }
 
 export function TestCard({ test, className }: TestCardProps) {
-  const allImages = [testImageOrPlaceholder(test)];
+  const allImages = [resolveLabTestImage(test)];
   const { Icon: TestIcon, iconClassName, badgeClassName } = getCatalogVisual(test.name, test.category);
 
   const [currentIndex, setCurrentIndex] = useState(0);

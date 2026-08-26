@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MapPin, Shield, ArrowRight, Clock, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { Vaccine } from '@/lib/vaccine-data';
+import { resolveVaccineImage, type Vaccine } from '@/lib/vaccine-data';
 
 const availabilityColor: Record<string, string> = {
   'Available in Clinic': 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -45,7 +45,7 @@ export const VaccineCard = React.forwardRef<HTMLDivElement, VaccineCardProps>(
         <div className="sm:w-2/5 w-full h-48 sm:h-full overflow-hidden relative flex-shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={vaccine.image}
+            src={resolveVaccineImage(vaccine.image)}
             alt={vaccine.name}
             className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
