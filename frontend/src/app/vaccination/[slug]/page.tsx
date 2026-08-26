@@ -169,7 +169,7 @@ export default function VaccineDetailPage() {
                 <div className="relative rounded-3xl overflow-hidden mb-6 aspect-video border border-neutral-200/70 shadow-sm">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={resolveVaccineImage(vaccine.image)}
+                    src={resolveVaccineImage(vaccine.image, vaccine.slug, vaccine.name)}
                     alt={vaccine.name}
                     className="w-full h-full object-cover"
                   />
@@ -361,7 +361,7 @@ export default function VaccineDetailPage() {
                       >
                         <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={resolveVaccineImage(v.image)} alt={v.name} className="w-full h-full object-cover" />
+                          <img src={resolveVaccineImage(v.image, v.slug, v.name)} alt={v.name} className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-semibold text-neutral-900 group-hover:text-primary-700 transition-colors line-clamp-1">{v.name}</p>

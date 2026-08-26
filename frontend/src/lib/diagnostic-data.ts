@@ -37,6 +37,49 @@ export const LAB_CATALOG_IMAGES = {
   imaging: '/videos/hero/tb-xray-review.jpg',
 } as const;
 
+/**
+ * Local catalogue art for the workbook's 35 tests. The API may still contain
+ * legacy generic image URLs, so the resolver below uses these images whenever
+ * a test has no deliberate custom upload.
+ */
+const LOCAL_LAB_IMAGES_BY_SLUG: Record<string, string> = {
+  hb: '/images/catalogue/blood-tube.jpg',
+  tc: '/images/catalogue/blood-vials.jpg',
+  dc: '/images/catalogue/blood-specimen.jpg',
+  platelets: '/images/catalogue/blood-microscope.jpg',
+  'pcv-hct': '/images/catalogue/lab-beakers.jpg',
+  esr: '/images/catalogue/microscope-team.jpg',
+  bt: '/videos/hero/diagnostics-lab.jpg',
+  ct: '/images/catalogue/blood-tube.jpg',
+  'blood-sugar': '/images/catalogue/pipette.jpg',
+  rft: '/images/catalogue/chemistry-flasks.jpg',
+  lft: '/images/catalogue/lab-beakers.jpg',
+  'lipid-profile': '/images/catalogue/blood-vials.jpg',
+  'serum-uric-acid': '/images/catalogue/blood-specimen.jpg',
+  'serum-calcium': '/images/catalogue/microscope-team.jpg',
+  'blood-group-rh': '/images/catalogue/blood-tube.jpg',
+  'ra-factor': '/images/catalogue/rapid-test.jpg',
+  crp: '/images/catalogue/petri-dish.jpg',
+  aso: '/images/catalogue/petri-culture.jpg',
+  'widal-test': '/videos/hero/diagnostics-lab.jpg',
+  vdrl: '/images/catalogue/pipette.jpg',
+  'hiv-rapid': '/images/catalogue/blood-microscope.jpg',
+  'hbsag-rapid': '/images/catalogue/blood-vials.jpg',
+  'hcv-rapid': '/images/catalogue/blood-specimen.jpg',
+  'dengue-serology': '/images/catalogue/petri-dish.jpg',
+  'h-pylori-antigen': '/images/catalogue/stool-sample.jpg',
+  'mp-ag': '/videos/hero/lab-microscope.jpg',
+  'gram-stain': '/images/catalogue/petri-culture.jpg',
+  'afb-stain': '/images/catalogue/microscope-team.jpg',
+  'koh-preparation': '/images/catalogue/pipette.jpg',
+  'urine-re': '/images/catalogue/stool-sample.jpg',
+  'stool-re': '/images/catalogue/petri-dish.jpg',
+  'occult-blood': '/images/catalogue/blood-specimen.jpg',
+  'reducing-sugar': '/images/catalogue/rapid-test.jpg',
+  'semen-analysis': '/images/catalogue/chemistry-flasks.jpg',
+  'urine-pregnancy-test': '/images/catalogue/vaccine-vial.jpg',
+};
+
 const GENERIC_CATALOG_IMAGE_RE = /(?:images\.)?unsplash\.com|source\.unsplash\.com/i;
 
 function isGenericCatalogImage(image: string | undefined): boolean {
@@ -48,9 +91,12 @@ function isGenericCatalogImage(image: string | undefined): boolean {
  * API media is kept when it is a deliberate custom upload; generic catalogue
  * placeholders are replaced by the local stock image that best fits the test.
  */
-export function resolveLabTestImage(test: Pick<DiagnosticTest, 'image' | 'category' | 'categorySlug' | 'name' | 'description' | 'sampleType' | 'tags'>): string {
+export function resolveLabTestImage(test: Pick<DiagnosticTest, 'slug' | 'image' | 'category' | 'categorySlug' | 'name' | 'description' | 'sampleType' | 'tags'>): string {
   const customImage = test.image?.trim();
   if (customImage && !isGenericCatalogImage(customImage)) return customImage;
+
+  const mappedImage = test.slug ? LOCAL_LAB_IMAGES_BY_SLUG[test.slug] : undefined;
+  if (mappedImage) return mappedImage;
 
   const searchableText = [
     test.categorySlug,

@@ -45,7 +45,7 @@ export const VaccineCard = React.forwardRef<HTMLDivElement, VaccineCardProps>(
         <div className="sm:w-2/5 w-full h-48 sm:h-full overflow-hidden relative flex-shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={resolveVaccineImage(vaccine.image)}
+            src={resolveVaccineImage(vaccine.image, vaccine.slug, vaccine.name)}
             alt={vaccine.name}
             className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />

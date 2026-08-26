@@ -35,12 +35,24 @@ export const VACCINE_CATEGORIES: VaccineCategory[] = [
 
 export const VACCINATION_CATALOG_IMAGE = '/videos/hero/vaccination-care.jpg';
 
+const VACCINATION_CATALOG_IMAGES: Record<string, string> = {
+  'tetanus-toxoid-tt': '/images/catalogue/vaccine-syringe.jpg',
+  'influenza-vaccine': '/images/catalogue/vaccine-child.jpg',
+  'pneumococcal-vaccine': '/images/catalogue/vaccine-patient.jpg',
+};
+
 const GENERIC_CATALOG_IMAGE_RE = /(?:images\.)?unsplash\.com|source\.unsplash\.com/i;
 
 /** Keep custom media, but replace generic/default catalogue imagery locally. */
-export function resolveVaccineImage(image: unknown): string {
+export function resolveVaccineImage(image: unknown, slug?: string, name?: string): string {
   const value = typeof image === 'string' ? image.trim() : '';
-  return value && !GENERIC_CATALOG_IMAGE_RE.test(value) ? value : VACCINATION_CATALOG_IMAGE;
+  if (value && !GENERIC_CATALOG_IMAGE_RE.test(value)) return value;
+  if (slug && VACCINATION_CATALOG_IMAGES[slug]) return VACCINATION_CATALOG_IMAGES[slug];
+  const normalizedName = name?.toLowerCase() || '';
+  if (normalizedName.includes('tetanus')) return VACCINATION_CATALOG_IMAGES['tetanus-toxoid-tt'];
+  if (normalizedName.includes('influenza') || normalizedName.includes('flu')) return VACCINATION_CATALOG_IMAGES['influenza-vaccine'];
+  if (normalizedName.includes('pneumococ')) return VACCINATION_CATALOG_IMAGES['pneumococcal-vaccine'];
+  return VACCINATION_CATALOG_IMAGE;
 }
 
 function asAvail(v: string | undefined): Vaccine['availability'] {
@@ -59,7 +71,7 @@ export function mapVaccineFromApi(raw: Record<string, unknown>): Vaccine {
     tagline: String(raw.tagline || ''),
     description: String(raw.description || ''),
     longDescription: String(raw.longDescription || raw.description || ''),
-    image: resolveVaccineImage(raw.image),
+    image: resolveVaccineImage(raw.image, String(raw.slug || ''), String(raw.name || '')),
     whoItIsFor: String(raw.whoItIsFor || ''),
     schedule: String(raw.schedule || ''),
     doses: String(raw.doses || ''),
@@ -90,7 +102,7 @@ export const FALLBACK_VACCINES: Vaccine[] = [
     description: 'Tetanus toxoid vaccine for adults and during pregnancy.',
     longDescription:
       'Tetanus toxoid (T-T) protects against tetanus, a serious bacterial infection caused by Clostridium tetani that enters the body through wounds. The vaccine is given as a booster every 10 years for adults and is routinely recommended during each pregnancy (ideally between 27–36 weeks) to protect the newborn through maternal antibody transfer.',
-    image: VACCINATION_CATALOG_IMAGE,
+    image: VACCINATION_CATALOG_IMAGES['tetanus-toxoid-tt'],
     whoItIsFor: 'Adults; pregnant women (27–36 wks)',
     schedule: 'Every 10 years; each pregnancy',
     doses: '1 dose',
@@ -110,7 +122,7 @@ export const FALLBACK_VACCINES: Vaccine[] = [
     description: 'Yearly flu shot covering current circulating strains.',
     longDescription:
       'The seasonal influenza vaccine is updated each year to protect against the influenza virus strains expected to circulate. Annual vaccination is recommended for everyone 6 months and older, and is especially important for older adults, young children, pregnant women, and people with chronic conditions such as asthma, diabetes, or heart disease. Get vaccinated before the flu season peaks to reduce the risk of severe illness and complications.',
-    image: VACCINATION_CATALOG_IMAGE,
+    image: VACCINATION_CATALOG_IMAGES['influenza-vaccine'],
     whoItIsFor: '6 months and older',
     schedule: 'Once yearly',
     doses: '1 dose (2 for some children)',
@@ -130,7 +142,7 @@ export const FALLBACK_VACCINES: Vaccine[] = [
     description: 'Conjugate or polysaccharide vaccine per age and risk.',
     longDescription:
       'The pneumococcal vaccine protects against Streptococcus pneumoniae, a leading cause of pneumonia, meningitis, and bloodstream infections. It is recommended for infants, adults over 65, and individuals with chronic illnesses or weakened immune systems. The conjugate (PCV) and polysaccharide (PPSV) formulations are used per age and clinical indication.',
-    image: VACCINATION_CATALOG_IMAGE,
+    image: VACCINATION_CATALOG_IMAGES['pneumococcal-vaccine'],
     whoItIsFor: 'Infants, elderly (65+), high-risk adults',
     schedule: 'Per age and risk-based schedule',
     doses: '1–4 doses',
