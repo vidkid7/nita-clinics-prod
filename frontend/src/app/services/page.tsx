@@ -126,7 +126,7 @@ const SERVICES: ServiceCard[] = [
     description:
       'Pick up your prescription at the Nita Clinic counter or get same-day home delivery within Kathmandu Valley. Pharmacist-reviewed, cold-chain safe, and priced transparently.',
     highlights: [
-      'Walk-in counter in Bhimselgola-9',
+      'Walk-in counter in Bhimsengola-9',
       'Same-day home delivery in valley',
       'Cold-chain handling for insulin & vaccines',
       'Free pharmacist call-back',

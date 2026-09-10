@@ -44,7 +44,7 @@ export default function LabReportsPage() {
         panelItems={[
           'Call our lab desk with your registered phone number.',
           'We will text you your patient ID and a one-time login link.',
-          'Walk-in to our Bhimselgola-9 clinic for in-person report collection.',
+          'Walk-in to our Bhimsengola-9 clinic for in-person report collection.',
         ]}
       />
 
@@ -183,7 +183,7 @@ export default function LabReportsPage() {
               <h3 className="font-heading font-bold text-neutral-900">Need help finding your report?</h3>
               <p className="text-sm text-neutral-600 mt-1">
                 Our lab desk can look up your report by phone or email. Walk-in collection is
-                also available at our Bhimselgola-9 clinic.
+                also available at our Bhimsengola-9 clinic.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
@@ -207,7 +207,7 @@ export default function LabReportsPage() {
       <CTAFooter
         title="Ready to book"
         highlight="a new test?"
-        subtitle="Walk in to our Bhimselgola-9 clinic or book a home collection — most reports are ready the same day."
+        subtitle="Walk in to our Bhimsengola-9 clinic or book a home collection — most reports are ready the same day."
         actions={[
           { label: 'Book a Test', href: '/services/laboratory', icon: <FiCalendar className="h-4 w-4" /> },
           { label: 'Call Now', href: 'tel:+977014533361' },

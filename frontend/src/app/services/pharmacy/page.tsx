@@ -34,7 +34,7 @@ const CHANNELS = [
     tagline: 'Pick up at the clinic counter',
     price: 'Same-day',
     description:
-      'Bring your prescription to the Nita Clinic counter in Bhimselgola-9. Our pharmacist dispenses, double-checks dosage and interactions, and explains the schedule on the spot.',
+      'Bring your prescription to the Nita Clinic counter in Bhimsengola-9. Our pharmacist dispenses, double-checks dosage and interactions, and explains the schedule on the spot.',
     features: [
       'Counter pickup during clinic hours',
       'Pharmacist medication review',

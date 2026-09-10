@@ -89,7 +89,7 @@ export const DEFAULT_CONTACT: HomeContactContent = {
   phone: '+977 01-4533361',
   whatsapp: '+9779768523887',
   email: 'info@nitaclinics.com',
-  address: 'Bhimselgola-9, Kathmandu',
+  address: 'Bhimsengola-9, Kathmandu',
   mapEmbed: '',
   workingHours: 'Mon–Fri: 9AM–6PM, Sat: 9AM–4PM',
 };

@@ -176,7 +176,7 @@ export function PopupAd() {
 
                 {/* Footnote */}
                 <p className="mt-3 text-[10px] text-center text-neutral-400">
-                  Walk in or call · Bhimselgola-9 · No payment required online
+                  Walk in or call · Bhimsengola-9 · No payment required online
                 </p>
               </div>
             </div>

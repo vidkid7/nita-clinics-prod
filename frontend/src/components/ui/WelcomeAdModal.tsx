@@ -123,7 +123,7 @@ const TYPE_STYLES: Record<
     badgeColor: 'bg-primary-300 text-primary-900',
     gradient: 'bg-gradient-to-br from-primary-700 via-primary-600 to-teal-500',
     icon: <FiCheckCircle className="h-3.5 w-3.5" />,
-    sub: 'Open to all — walk in to our Bhimselgola-9 clinic',
+    sub: 'Open to all — walk in to our Bhimsengola-9 clinic',
   },
 };
 

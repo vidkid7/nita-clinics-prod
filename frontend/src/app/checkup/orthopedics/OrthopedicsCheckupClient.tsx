@@ -360,7 +360,7 @@ export default function OrthopedicsCheckupClient() {
       <CTAFooter
         title="Joint or bone pain"
         highlight="not going away?"
-        subtitle="Book an orthopedic check-up — same-week slots available with our specialist team. Walk into our Bhimselgola-9 clinic or call to schedule."
+        subtitle="Book an orthopedic check-up — same-week slots available with our specialist team. Walk into our Bhimsengola-9 clinic or call to schedule."
         actions={[
           {
             label: 'Book Check-up',

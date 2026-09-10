@@ -251,7 +251,7 @@ const TYPE_STYLES: Record<string, Partial<AdCardData>> = {
     holderLabel: 'For Everyone',
     cardNumber: '•••• •••• •••• 4004',
     validThru: '12/26',
-    sub: 'Open to all — walk in to our Bhimselgola-9 clinic',
+    sub: 'Open to all — walk in to our Bhimsengola-9 clinic',
     bigDeal: '20% OFF',
     smallDeal: 'On OPD, Labs and Pharmacy — every visit',
     discountSub: '20% OPD + 20% Labs',

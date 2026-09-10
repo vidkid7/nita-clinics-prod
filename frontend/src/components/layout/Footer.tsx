@@ -230,14 +230,14 @@ export function Footer() {
               <ul className="space-y-2.5 text-sm">
                 <li>
                   <a
-                    href="https://maps.google.com/?q=Nita+Pharmacy+Private+Limited+Bhimselgola"
+                    href="https://maps.google.com/?q=Nita+Pharmacy+Private+Limited+Bhimsengola"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-start gap-2.5 text-primary-200 transition-all duration-300 hover:translate-x-0.5 hover:text-white"
                   >
                     <FiMapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary-300 transition-colors group-hover:text-teal-300" />
                     <span>
-                      Nita Pharmacy Pvt. Ltd., <strong className="text-teal-200">Bhimselgola-9</strong>
+                      Nita Pharmacy Pvt. Ltd., <strong className="text-teal-200">Bhimsengola-9</strong>
                       , Kathmandu
                     </span>
                   </a>
@@ -264,10 +264,10 @@ export function Footer() {
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-white text-sm uppercase tracking-[0.18em] flex items-center gap-2">
               <FiMapPin className="h-4 w-4 text-teal-300" />
-              Find Us · Bhimselgola-9
+              Find Us · Bhimsengola-9
             </h3>
             <a
-              href="https://maps.google.com/?q=Nita+Pharmacy+Private+Limited+Bhimselgola"
+              href="https://maps.google.com/?q=Nita+Pharmacy+Private+Limited+Bhimsengola"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs text-teal-200 hover:text-white"
@@ -408,7 +408,7 @@ export function Footer() {
                 >
                   +977-01-4533361
                 </a>{' '}
-                or walk in to our Bhimselgola-9 clinic — no online payment required.
+                or walk in to our Bhimsengola-9 clinic — no online payment required.
               </p>
             </div>
           </div>

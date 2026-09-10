@@ -173,7 +173,7 @@ export function HealthCard({
   static: staticMode = false,
   helpline = '+977 01-4533361',
   website = 'www.nitaclinics.com',
-  address = 'Bhimselgola-9, Nepal',
+  address = 'Bhimsengola-9, Nepal',
 }: HealthCardProps) {
   const [flipped, setFlipped] = useState(false);
 
