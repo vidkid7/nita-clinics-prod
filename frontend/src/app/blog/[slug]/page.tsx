@@ -93,10 +93,11 @@ const DEFAULT_CATEGORY_ART: CategoryArt = {
 export default function BlogPostPage() {
   const params = useParams();
   const slug = params?.slug as string;
+  const fallbackPost = slug ? getBlogPost(slug) : undefined;
 
-  const [post, setPost] = useState<BlogPost | null>(null);
+  const [post, setPost] = useState<BlogPost | null>(fallbackPost ?? null);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!fallbackPost);
 
   useEffect(() => {
     if (!slug) return;
@@ -142,7 +143,7 @@ export default function BlogPostPage() {
     }
   };
 
-  if (isLoading) {
+  if (isLoading && !post) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">

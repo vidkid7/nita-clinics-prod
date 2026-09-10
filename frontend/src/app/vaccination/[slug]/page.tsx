@@ -16,9 +16,10 @@ import { IconTileList } from '@/components/ui/IconTileList';
 
 export default function VaccineDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const [vaccine, setVaccine] = useState<Vaccine | null>(null);
+  const fallbackVaccine = getVaccineBySlug(slug) ?? null;
+  const [vaccine, setVaccine] = useState<Vaccine | null>(fallbackVaccine);
   const [allVaccines, setAllVaccines] = useState<Vaccine[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!fallbackVaccine);
   const [openSection, setOpenSection] = useState<string | null>('sideEffects');
 
   useEffect(() => {

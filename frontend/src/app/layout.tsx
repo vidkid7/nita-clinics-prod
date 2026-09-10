@@ -5,7 +5,7 @@ import { LayoutWrapper } from '@/components/layout/LayoutWrapper';
 import { AppBootstrap } from '@/components/ui/AppBootstrap';
 import { Toaster } from 'react-hot-toast';
 import { BRAND, BRAND_COLORS } from '@/lib/brand';
-import { absoluteUrl } from '@/lib/site-url';
+import { DEFAULT_OG_IMAGE, SITE_URL, siteUrl } from '@/lib/seo';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,13 +21,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(absoluteUrl(process.env.NEXT_PUBLIC_SITE_URL, BRAND.siteUrl)),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: `${BRAND.name} | Complete Healthcare in Kathmandu`,
+    default: `${BRAND.name} | Multi-Specialty Clinic in Kathmandu`,
     template: `%s | ${BRAND.name}`,
   },
   description:
-    `${BRAND.name} is your trusted clinic in Kathmandu for specialist consultations, lab tests, check-up packages, vaccination services, and preventive healthcare.`,
+    `${BRAND.name} is a multi-specialty clinic in Kathmandu offering doctor consultations, lab tests, health check-up packages, vaccinations, and preventive healthcare for families.`,
   keywords: [
     'nita clinic',
     'clinic kathmandu',
@@ -43,22 +43,25 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: BRAND.name,
-    title: BRAND.name,
-    description: 'Complete family-focused clinic & lab care in Kathmandu',
+    url: SITE_URL,
+    title: `${BRAND.name} | Multi-Specialty Clinic in Kathmandu`,
+    description:
+      'Doctor consultations, laboratory tests, preventive health check-ups, vaccinations, and family healthcare in Kathmandu, Nepal.',
     images: [
       {
-        url: BRAND.ogImage,
-        width: 1200,
-        height: 630,
+        url: DEFAULT_OG_IMAGE,
+        width: 600,
+        height: 328,
         alt: BRAND.name,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: BRAND.name,
-    description: 'Complete family-focused clinic & lab care in Kathmandu',
-    images: [BRAND.ogImage],
+    title: `${BRAND.name} | Multi-Specialty Clinic in Kathmandu`,
+    description:
+      'Doctor consultations, laboratory tests, preventive health check-ups, vaccinations, and family healthcare in Kathmandu, Nepal.',
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,
@@ -84,34 +87,61 @@ export const viewport: Viewport = {
 
 const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'MedicalOrganization',
+  '@type': 'MedicalClinic',
+  '@id': `${SITE_URL}/#medical-clinic`,
   name: BRAND.name,
-  url: BRAND.siteUrl,
-  logo: `${BRAND.siteUrl}${BRAND.logo}`,
+  alternateName: 'NITA Clinic',
+  url: SITE_URL,
+  logo: siteUrl(BRAND.logo),
+  image: [DEFAULT_OG_IMAGE],
   telephone: BRAND.phone,
   email: BRAND.email,
   address: {
     '@type': 'PostalAddress',
     streetAddress: BRAND.address,
+    addressLocality: 'Kathmandu',
+    addressRegion: 'Bagmati',
     addressCountry: 'NP',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: BRAND.mapLat,
+    longitude: BRAND.mapLng,
+  },
+  hasMap: `https://www.google.com/maps/?q=${BRAND.mapLat},${BRAND.mapLng}`,
+  areaServed: { '@type': 'City', name: 'Kathmandu' },
   medicalSpecialty: ['Gynecology', 'Obstetrics', 'Pediatrics', 'Pulmonary Disease'],
-  openingHours: ['Mo-Fr 07:00-19:00', 'Sa 08:00-17:00'],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '19:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '08:00',
+      closes: '17:00',
+    },
+  ],
+  sameAs: [BRAND.social.facebook].filter(Boolean),
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: BRAND.phone,
+    contactType: 'customer service',
+    areaServed: 'NP',
+    availableLanguage: ['en', 'ne'],
+  },
 };
 
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
   name: BRAND.name,
-  url: BRAND.siteUrl,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${BRAND.siteUrl}/blog?q={search_term_string}`,
-    },
-    'query-input': 'required name=search_term_string',
-  },
+  url: SITE_URL,
+  publisher: { '@id': `${SITE_URL}/#medical-clinic` },
 };
 
 export default function RootLayout({

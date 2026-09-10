@@ -36,6 +36,6 @@ export const BRAND = {
     saturday: 'Saturday: 8:00 AM - 5:00 PM',
   },
   siteUrl: 'https://nitaclinics.com',
-  ogImage: '/images/og-image.jpg',
+  ogImage: '/logo.png',
 } as const;
 

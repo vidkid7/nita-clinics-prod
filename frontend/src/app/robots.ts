@@ -1,9 +1,16 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/seo';
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [{ userAgent: '*', allow: '/', disallow: ['/admin/', '/api/', '/payment/'] }],
-    sitemap: 'https://nitaclinics.com/sitemap.xml',
-    host: 'https://nitaclinics.com',
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/admin', '/api/', '/cart', '/payment/', '/patients'],
+      },
+    ],
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

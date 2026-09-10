@@ -1,10 +1,13 @@
 import type { Metadata } from 'next';
+import { publicPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Team Members',
+export const metadata: Metadata = publicPageMetadata({
+  title: 'Doctors and Healthcare Team | Nita Clinic Kathmandu',
   description:
-    'View doctors and administrative team members at Nita Clinic.',
-};
+    'Meet the doctors, clinicians, and healthcare team members who support patients at Nita Clinic in Kathmandu, Nepal.',
+  path: '/team',
+  keywords: ['Nita Clinic doctors', 'healthcare team Kathmandu', 'doctors Nepal'],
+});
 
 export default function TeamLayout({
   children,

@@ -28,9 +28,12 @@ function getSampleIcon(sampleType: string) {
 
 export default function TestDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const [test, setTest] = useState<DiagnosticTest | null>(null);
+  const fallbackTest = FALLBACK_LAB_TESTS.find(
+    (candidate) => candidate.slug === id || candidate.id === id,
+  ) ?? null;
+  const [test, setTest] = useState<DiagnosticTest | null>(fallbackTest);
   const [relatedTests, setRelatedTests] = useState<DiagnosticTest[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!fallbackTest);
   const [added, setAdded] = useState(false);
 
   useEffect(() => {
@@ -116,7 +119,7 @@ export default function TestDetailPage() {
     return () => { cancelled = true; };
   }, [id]);
 
-  if (isLoading) {
+  if (isLoading && !test) {
     return (
       <main className="flex items-center justify-center min-h-[60vh]">
         <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary-600" />

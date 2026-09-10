@@ -15,6 +15,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { IconTileList } from '@/components/ui/IconTileList';
 import type { SpecialistPageData, FallbackDoctor } from '@/lib/specialist-data';
 import { BRAND } from '@/lib/brand';
+import { breadcrumbSchema, siteUrl } from '@/lib/seo';
 
 /* Slug → specialty doodle mapping (homepage clinical motif) */
 const SPECIALTY_ART: Record<
@@ -112,21 +113,27 @@ export function SpecialistDetailPage({
 
   const physicianSchema = {
     '@context': 'https://schema.org',
-    '@type': 'MedicalSpecialty',
-    name: data.heading,
+    '@type': 'MedicalClinic',
+    '@id': `${siteUrl(`/specialists/${slug}`)}#clinic`,
+    name: `${data.heading} at ${BRAND.name}`,
     description: data.description,
+    url: siteUrl(`/specialists/${slug}`),
     areaServed: 'Kathmandu, Nepal',
-    provider: {
-      '@type': 'MedicalOrganization',
-      name: BRAND.name,
-      url: BRAND.siteUrl,
-    },
+    medicalSpecialty: data.heading,
+    parentOrganization: { '@id': `${siteUrl()}/#medical-clinic` },
   };
+
+  const breadcrumbs = breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Medical Specialists', path: '/specialists' },
+    { name: data.heading, path: `/specialists/${slug}` },
+  ]);
 
   return (
     <>
       <DoctorDetailModal doctor={selectedDoctor} onClose={() => setSelectedDoctor(null)} />
       <JsonLd data={physicianSchema} />
+      <JsonLd data={breadcrumbs} />
 
       {/* ── Hero banner ── */}
       <section className="relative flex min-h-[440px] items-center overflow-hidden bg-primary-950 py-16 text-white md:min-h-[500px] md:py-20">

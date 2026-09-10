@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { publicPageMetadata } from '@/lib/seo';
 import { HeroSection } from '@/components/home/HeroSection';
 import { ServicesSection } from '@/components/home/ServicesSection';
 import { WhyNitaSection } from '@/components/home/WhyNitaSection';
@@ -11,16 +12,19 @@ import { BlogSection } from '@/components/home/BlogSection';
 import { PartnersSection } from '@/components/home/PartnersSection';
 import { CTASection } from '@/components/home/CTASection';
 
-export const metadata: Metadata = {
-  title: 'Nita Clinic | Multi-Specialty Clinic — Kathmandu',
+export const metadata: Metadata = publicPageMetadata({
+  title: 'Nita Clinic | Multi-Specialty Clinic in Kathmandu',
   description:
-    'Nita Clinic provides specialist consultations, lab tests, check-up packages, vaccination, and preventive healthcare in Kathmandu, Nepal.',
-  openGraph: {
-    title: 'Nita Clinic | Trusted Clinic in Kathmandu',
-    description: 'Specialist consultations, lab tests, check-ups and vaccination in Kathmandu.',
-    images: ['/og-image.jpg'],
-  },
-};
+    'Nita Clinic provides specialist consultations, laboratory tests, health check-up packages, vaccinations, and preventive healthcare in Kathmandu, Nepal.',
+  path: '/',
+  keywords: [
+    'multi-specialty clinic Kathmandu',
+    'doctor consultation Kathmandu',
+    'laboratory tests Kathmandu',
+    'health check-up packages Nepal',
+    'vaccination clinic Kathmandu',
+  ],
+});
 
 export default function HomePage() {
   return (

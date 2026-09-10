@@ -11,6 +11,7 @@ export interface BlogPost {
   tags: string[];
   isPublished: boolean;
   publishedAt: string;
+  updatedAt?: string;
   views: number;
   readingTime: number;
 }
