@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { BRAND } from '@/lib/brand';
-import { absoluteUrl } from '@/lib/site-url';
 
-export const SITE_URL = absoluteUrl(process.env.NEXT_PUBLIC_SITE_URL, BRAND.siteUrl);
+// Canonicals must always point to the public branded domain. Vercel exposes a
+// project URL during builds, but that is a deployment host—not the site users
+// and search engines should treat as the canonical origin.
+export const SITE_URL = BRAND.siteUrl;
 
 /** Build an absolute URL from a site-relative path or an already absolute URL. */
 export function siteUrl(path = ''): string {
