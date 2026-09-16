@@ -6,7 +6,7 @@ export const metadata: Metadata = publicPageMetadata({
   description:
     'See Nita Clinic facilities, healthcare services, laboratory environment, and community moments in Kathmandu, Nepal.',
   path: '/gallery',
-  keywords: ['Nita Clinic gallery', 'clinic facilities Kathmandu', 'Nita Path Labs'],
+  keywords: ['Nita Clinic gallery', 'clinic facilities Kathmandu', 'Nita Laboratory'],
 });
 
 export default function GalleryLayout({ children }: { children: React.ReactNode }) {

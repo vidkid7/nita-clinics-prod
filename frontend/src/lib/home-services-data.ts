@@ -39,7 +39,7 @@ export const HOME_SERVICES_DEFAULT: HomeServicesBlock = {
     {
       iconKey: 'microscope',
       colorKey: 'primary',
-      title: 'NITA Path Labs',
+      title: 'Nita Laboratory',
       desc: 'Leading pathology lab offering advanced testing for early disease detection, treatment monitoring, and preventive healthcare.',
       href: '/services/laboratory',
       tag: 'Lab Tests',

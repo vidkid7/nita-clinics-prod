@@ -181,7 +181,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
     slug: 'understanding-preventive-checkup-packages',
     excerpt: 'Choosing the right check-up package can catch health problems early. A guide to our male and female preventive health plans.',
     featuredImage: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=1200&q=85',
-    author: 'Nita Path Labs',
+    author: 'Nita Laboratory',
     authorRole: 'Lab Specialist',
     category: 'Check-up',
     tags: ['health checkup', 'preventive care', 'lab tests', 'packages'],
@@ -323,7 +323,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
       </ul>
 
       <h2>How Is Diabetes Diagnosed?</h2>
-      <p>A simple blood test can diagnose or rule out diabetes. At NITA Path Labs, we offer:</p>
+      <p>A simple blood test can diagnose or rule out diabetes. At Nita Laboratory, we offer:</p>
       <ul>
         <li><strong>Fasting Blood Sugar (FBS)</strong> — done after 8 hours of fasting</li>
         <li><strong>Post-prandial Blood Sugar (PPBS)</strong> — done 2 hours after eating</li>

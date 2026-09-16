@@ -169,7 +169,7 @@ const FAQS = [
   { q: 'When does the card activate?', a: 'Activation starts from your first valid use after approval by our operations team.' },
   { q: 'Can the card be renewed?', a: 'Yes, renewal is available based on usage and current membership category policy.' },
   { q: 'Can family members use my card?', a: "Family benefits are under the Doctor's Family category. Apply separately for each family member." },
-  { q: 'Which departments accept the card?', a: 'All OPD departments, Path Labs, Pharmacy, Imaging (Ultrasound, X-Ray), and most lab services.' },
+  { q: 'Which departments accept the card?', a: 'All OPD departments, Laboratory services, Pharmacy, Imaging (Ultrasound, X-Ray), and most diagnostic services.' },
   { q: 'Is there a joining fee?', a: 'Registration is free. Certain premium tiers may have a nominal annual fee — our team will confirm during application.' },
 ];
 

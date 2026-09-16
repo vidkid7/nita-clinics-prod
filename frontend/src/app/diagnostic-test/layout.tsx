@@ -11,7 +11,7 @@ export const metadata: Metadata = publicPageMetadata({
     'blood test Kathmandu',
     'pathology lab Kathmandu',
     'diagnostic tests Nepal',
-    'Nita Path Labs',
+    'Nita Laboratory',
   ],
 });
 

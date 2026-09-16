@@ -159,7 +159,7 @@ export function DiagnosticsStrip() {
               Lab Tests at Best Prices
             </h2>
             <p className="text-white/50 text-sm max-w-md">
-              Fast, accurate results from our in-house path lab. Same-day reports for most tests.
+              Fast, accurate results from Nita Laboratory. Same-day reports for most tests.
             </p>
             <svg
               className="mt-3 h-5 w-52 text-primary-400/80"

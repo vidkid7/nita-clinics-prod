@@ -53,7 +53,7 @@ const fallbackPosts: BlogPost[] = [
     excerpt:
       'Choosing the right check-up package can catch health problems early. A guide to our male and female preventive health plans.',
     featuredImage: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&q=80',
-    author: 'Nita Path Labs',
+    author: 'Nita Laboratory',
     category: 'Check-up',
     readingTime: 6,
     isPublished: true,

@@ -22,7 +22,7 @@ const USP = [
   {
     icon: <ShieldCheck className="w-5 h-5" />,
     title: 'Government Registered',
-    desc: 'Government-registered clinic with a modern in-house path lab and up-to-date lab equipment.',
+    desc: 'Government-registered clinic with a modern Nita Laboratory and up-to-date lab equipment.',
     color: 'bg-primary-50 text-primary-600',
     bar: 'from-primary-400 to-primary-600',
     dot: 'bg-primary-500',
