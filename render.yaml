@@ -55,11 +55,11 @@ services:
       - key: FRONTEND_URL
         sync: false
       - key: SMTP_HOST
-        value: server103.webhostnepal.com
+        value: mail.nitaclinics.com
       - key: SMTP_PORT
-        value: "465"
+        value: "587"
       - key: SMTP_SECURE
-        value: "true"
+        value: "false"
       - key: SMTP_USER
         value: info@nitaclinics.com
       - key: SMTP_PASS

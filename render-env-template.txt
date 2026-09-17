@@ -39,9 +39,9 @@ APP_URL=https://nita-clinics-prod.vercel.app
 
 # ---- OPTIONAL: SMTP for transactional email ----
 # cPanel mail settings for info@nitaclinics.com:
-SMTP_HOST=server103.webhostnepal.com
-SMTP_PORT=465
-SMTP_SECURE=true
+SMTP_HOST=mail.nitaclinics.com
+SMTP_PORT=587
+SMTP_SECURE=false
 SMTP_USER=info@nitaclinics.com
 SMTP_PASS=SET_IN_RENDER_ONLY
 SMTP_FROM=info@nitaclinics.com
