@@ -37,7 +37,13 @@ ESEWA_SECRET_KEY=8gBm/:&EnhH.1/q
 ESEWA_BASE_URL=https://rc-epay.esewa.com.np
 APP_URL=https://nita-clinics-prod.vercel.app
 
-# ---- OPTIONAL: SMTP for transactional email ----
+# ---- OPTIONAL: HTTPS email via Resend (recommended on Render Free) ----
+# Create a free Resend account, verify nitaclinics.com, then add the API key
+# privately in Render. This uses HTTPS and avoids Render Free's SMTP restriction.
+RESEND_API_KEY=SET_IN_RENDER_ONLY
+RESEND_FROM=info@nitaclinics.com
+
+# ---- OPTIONAL FALLBACK: SMTP for transactional email ----
 # cPanel mail settings for info@nitaclinics.com:
 SMTP_HOST=mail.nitaclinics.com
 SMTP_PORT=587

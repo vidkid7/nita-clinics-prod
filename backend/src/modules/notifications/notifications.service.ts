@@ -14,8 +14,14 @@ function escapeHtml(value: unknown): string {
 @Injectable()
 export class NotificationsService {
   private emailTransporter: nodemailer.Transporter;
+  private readonly resendApiKey?: string;
+  private readonly emailFrom: string;
 
   constructor(private configService: ConfigService) {
+    this.resendApiKey = this.configService.get<string>('RESEND_API_KEY')?.trim() || undefined;
+    this.emailFrom = this.configService.get('RESEND_FROM') ||
+      this.configService.get('SMTP_FROM', 'info@nitaclinics.com');
+
     const smtpPort = Number(this.configService.get('SMTP_PORT', 465));
     const smtpUser = this.configService.get<string>('SMTP_USER');
     const smtpPass = this.configService.get<string>('SMTP_PASS');
@@ -40,17 +46,49 @@ export class NotificationsService {
 
   async sendEmail(to: string, subject: string, html: string): Promise<void> {
     try {
-      await this.emailTransporter.sendMail({
-        from: this.configService.get('SMTP_FROM', 'info@nitaclinics.com'),
-        to,
-        subject,
-        html,
-      });
-      console.log(`Email sent to ${to}`);
+      if (this.resendApiKey) {
+        await this.sendEmailViaResend(to, subject, html, this.resendApiKey);
+      } else {
+        await this.emailTransporter.sendMail({
+          from: this.emailFrom,
+          to,
+          subject,
+          html,
+        });
+        console.log(`Email sent to ${to} via SMTP`);
+      }
     } catch (error) {
       console.error('Failed to send email:', error);
       throw error;
     }
+  }
+
+  private async sendEmailViaResend(
+    to: string,
+    subject: string,
+    html: string,
+    apiKey: string,
+  ): Promise<void> {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: this.emailFrom,
+        to: [to],
+        subject,
+        html,
+      }),
+    });
+
+    if (!response.ok) {
+      const details = await response.text();
+      throw new Error(`Resend API returned ${response.status}: ${details}`);
+    }
+
+    console.log(`Email sent to ${to} via Resend`);
   }
 
   async sendNewAppointmentNotification(data: {

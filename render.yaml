@@ -54,6 +54,10 @@ services:
         sync: false
       - key: FRONTEND_URL
         sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM
+        value: info@nitaclinics.com
       - key: SMTP_HOST
         value: mail.nitaclinics.com
       - key: SMTP_PORT
