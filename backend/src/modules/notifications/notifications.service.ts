@@ -2,18 +2,34 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';
 
+function escapeHtml(value: unknown): string {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 @Injectable()
 export class NotificationsService {
   private emailTransporter: nodemailer.Transporter;
 
   constructor(private configService: ConfigService) {
+    const smtpPort = Number(this.configService.get('SMTP_PORT', 465));
+    const smtpUser = this.configService.get<string>('SMTP_USER');
+    const smtpPass = this.configService.get<string>('SMTP_PASS');
+    const smtpSecure =
+      this.configService.get<string>('SMTP_SECURE')?.toLowerCase() === 'true' || smtpPort === 465;
+
     this.emailTransporter = nodemailer.createTransport({
       host: this.configService.get('SMTP_HOST', 'localhost'),
-      port: this.configService.get('SMTP_PORT', 1025),
-      auth: this.configService.get('SMTP_USER')
+      port: smtpPort,
+      secure: smtpSecure,
+      auth: smtpUser && smtpPass
         ? {
-            user: this.configService.get('SMTP_USER'),
-            pass: this.configService.get('SMTP_PASS'),
+            user: smtpUser,
+            pass: smtpPass,
           }
         : undefined,
     });
@@ -22,7 +38,7 @@ export class NotificationsService {
   async sendEmail(to: string, subject: string, html: string): Promise<void> {
     try {
       await this.emailTransporter.sendMail({
-        from: this.configService.get('SMTP_FROM', 'noreply@nitaclinics.com'),
+        from: this.configService.get('SMTP_FROM', 'info@nitaclinics.com'),
         to,
         subject,
         html,
@@ -32,6 +48,25 @@ export class NotificationsService {
       console.error('Failed to send email:', error);
       throw error;
     }
+  }
+
+  async sendNewAppointmentNotification(data: {
+    patientName: string;
+    patientEmail: string;
+    patientPhone: string;
+    doctorName: string;
+    date: string;
+    time: string;
+    visitCategory?: string;
+  }): Promise<void> {
+    const adminEmail = this.configService.get('ADMIN_EMAIL', 'info@nitaclinics.com');
+    const subjectName = data.patientName.replace(/[\r\n]+/g, ' ').trim();
+
+    await this.sendEmail(
+      adminEmail,
+      `New appointment request - ${subjectName}`,
+      this.getNewAppointmentNotificationEmail(data),
+    );
   }
 
   async sendSMS(phone: string, message: string): Promise<void> {
@@ -102,6 +137,51 @@ export class NotificationsService {
           <div class="footer">
             <p>Nita Clinic</p>
             <p>Kathmandu, Nepal | +977-1-XXXXXXX</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+  }
+
+  getNewAppointmentNotificationEmail(data: {
+    patientName: string;
+    patientEmail: string;
+    patientPhone: string;
+    doctorName: string;
+    date: string;
+    time: string;
+    visitCategory?: string;
+  }): string {
+    const patientName = escapeHtml(data.patientName);
+    const patientEmail = escapeHtml(data.patientEmail);
+    const patientPhone = escapeHtml(data.patientPhone);
+    const doctorName = escapeHtml(data.doctorName);
+    const date = escapeHtml(data.date);
+    const time = escapeHtml(data.time);
+    const visitCategory = escapeHtml(data.visitCategory || 'Consultation');
+
+    return `
+      <!DOCTYPE html>
+      <html>
+      <body style="margin:0;background:#f4f7fb;font-family:Arial,sans-serif;color:#1f2937;line-height:1.5">
+        <div style="max-width:620px;margin:24px auto;padding:0 16px">
+          <div style="background:#087f9c;color:#fff;padding:22px 24px;border-radius:12px 12px 0 0">
+            <div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.9">Nita Clinics</div>
+            <h1 style="margin:8px 0 0;font-size:24px">New appointment request</h1>
+          </div>
+          <div style="background:#fff;padding:24px;border-radius:0 0 12px 12px;box-shadow:0 5px 18px rgba(15,23,42,.08)">
+            <p style="margin-top:0">A new appointment was booked from the website.</p>
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td style="padding:8px 0;color:#64748b;width:38%">Patient</td><td style="padding:8px 0"><strong>${patientName}</strong></td></tr>
+              <tr><td style="padding:8px 0;color:#64748b">Email</td><td style="padding:8px 0">${patientEmail}</td></tr>
+              <tr><td style="padding:8px 0;color:#64748b">Phone</td><td style="padding:8px 0">${patientPhone}</td></tr>
+              <tr><td style="padding:8px 0;color:#64748b">Doctor</td><td style="padding:8px 0">${doctorName}</td></tr>
+              <tr><td style="padding:8px 0;color:#64748b">Date</td><td style="padding:8px 0">${date}</td></tr>
+              <tr><td style="padding:8px 0;color:#64748b">Time</td><td style="padding:8px 0">${time}</td></tr>
+              <tr><td style="padding:8px 0;color:#64748b">Booking type</td><td style="padding:8px 0">${visitCategory}</td></tr>
+            </table>
+            <p style="margin-bottom:0;color:#64748b;font-size:13px">Please review and confirm this appointment from the admin panel.</p>
           </div>
         </div>
       </body>

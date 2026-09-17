@@ -4,6 +4,7 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { AppointmentsService } from './appointments.service';
 import { Appointment, AppointmentStatus } from './entities/appointment.entity';
 import { DoctorsService } from '../doctors/doctors.service';
+import { NotificationsService } from '../notifications/notifications.service';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -46,6 +47,10 @@ const mockDoctorsService = {
   findOne: jest.fn(),
 };
 
+const mockNotificationsService = {
+  sendNewAppointmentNotification: jest.fn(),
+};
+
 // ─── Tests ────────────────────────────────────────────────────────────────────
 
 describe('AppointmentsService', () => {
@@ -57,6 +62,7 @@ describe('AppointmentsService', () => {
         AppointmentsService,
         { provide: getRepositoryToken(Appointment), useValue: mockRepository },
         { provide: DoctorsService, useValue: mockDoctorsService },
+        { provide: NotificationsService, useValue: mockNotificationsService },
       ],
     }).compile();
 
@@ -79,6 +85,7 @@ describe('AppointmentsService', () => {
     it('should create appointment when slot is available', async () => {
       const slots = [{ startTime: '09:00', endTime: '09:30' }];
       mockDoctorsService.getAvailableSlots.mockResolvedValue(slots);
+      mockDoctorsService.findOne.mockResolvedValue({ name: 'Dr. Test' });
       mockRepository.findOne.mockResolvedValue(null);
       mockRepository.create.mockReturnValue(makeAppointment());
       mockRepository.save.mockResolvedValue(makeAppointment());
@@ -86,6 +93,15 @@ describe('AppointmentsService', () => {
       const appt = await service.create(createDto);
       expect(appt.status).toBe(AppointmentStatus.PENDING);
       expect(mockRepository.save).toHaveBeenCalled();
+      expect(mockNotificationsService.sendNewAppointmentNotification).toHaveBeenCalledWith(
+        expect.objectContaining({
+          patientName: 'Test Patient',
+          patientEmail: 'patient@test.com',
+          doctorName: 'Dr. Test',
+          date: '2026-06-01',
+          time: '09:00:00',
+        }),
+      );
     });
 
     it('should throw BadRequestException when no slots available', async () => {

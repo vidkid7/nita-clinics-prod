@@ -5,9 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Between, IsNull, In } from 'typeorm';
-import { InjectQueue } from '@nestjs/bull';
-import { Queue } from 'bull';
+import { Repository, IsNull, In } from 'typeorm';
 import { Appointment, AppointmentStatus } from './entities/appointment.entity';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { UpdateAppointmentDto } from './dto/update-appointment.dto';
@@ -15,7 +13,8 @@ import { PaginationDto, PaginatedResponseDto } from '@/common/dto/pagination.dto
 import { DoctorsService } from '../doctors/doctors.service';
 import { Doctor } from '../doctors/entities/doctor.entity';
 import { UserRole } from '../users/entities/user.entity';
-import { addMinutes, format, parse } from 'date-fns';
+import { NotificationsService } from '../notifications/notifications.service';
+import { addMinutes, format } from 'date-fns';
 
 /** Normalize time to HH:mm:ss for PostgreSQL time column */
 function toTimeString(t: string): string {
@@ -33,8 +32,7 @@ export class AppointmentsService {
     @InjectRepository(Appointment)
     private appointmentsRepository: Repository<Appointment>,
     private doctorsService: DoctorsService,
-    // @InjectQueue('notifications') // Temporarily disabled
-    // private notificationsQueue: Queue,
+    private notificationsService: NotificationsService,
   ) {}
 
   async create(createAppointmentDto: CreateAppointmentDto): Promise<Appointment> {
@@ -154,19 +152,23 @@ export class AppointmentsService {
 
     const savedAppointment = await this.appointmentsRepository.save(appointment);
 
-    // Queue confirmation notification in background (temporarily disabled - no Redis)
-    // void this.doctorsService.findOne(doctorId).then((doctor) => {
-    //   return this.notificationsQueue.add('appointment-confirmation', {
-    //     appointmentId: savedAppointment.id,
-    //     patientEmail: savedAppointment.patientEmail,
-    //     patientPhone: savedAppointment.patientPhone,
-    //     doctorName: doctor?.name ?? 'Doctor',
-    //     date: savedAppointment.date,
-    //     time: savedAppointment.startTime,
-    //   });
-    // }).catch((err) => {
-    //   console.error('Failed to queue notification (booking still succeeded):', err);
-    // });
+    // Notification delivery must never undo a successful booking. We make the
+    // delivery attempt here so the caller gets a clear booking result even if
+    // SMTP is temporarily unavailable.
+    try {
+      const doctor = doctorId ? await this.doctorsService.findOne(doctorId) : null;
+      await this.notificationsService.sendNewAppointmentNotification({
+        patientName: savedAppointment.patientName,
+        patientEmail: savedAppointment.patientEmail,
+        patientPhone: savedAppointment.patientPhone,
+        doctorName: doctor?.name ?? 'Nita Clinics front desk',
+        date: savedAppointment.date,
+        time: savedAppointment.startTime,
+        visitCategory: category,
+      });
+    } catch (error) {
+      console.error('Appointment saved, but admin email notification failed:', error);
+    }
 
     return savedAppointment;
   }

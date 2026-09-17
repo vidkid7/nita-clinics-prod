@@ -38,11 +38,14 @@ ESEWA_BASE_URL=https://rc-epay.esewa.com.np
 APP_URL=https://nita-clinics-prod.vercel.app
 
 # ---- OPTIONAL: SMTP for transactional email ----
-SMTP_HOST=
-SMTP_PORT=587
-SMTP_USER=
-SMTP_PASS=
-SMTP_FROM=noreply@nitaclinics.com
+# cPanel mail settings for info@nitaclinics.com:
+SMTP_HOST=server103.webhostnepal.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=info@nitaclinics.com
+SMTP_PASS=SET_IN_RENDER_ONLY
+SMTP_FROM=info@nitaclinics.com
+ADMIN_EMAIL=info@nitaclinics.com
 
 # ---- OPTIONAL: Cloudinary for image uploads (else Unsplash fallback) ----
 CLOUDINARY_CLOUD_NAME=
