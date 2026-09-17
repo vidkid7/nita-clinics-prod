@@ -152,10 +152,10 @@ export class AppointmentsService {
 
     const savedAppointment = await this.appointmentsRepository.save(appointment);
 
-    // Notification delivery must never undo a successful booking. We make the
-    // delivery attempt here so the caller gets a clear booking result even if
-    // SMTP is temporarily unavailable.
-    try {
+    // Notification delivery must never undo or delay a successful booking.
+    // SMTP can be slow/unreachable on hosted environments, so send it after
+    // the appointment response has been released to the caller.
+    void (async () => {
       const doctor = doctorId ? await this.doctorsService.findOne(doctorId) : null;
       await this.notificationsService.sendNewAppointmentNotification({
         patientName: savedAppointment.patientName,
@@ -166,9 +166,9 @@ export class AppointmentsService {
         time: savedAppointment.startTime,
         visitCategory: category,
       });
-    } catch (error) {
+    })().catch((error) => {
       console.error('Appointment saved, but admin email notification failed:', error);
-    }
+    });
 
     return savedAppointment;
   }

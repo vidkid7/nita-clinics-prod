@@ -26,6 +26,9 @@ export class NotificationsService {
       host: this.configService.get('SMTP_HOST', 'localhost'),
       port: smtpPort,
       secure: smtpSecure,
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 15000,
       auth: smtpUser && smtpPass
         ? {
             user: smtpUser,

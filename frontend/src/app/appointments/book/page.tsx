@@ -293,7 +293,7 @@ export default function BookAppointmentPage() {
 
       await post('appointments', payload);
 
-      toast.success('Appointment booked successfully!');
+      toast.success('Appointment request received!');
       setCurrentStep(4);
     } catch (error) {
       console.error('Failed to book appointment', error);
@@ -905,16 +905,16 @@ export default function BookAppointmentPage() {
 
             {/* Step 4: Confirmation */}
             {currentStep === 4 && (
-              <div className="text-center py-12">
+              <div className="text-center py-12" role="status" aria-live="polite">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                   <FiCheck className="w-10 h-10 text-green-600" />
                 </div>
                 <h2 className="text-3xl font-heading font-bold text-neutral-900 mb-4">
-                  Appointment Booked Successfully!
+                  Appointment Request Received
                 </h2>
                 <p className="text-neutral-600 mb-8 max-w-md mx-auto">
-                  Your appointment has been confirmed. We've sent a confirmation email to{' '}
-                  <strong>{patientEmail}</strong>
+                  Your request was saved successfully. Our clinic team will review it and contact you at{' '}
+                  <strong>{patientEmail}</strong> to confirm the visit.
                 </p>
                 <div className="bg-white rounded-2xl p-6 md:p-8 shadow-card border border-neutral-100 max-w-md mx-auto mb-8">
                   <h3 className="font-semibold text-neutral-900 mb-4">Appointment Details</h3>
