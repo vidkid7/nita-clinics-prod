@@ -4,7 +4,7 @@ import { publicPageMetadata } from '@/lib/seo';
 export const metadata: Metadata = publicPageMetadata({
   title: 'Clinic Pharmacy in Kathmandu | Nita Clinic',
   description:
-    'Get pharmacist-reviewed prescription support and medicine access through the Nita Clinic pharmacy in Kathmandu.',
+    'Find pharmacist-reviewed prescription support and medicine access through the Nita Clinic pharmacy in Kathmandu, with guidance for safe collection and follow-up.',
   path: '/services/pharmacy',
   keywords: ['pharmacy Kathmandu', 'clinic pharmacy Nepal', 'prescription medicine Kathmandu'],
 });

@@ -4,7 +4,7 @@ import { publicPageMetadata } from '@/lib/seo';
 export const metadata: Metadata = publicPageMetadata({
   title: 'Privacy Policy | Nita Clinic Kathmandu',
   description:
-    'Read the Nita Clinic privacy policy to understand how we collect, use, protect, and retain information submitted through our healthcare website and appointment services.',
+    'Learn how Nita Clinic collects, uses, protects, and retains information submitted through our healthcare website and appointment services.',
   path: '/privacy',
   keywords: ['Nita Clinic privacy policy', 'healthcare privacy Kathmandu', 'appointment data privacy Nepal'],
 });

@@ -4,7 +4,7 @@ import { publicPageMetadata } from '@/lib/seo';
 export const metadata: Metadata = publicPageMetadata({
   title: 'Healthcare Services in Kathmandu | Nita Clinic',
   description:
-    'Explore Nita Clinic services in Kathmandu: doctor consultations, laboratory testing, vaccinations, home visits, online consultations, pharmacy support, and preventive care.',
+    'Explore doctor consultations, Nita Laboratory testing, vaccinations, home visits, online consultations, pharmacy support, and preventive care in Kathmandu.',
   path: '/services',
   keywords: [
     'healthcare services Kathmandu',

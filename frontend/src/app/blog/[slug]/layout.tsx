@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return publicPageMetadata({
-    title: `${post.title} | Nita Clinic Health Blog`,
+    title: post.title,
     description: post.excerpt,
     path: `/blog/${params.slug}`,
     image: post.featuredImage,

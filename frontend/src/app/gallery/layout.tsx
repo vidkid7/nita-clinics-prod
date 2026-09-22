@@ -4,7 +4,7 @@ import { publicPageMetadata } from '@/lib/seo';
 export const metadata: Metadata = publicPageMetadata({
   title: 'Nita Clinic Gallery | Clinic and Healthcare Facilities',
   description:
-    'See Nita Clinic facilities, healthcare services, laboratory environment, and community moments in Kathmandu, Nepal.',
+    'Explore Nita Clinic facilities, laboratory spaces, healthcare services, and community moments from our Kathmandu clinic through the photo gallery.',
   path: '/gallery',
   keywords: ['Nita Clinic gallery', 'clinic facilities Kathmandu', 'Nita Laboratory'],
 });

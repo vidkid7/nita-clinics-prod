@@ -137,12 +137,12 @@ export function BrandLoader({
         />
       </div>
 
-      <h1 className="brand-loader-title mt-10 font-heading text-3xl md:text-4xl font-bold tracking-tight text-white">
+      <div className="brand-loader-title mt-10 font-heading text-3xl md:text-4xl font-bold tracking-tight text-white">
         Nita{' '}
         <span className="bg-gradient-to-r from-primary-300 via-cyan-200 to-primary-300 bg-clip-text text-transparent">
           Clinics
         </span>
-      </h1>
+      </div>
 
       <div
         className="brand-loader-divider mt-3 flex items-center gap-2 origin-center"

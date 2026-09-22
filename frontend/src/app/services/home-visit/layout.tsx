@@ -4,7 +4,7 @@ import { publicPageMetadata } from '@/lib/seo';
 export const metadata: Metadata = publicPageMetadata({
   title: 'Home Visit Healthcare in Kathmandu | Nita Clinic',
   description:
-    'Arrange convenient home visits and home sample collection in Kathmandu with the Nita Clinic healthcare team.',
+    'Book a doctor home visit, home lab sample collection, or home vaccination in Kathmandu Valley with Nita Clinic’s healthcare team and digital follow-up.',
   path: '/services/home-visit',
   keywords: ['home visit doctor Kathmandu', 'home sample collection Kathmandu', 'home healthcare Nepal'],
 });

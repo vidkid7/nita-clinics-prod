@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { publicPageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema, publicPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
   title: 'Vaccination Clinic in Kathmandu | Nita Clinic',
@@ -20,5 +21,15 @@ export default function VaccinationLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Vaccination Clinic', path: '/vaccination' },
+        ])}
+      />
+      {children}
+    </>
+  );
 }
