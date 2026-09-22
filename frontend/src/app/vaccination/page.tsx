@@ -12,7 +12,6 @@ import { CTAFooter } from '@/components/ui/CTAFooter';
 import { FALLBACK_VACCINES, VACCINE_CATEGORIES, mapVaccineFromApi } from '@/lib/vaccine-data';
 import type { Vaccine, VaccineCategory } from '@/lib/vaccine-data';
 import { get } from '@/lib/api';
-import { cn } from '@/lib/utils';
 
 const categoryIcons: Record<VaccineCategory, LucideIcon> = {
   All: Syringe,
@@ -33,8 +32,9 @@ const WHY_BULLETS = [
 export default function VaccinationPage() {
   const [activeCategory, setActiveCategory] = useState<VaccineCategory>('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [vaccines, setVaccines] = useState<Vaccine[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // Keep the public catalogue crawlable and useful while the live API loads.
+  const [vaccines, setVaccines] = useState<Vaccine[]>(FALLBACK_VACCINES);
+  const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {

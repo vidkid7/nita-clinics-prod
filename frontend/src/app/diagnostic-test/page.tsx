@@ -1,13 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowRight, FlaskConical, Home, FileText, Phone } from 'lucide-react';
 import { FiCalendar, FiPhone } from 'react-icons/fi';
 import { get } from '@/lib/api';
 import { TestCard } from '@/components/diagnostics/TestCard';
-import { PremiumLandingHero } from '@/components/ui/PremiumLandingHero';
 import { CTAFooter } from '@/components/ui/CTAFooter';
 import {
   mapLabTestFromApi,
@@ -18,6 +16,10 @@ import {
   FALLBACK_LAB_CATEGORIES,
   FALLBACK_LAB_TESTS,
 } from '@/lib/diagnostic-data-fallback';
+
+type LabTestsResponse = {
+  data?: Record<string, unknown>[];
+};
 
 // Compact, low-key hero for the redesigned lab page (less visual noise than the
 // "premium landing hero" pattern used elsewhere).
@@ -149,9 +151,11 @@ function pickDepartmentKey(cat: DiagnosticCategory | undefined, test: Diagnostic
 
 export default function DiagnosticTestPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [tests, setTests] = useState<DiagnosticTest[]>([]);
-  const [categories, setCategories] = useState<DiagnosticCategory[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // Render the authoritative local catalogue immediately so search engines and
+  // users can discover test detail links before the API response arrives.
+  const [tests, setTests] = useState<DiagnosticTest[]>(FALLBACK_LAB_TESTS);
+  const [categories, setCategories] = useState<DiagnosticCategory[]>(FALLBACK_LAB_CATEGORIES);
+  const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [openDept, setOpenDept] = useState<string | null>(null); // null = all collapsed in a flat list
 
@@ -165,7 +169,7 @@ export default function DiagnosticTestPage() {
       setTests(FALLBACK_LAB_TESTS);
       setCategories(FALLBACK_LAB_CATEGORIES);
       try {
-        const testsRes = await get<any>('lab-tests?limit=100&sortBy=order&sortOrder=asc');
+        const testsRes = await get<LabTestsResponse>('lab-tests?limit=100&sortBy=order&sortOrder=asc');
         if (cancelled) return;
         const rows = testsRes?.data ?? [];
         if (Array.isArray(rows) && rows.length > 0) {
@@ -180,7 +184,7 @@ export default function DiagnosticTestPage() {
         // Keep the departments from the workbook. The API currently assigns
         // Urine R/E to Serology, while the workbook places it in Parasitology.
         setCategories(FALLBACK_LAB_CATEGORIES);
-      } catch (e) {
+      } catch {
         if (!cancelled) {
           // Keep fallback data so the page is not empty. The user can still
           // browse the catalog while the backend is down.
