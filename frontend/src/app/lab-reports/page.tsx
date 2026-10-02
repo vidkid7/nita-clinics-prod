@@ -25,7 +25,7 @@ export default function LabReportsPage() {
         posterSrc="/videos/hero/doctor-writing-appointment.jpg"
         overlayClassName="from-primary-950/[0.88] via-primary-900/[0.66] to-teal-900/[0.42]"
         actions={[
-          { label: 'Sign In to Portal', href: '/login', icon: <Lock className="h-4 w-4" /> },
+          { label: 'Sign In to Portal', href: '/patients/login', icon: <Lock className="h-4 w-4" /> },
           { label: 'Call Lab Desk', href: 'tel:+977014533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
         ]}
         trustPoints={[
@@ -65,7 +65,7 @@ export default function LabReportsPage() {
             transition={{ duration: 0.4 }}
             onSubmit={(e) => {
               e.preventDefault();
-              window.location.href = '/login?from=lab-reports';
+              window.location.href = '/patients/login?from=lab-reports';
             }}
             className="rounded-3xl border border-neutral-200 bg-gradient-to-br from-primary-50/40 via-white to-teal-50/40 p-6 sm:p-8 shadow-[0_18px_50px_-22px_rgba(1,173,165,0.35)]"
           >
@@ -117,7 +117,7 @@ export default function LabReportsPage() {
                 <Sparkles className="h-4 w-4" /> Send me my reports
               </button>
               <Link
-                href="/login"
+                href="/patients/login"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-white text-sm font-semibold text-neutral-700 px-5 py-3 hover:bg-neutral-50"
               >
                 Sign In Instead

@@ -41,7 +41,7 @@ const contactInfo = [
   {
     icon: FiMapPin,
     title: 'Visit Us',
-    lines: [BRAND.name, BRAND.address],
+    lines: [BRAND.name, BRAND.addressFull],
     tile: 'bg-primary-50 text-primary-600',
     bar: 'from-primary-400 to-primary-600',
     trace: 'rgba(1,173,165,0.5)',
@@ -121,7 +121,7 @@ export default function ContactPage() {
         eyebrow="Contact NITA Clinic"
         title="Questions, bookings,"
         highlight="and clinic support."
-        description="Call, email, visit, or send a message. Our team can help with appointments, lab tests, health cards, vaccination, and general enquiries."
+        description={`Visit us at ${BRAND.addressFull}, call ${BRAND.phone}, email ${BRAND.email}, or send a message for appointments, lab tests, vaccinations, and general enquiries.`}
         videoSrc="/videos/hero/doctor-writing-appointment.mp4"
         posterSrc="/videos/hero/doctor-writing-appointment.jpg"
         overlayClassName="from-primary-950/[0.88] via-primary-900/[0.64] to-teal-900/[0.42]"
@@ -189,9 +189,17 @@ export default function ContactPage() {
                     </div>
                     <div className="min-w-0">
                       <h3 className="font-bold text-neutral-900 mb-1 transition-colors group-hover:text-primary-700">{info.title}</h3>
-                      {info.lines.map((line, i) => (
-                        <p key={i} className="text-sm text-neutral-600">{line}</p>
-                      ))}
+                      {index === 0 ? (
+                        <address className="not-italic text-sm text-neutral-600">
+                          {info.lines.map((line, i) => (
+                            <span key={i} className="block">{line}</span>
+                          ))}
+                        </address>
+                      ) : (
+                        info.lines.map((line, i) => (
+                          <p key={i} className="text-sm text-neutral-600">{line}</p>
+                        ))
+                      )}
                     </div>
                   </div>
                   <span className={`absolute bottom-3 right-4 h-1.5 w-1.5 rounded-full ${info.dot} opacity-40 transition-all duration-300 group-hover:opacity-100 group-hover:scale-[2.2]`} />
