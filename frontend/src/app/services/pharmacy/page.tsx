@@ -480,7 +480,7 @@ export default function PharmacyPage() {
       <CTAFooter
         title="Need a medicine"
         highlight="right now?"
-        subtitle="Call our pharmacy desk for urgent requests, refills, or a pharmacist consultation. We're open during clinic hours, 7 days a week."
+        subtitle="Call our pharmacy desk for urgent requests, refills, or a pharmacist consultation during clinic hours."
         actions={[
           { label: 'Call the pharmacy', href: 'tel:+9779800000000', icon: <FiPhone className="h-4 w-4" /> },
           { label: 'Book a check-up', href: '/appointments/book', icon: <FiCalendar className="h-4 w-4" /> },

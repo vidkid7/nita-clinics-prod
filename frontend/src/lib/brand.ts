@@ -33,8 +33,8 @@ export const BRAND = {
     youtube: 'https://youtube.com/@nitaclinics',
   },
   hours: {
-    weekdays: 'Sun-Fri: 7:00 AM - 7:00 PM',
-    saturday: 'Saturday: 8:00 AM - 5:00 PM',
+    weekdays: 'Mon-Fri: 9:00 AM - 6:00 PM',
+    saturday: 'Saturday: 9:00 AM - 4:00 PM',
   },
   siteUrl: 'https://nitaclinics.com',
   ogImage: '/logo.png',

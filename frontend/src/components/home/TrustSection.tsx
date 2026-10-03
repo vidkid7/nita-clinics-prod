@@ -46,9 +46,9 @@ const proofPoints = [
   },
   {
     icon: FiClock,
-    value: '7 Days',
-    label: 'Open Every Week',
-    desc: 'Mon–Fri 7am–7pm, Sat 8am–4pm',
+    value: '6 Days',
+    label: 'Open 6 Days a Week',
+    desc: 'Mon–Fri 9am–6pm, Sat 9am–4pm',
     color: 'text-amber-600',
     bg: 'bg-amber-50',
   },

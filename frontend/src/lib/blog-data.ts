@@ -103,7 +103,7 @@ export const FALLBACK_BLOG_POSTS: BlogPost[] = [
 
       <blockquote>Stay hydrated, eat well, and don't ignore early symptoms. Monsoon health protection starts with simple daily habits.</blockquote>
 
-      <p>If you have any concerns about your health or need a lab test, NITA Clinic is open 7 days a week. Call us at +977 01-4533361 or book an appointment online.</p>
+      <p>If you have any concerns about your health or need a lab test, visit Nita Clinic during our published clinic hours. Call us at +977 01-4533361 or book an appointment online.</p>
     `,
   },
   {
