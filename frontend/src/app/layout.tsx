@@ -161,6 +161,22 @@ const organizationSchema = {
         '@type': 'Offer',
         itemOffered: { '@type': 'Service', name: 'Pharmacy services', url: siteUrl('/services/pharmacy') },
       },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Specialist doctor consultations', url: siteUrl('/specialists') },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Preventive health check-ups', url: siteUrl('/checkup') },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Diagnostic tests', url: siteUrl('/diagnostic-test') },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'NITA Health Card membership', url: siteUrl('/health-card') },
+      },
     ],
   },
   contactPoint: {
