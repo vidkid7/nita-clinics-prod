@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { FiPhone, FiArrowRight, FiClock, FiMapPin } from 'react-icons/fi';
 import { Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { BRAND } from '@/lib/brand';
 
 interface CTAFooterAction {
   label: string;
@@ -35,7 +36,7 @@ export function CTAFooter({
   highlight,
   subtitle,
   actions,
-  phone = '+977014533361',
+  phone = BRAND.phone,
   tone = 'primary',
   className,
 }: CTAFooterProps) {
@@ -184,8 +185,8 @@ export function CTAFooter({
                       <FiClock className="h-3 w-3" />
                     </span>
                     <div>
-                      <p className="font-semibold text-white">Mon – Fri · 7:00 AM – 7:00 PM</p>
-                      <p className="text-primary-200/70 text-xs">Saturday · 8:00 AM – 4:00 PM</p>
+                      <p className="font-semibold text-white">{BRAND.hours.weekdays}</p>
+                      <p className="text-primary-200/70 text-xs">{BRAND.hours.saturday}</p>
                     </div>
                   </li>
 

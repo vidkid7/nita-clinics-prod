@@ -248,9 +248,9 @@ export function Footer() {
                     <div>
                       <p className="flex items-center gap-1.5">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-vital-ping" />
-                        Mon – Fri: 7:00 AM – 7:00 PM
+                        {BRAND.hours.weekdays}
                       </p>
-                      <p>Saturday: 8:00 AM – 4:00 PM</p>
+                      <p>{BRAND.hours.saturday}</p>
                     </div>
                   </div>
                 </li>
