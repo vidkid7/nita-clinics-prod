@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiSend } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useSettings } from '@/hooks/useSettings';
+import { BRAND } from '@/lib/brand';
 
 export function WhatsAppButton() {
   const { settings } = useSettings();
@@ -44,7 +45,7 @@ export function WhatsAppButton() {
       if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
     }
   }, [isOpen]);
-  const whatsappNumber = settings.whatsapp || settings.phone || '+9779800000000';
+  const whatsappNumber = settings.whatsapp || BRAND.whatsapp;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

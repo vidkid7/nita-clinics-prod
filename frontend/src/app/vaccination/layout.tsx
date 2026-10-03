@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { breadcrumbSchema, publicPageMetadata } from '@/lib/seo';
+import { breadcrumbSchema, publicPageMetadata, serviceSchema } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
   title: 'Vaccination Clinic in Kathmandu | Nita Clinic',
@@ -28,6 +28,15 @@ export default function VaccinationLayout({
           { name: 'Home', path: '/' },
           { name: 'Vaccination Clinic', path: '/vaccination' },
         ])}
+      />
+      <JsonLd
+        data={serviceSchema({
+          path: '/vaccination',
+          name: 'Nita Clinic Vaccination Services',
+          serviceType: 'Vaccination and immunization service',
+          description:
+            'Child, adult, pregnancy, influenza, tetanus, pneumococcal, and travel vaccination services in Kathmandu.',
+        })}
       />
       {children}
     </>

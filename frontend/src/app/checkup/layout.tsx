@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { publicPageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema, publicPageMetadata, serviceSchema } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
   title: 'Health Check-up Packages in Kathmandu | Nita Clinic',
@@ -20,5 +21,24 @@ export default function CheckupLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Health Check-ups', path: '/checkup' },
+        ])}
+      />
+      <JsonLd
+        data={serviceSchema({
+          path: '/checkup',
+          name: 'Nita Clinic Preventive Health Check-ups',
+          serviceType: 'Preventive health screening and check-up packages',
+          description:
+            'Preventive health check-ups and screening packages in Kathmandu, including general, women’s, children’s, orthopedic, and tuberculosis programmes.',
+        })}
+      />
+      {children}
+    </>
+  );
 }

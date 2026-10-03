@@ -108,3 +108,55 @@ export function faqSchema(items: Array<{ q: string; a: string }>, path: string) 
     })),
   };
 }
+
+/**
+ * Describe a public service page using the same facts rendered on that page.
+ * Keeping the provider linked to the root MedicalClinic entity prevents
+ * service pages from being interpreted as separate businesses.
+ */
+export function serviceSchema({
+  path,
+  name,
+  serviceType,
+  description,
+  areaServed = 'Kathmandu, Nepal',
+}: {
+  path: string;
+  name: string;
+  serviceType: string;
+  description: string;
+  areaServed?: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteUrl(path)}#service`,
+    name,
+    serviceType,
+    description,
+    provider: { '@id': `${SITE_URL}/#medical-clinic` },
+    areaServed: { '@type': 'Place', name: areaServed },
+    url: siteUrl(path),
+  };
+}
+
+/** A visible directory of public services or catalogue entries. */
+export function itemListSchema(
+  name: string,
+  path: string,
+  items: Array<{ name: string; path: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${siteUrl(path)}#item-list`,
+    name,
+    url: siteUrl(path),
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: siteUrl(item.path),
+    })),
+  };
+}

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { publicPageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { breadcrumbSchema, publicPageMetadata, serviceSchema } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
   title: 'Medical Specialists in Kathmandu | Nita Clinic',
@@ -20,5 +21,24 @@ export default function SpecialistsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Medical Specialists', path: '/specialists' },
+        ])}
+      />
+      <JsonLd
+        data={serviceSchema({
+          path: '/specialists',
+          name: 'Nita Clinic Specialist Consultations',
+          serviceType: 'Medical specialist consultation',
+          description:
+            'Specialist consultations in gynecology, obstetrics, pediatrics, tuberculosis care, pulmonology, and orthopedics in Kathmandu.',
+        })}
+      />
+      {children}
+    </>
+  );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { breadcrumbSchema, publicPageMetadata } from '@/lib/seo';
+import { breadcrumbSchema, publicPageMetadata, serviceSchema } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
   title: 'Laboratory Tests in Kathmandu | Nita Clinic',
@@ -28,6 +28,15 @@ export default function DiagnosticTestLayout({
           { name: 'Home', path: '/' },
           { name: 'Laboratory Tests', path: '/diagnostic-test' },
         ])}
+      />
+      <JsonLd
+        data={serviceSchema({
+          path: '/diagnostic-test',
+          name: 'Nita Laboratory Tests and Diagnostics',
+          serviceType: 'Medical laboratory and diagnostic testing',
+          description:
+            'Browse Nita Laboratory pathology, hematology, biochemistry, serology, microbiology, parasitology, and preventive tests in Kathmandu.',
+        })}
       />
       {children}
     </>

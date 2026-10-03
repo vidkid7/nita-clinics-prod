@@ -26,6 +26,7 @@ import { CTAFooter } from '@/components/ui/CTAFooter';
 import { IconTileList } from '@/components/ui/IconTileList';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { faqSchema } from '@/lib/seo';
+import { BRAND } from '@/lib/brand';
 import { FiCalendar, FiPhone } from 'react-icons/fi';
 
 const CHANNELS = [
@@ -62,7 +63,7 @@ const CHANNELS = [
       'Pharmacist call-back on dosage questions',
       'Refill reminders by SMS or WhatsApp',
     ],
-    cta: { label: 'Order via WhatsApp', href: 'https://wa.me/9779800000000' },
+    cta: { label: 'Order via WhatsApp', href: `https://wa.me/${BRAND.whatsapp}` },
     gradient: 'from-amber-500 via-orange-500 to-rose-600',
     ring: 'ring-amber-200',
     iconBg: 'bg-amber-50 text-amber-600',
@@ -147,7 +148,7 @@ export default function PharmacyPage() {
         posterSrc="/videos/hero/lab-microscope.jpg"
         overlayClassName="from-emerald-950/[0.88] via-teal-900/[0.66] to-amber-900/[0.42]"
         actions={[
-          { label: 'Order via WhatsApp', href: 'https://wa.me/9779800000000', icon: <Phone className="h-4 w-4" /> },
+          { label: 'Order via WhatsApp', href: `https://wa.me/${BRAND.whatsapp}`, icon: <Phone className="h-4 w-4" /> },
           { label: 'Visit the counter', href: '/contact', variant: 'secondary', icon: <MapPin className="h-4 w-4" /> },
         ]}
         trustPoints={[
@@ -482,7 +483,7 @@ export default function PharmacyPage() {
         highlight="right now?"
         subtitle="Call our pharmacy desk for urgent requests, refills, or a pharmacist consultation during clinic hours."
         actions={[
-          { label: 'Call the pharmacy', href: 'tel:+9779800000000', icon: <FiPhone className="h-4 w-4" /> },
+          { label: 'Call the pharmacy', href: `tel:${BRAND.phone.replace(/[^0-9+]/g, '')}`, icon: <FiPhone className="h-4 w-4" /> },
           { label: 'Book a check-up', href: '/appointments/book', icon: <FiCalendar className="h-4 w-4" /> },
         ]}
       />
