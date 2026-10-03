@@ -6,6 +6,8 @@ import { FiCalendar, FiPhone } from 'react-icons/fi';
 import { PremiumLandingHero } from '@/components/ui/PremiumLandingHero';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { CTAFooter } from '@/components/ui/CTAFooter';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema } from '@/lib/seo';
 
 const LABORATORY_AREAS = [
   {
@@ -25,9 +27,30 @@ const LABORATORY_AREAS = [
   },
 ];
 
+const LABORATORY_FAQS = [
+  {
+    q: 'Where is Nita Laboratory located?',
+    a: 'Nita Laboratory is part of Nita Clinic at Bhimsengola-9, Kathmandu, Nepal. Call +977-01-4533361 for directions or help before visiting.',
+  },
+  {
+    q: 'What tests are available at Nita Laboratory?',
+    a: 'The laboratory catalogue covers blood and hematology testing, biochemistry, microbiology, serology, parasitology, and preventive screening categories.',
+  },
+  {
+    q: 'Can I access Nita Laboratory reports online?',
+    a: 'Yes. Patients can use the laboratory reports portal to access their results when they are ready, subject to the clinic team releasing the report.',
+  },
+  {
+    q: 'Does Nita Laboratory offer home sample collection?',
+    a: 'Nita Clinic offers home healthcare and sample-collection support in Kathmandu. Contact the team to confirm availability for your location and requested test.',
+  },
+] as const;
+
 export default function LaboratoryServicePage() {
   return (
     <main>
+      <JsonLd data={faqSchema([...LABORATORY_FAQS], '/services/laboratory')} />
+
       <PremiumLandingHero
         eyebrow="Nita Laboratory · Kathmandu"
         title="Clear answers from"
@@ -107,6 +130,29 @@ export default function LaboratoryServicePage() {
               <a href="tel:+977014533361" className="flex items-center gap-3 hover:text-primary-700"><FiPhone className="h-4 w-4 text-primary-600" /> 01-4533361</a>
               <Link href="/lab-reports" className="flex items-center gap-3 hover:text-primary-700"><FileText className="h-4 w-4 text-primary-600" /> Open laboratory reports</Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-white" aria-labelledby="laboratory-faq-heading">
+        <div className="container-custom max-w-4xl">
+          <SectionHeader
+            eyebrow="Laboratory FAQ"
+            title="Questions about"
+            highlight="Nita Laboratory"
+            subtitle="Clear answers about our Kathmandu laboratory services, reports, and home collection support."
+            className="mb-10"
+          />
+          <div className="grid gap-3 md:grid-cols-2">
+            {LABORATORY_FAQS.map((item) => (
+              <details key={item.q} className="group rounded-2xl border border-neutral-200/80 bg-neutral-50/70 p-5 transition-colors hover:border-primary-200 hover:bg-primary-50/40">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-neutral-800 marker:hidden">
+                  <span>{item.q}</span>
+                  <span className="text-xl leading-none text-neutral-400 transition-transform group-open:rotate-45 group-open:text-primary-600" aria-hidden="true">+</span>
+                </summary>
+                <p className="pt-3 leading-relaxed text-neutral-600">{item.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
