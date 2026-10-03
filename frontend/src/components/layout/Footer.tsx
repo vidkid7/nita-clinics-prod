@@ -47,8 +47,8 @@ const socials = [
   { name: 'YouTube', icon: FiYoutube, href: 'https://youtube.com/@nitaclinics' },
 ];
 
-const NITA_GOOGLE_MAPS_SRC =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d883.137644394083!2d85.34516725321134!3d27.700282090639625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb190028f89cf5%3A0x228774d591623e19!2sNita%20Pharmacy%20Private%20Limited!5e0!3m2!1sen!2snp!4v1785872724223!5m2!1sen!2snp';
+const NITA_GOOGLE_MAPS_SRC = BRAND.mapEmbed;
+const NITA_GOOGLE_MAPS_LINK = `https://www.google.com/maps/?q=${BRAND.mapLat},${BRAND.mapLng}`;
 
 export function Footer() {
   const { settings } = useSettings();
@@ -230,14 +230,14 @@ export function Footer() {
               <ul className="space-y-2.5 text-sm">
                 <li>
                   <a
-                    href="https://maps.google.com/?q=Nita+Pharmacy+Private+Limited+Bhimsengola"
+                    href={NITA_GOOGLE_MAPS_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-start gap-2.5 text-primary-200 transition-all duration-300 hover:translate-x-0.5 hover:text-white"
                   >
                     <FiMapPin className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary-300 transition-colors group-hover:text-teal-300" />
                     <span>
-                      Nita Pharmacy Pvt. Ltd., <strong className="text-teal-200">Bhimsengola-9</strong>
+                      Nita Clinic, <strong className="text-teal-200">Bhimsengola-9</strong>
                       , Kathmandu
                     </span>
                   </a>
@@ -267,7 +267,7 @@ export function Footer() {
               Find Us · Bhimsengola-9
             </h3>
             <a
-              href="https://maps.google.com/?q=Nita+Pharmacy+Private+Limited+Bhimsengola"
+              href={NITA_GOOGLE_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs text-teal-200 hover:text-white"
