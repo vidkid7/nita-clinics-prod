@@ -11,6 +11,9 @@ import { HealthCardBanner } from '@/components/home/HealthCardBanner';
 import { BlogSection } from '@/components/home/BlogSection';
 import { PartnersSection } from '@/components/home/PartnersSection';
 import { CTASection } from '@/components/home/CTASection';
+import { HomeFaqSection, HOME_FAQS } from '@/components/home/HomeFaqSection';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
   title: 'Nita Clinic | Multi-Specialty Clinic in Kathmandu',
@@ -29,6 +32,8 @@ export const metadata: Metadata = publicPageMetadata({
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={faqSchema([...HOME_FAQS], '/')} />
+
       {/* 1. Hero — split design with stock photo */}
       <HeroSection />
 
@@ -59,7 +64,10 @@ export default function HomePage() {
       {/* 10. Partners & clients auto-scroll */}
       <PartnersSection />
 
-      {/* 11. Final CTA + contact info */}
+      {/* 11. Answer-engine friendly clinic FAQs */}
+      <HomeFaqSection />
+
+      {/* 12. Final CTA + contact info */}
       <CTASection />
     </>
   );
