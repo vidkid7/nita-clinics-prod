@@ -15,7 +15,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { IconTileList } from '@/components/ui/IconTileList';
 import type { SpecialistPageData, FallbackDoctor } from '@/lib/specialist-data';
 import { BRAND } from '@/lib/brand';
-import { breadcrumbSchema, siteUrl } from '@/lib/seo';
+import { breadcrumbSchema, faqSchema, siteUrl } from '@/lib/seo';
 
 /* Slug → specialty doodle mapping (homepage clinical motif) */
 const SPECIALTY_ART: Record<
@@ -134,6 +134,7 @@ export function SpecialistDetailPage({
       <DoctorDetailModal doctor={selectedDoctor} onClose={() => setSelectedDoctor(null)} />
       <JsonLd data={physicianSchema} />
       <JsonLd data={breadcrumbs} />
+      <JsonLd data={faqSchema(data.faq, `/specialists/${slug}`)} />
 
       {/* ── Hero banner ── */}
       <section className="relative flex min-h-[440px] items-center overflow-hidden bg-primary-950 py-16 text-white md:min-h-[500px] md:py-20">

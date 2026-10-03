@@ -23,6 +23,8 @@ import { VideoHeroBackground } from '@/components/ui/VideoHeroBackground';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { CTAFooter } from '@/components/ui/CTAFooter';
 import { IconTileList } from '@/components/ui/IconTileList';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema } from '@/lib/seo';
 
 const WHAT_IS_INCLUDED = [
   {
@@ -138,6 +140,7 @@ export default function OrthopedicsCheckupClient() {
 
   return (
     <main>
+      <JsonLd data={faqSchema(FAQS, '/checkup/orthopedics')} />
       {/* ── Hero ── */}
       <section className="py-20 md:py-28 bg-primary-950 text-white relative overflow-hidden">
         <VideoHeroBackground

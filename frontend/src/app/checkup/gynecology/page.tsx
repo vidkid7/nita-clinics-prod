@@ -12,6 +12,8 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { CTAFooter } from '@/components/ui/CTAFooter';
 import { IconTileList } from '@/components/ui/IconTileList';
 import { PackageSelectionSection, normalizePackageRecord, type PackageSelectionPackage } from '@/components/packages/PackageSelectionSection';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema } from '@/lib/seo';
 
 const WHAT_IS_INCLUDED = [
   { icon: Stethoscope, title: 'Clinical Consultation', desc: 'Detailed medical history review, lifestyle assessment, and physical examination by a senior gynaecologist.' },
@@ -71,6 +73,7 @@ export default function GynecologyCheckupPage() {
 
   return (
     <main>
+      <JsonLd data={faqSchema(FAQS, '/checkup/gynecology')} />
       {/* ── Hero ── */}
       <section className="py-20 md:py-28 bg-primary-950 text-white relative overflow-hidden">
         <VideoHeroBackground

@@ -29,7 +29,8 @@ export const BRAND = {
   whatsapp: '9779768523887',
   social: {
     facebook: 'https://www.facebook.com/profile.php?id=61592513670112',
-    instagram: '',
+    instagram: 'https://instagram.com/nitaclinics',
+    youtube: 'https://youtube.com/@nitaclinics',
   },
   hours: {
     weekdays: 'Sun-Fri: 7:00 AM - 7:00 PM',

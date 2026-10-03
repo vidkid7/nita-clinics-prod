@@ -35,6 +35,8 @@ import { VideoHeroBackground } from '@/components/ui/VideoHeroBackground';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { CTAFooter } from '@/components/ui/CTAFooter';
 import { HealthCard } from '@/components/health-card/HealthCard';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema } from '@/lib/seo';
 
 /* ═════════════════════════════════════════════
    MEMBERSHIP CARD COMPONENT
@@ -342,6 +344,7 @@ export default function HealthCardPage() {
 
   return (
     <>
+      <JsonLd data={faqSchema(FAQS, '/health-card')} />
       {/* ═══════════════════════
           HERO
       ═══════════════════════ */}

@@ -92,7 +92,7 @@ const organizationSchema = {
   '@type': 'MedicalClinic',
   '@id': `${SITE_URL}/#medical-clinic`,
   name: BRAND.name,
-  alternateName: 'NITA Clinic',
+  alternateName: ['Nita Clinics', 'NITA Clinic', 'Nita Laboratory'],
   url: SITE_URL,
   logo: siteUrl(BRAND.logo),
   image: [DEFAULT_OG_IMAGE],
@@ -127,7 +127,42 @@ const organizationSchema = {
       closes: '17:00',
     },
   ],
-  sameAs: [BRAND.social.facebook].filter(Boolean),
+  sameAs: [BRAND.social.facebook, BRAND.social.instagram, BRAND.social.youtube].filter(Boolean),
+  knowsAbout: [
+    'medical consultations in Kathmandu',
+    'laboratory testing and pathology',
+    'health check-up packages',
+    'vaccination and immunization',
+    'home healthcare visits',
+    'online doctor consultations',
+    'pharmacy services',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Nita Clinic healthcare services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Laboratory testing', url: siteUrl('/services/laboratory') },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Vaccination services', url: siteUrl('/services/vaccination') },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Home visit healthcare', url: siteUrl('/services/home-visit') },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Online doctor consultation', url: siteUrl('/services/online-consultation') },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: 'Pharmacy services', url: siteUrl('/services/pharmacy') },
+      },
+    ],
+  },
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: BRAND.phone,

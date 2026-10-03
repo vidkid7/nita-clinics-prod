@@ -90,3 +90,21 @@ export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
     })),
   };
 }
+
+/** Structured answers for FAQ content that is also rendered visibly on the page. */
+export function faqSchema(items: Array<{ q: string; a: string }>, path: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${siteUrl(path)}#faq`,
+    url: siteUrl(path),
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    })),
+  };
+}

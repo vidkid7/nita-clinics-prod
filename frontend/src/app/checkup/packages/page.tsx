@@ -9,6 +9,8 @@ import { PackageCard } from '@/components/packages/PackageCard';
 import { VideoHeroBackground } from '@/components/ui/VideoHeroBackground';
 import { CTAFooter } from '@/components/ui/CTAFooter';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema } from '@/lib/seo';
 
 type CheckupPackage = {
   id: string;
@@ -157,6 +159,7 @@ export default function CheckupPackagesPage() {
 
   return (
     <main>
+      <JsonLd data={faqSchema(FAQS, '/checkup/packages')} />
       <section className="py-20 md:py-28 bg-primary-950 text-white relative overflow-hidden">
         <VideoHeroBackground
           src="/videos/hero/lab-microscope.mp4"

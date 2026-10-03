@@ -12,6 +12,8 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { CTAFooter } from '@/components/ui/CTAFooter';
 import { IconTileList } from '@/components/ui/IconTileList';
 import { PackageSelectionSection, normalizePackageRecord, type PackageSelectionPackage } from '@/components/packages/PackageSelectionSection';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema } from '@/lib/seo';
 
 const WHAT_IS_INCLUDED = [
   { icon: Ruler, title: 'Growth Assessment', desc: 'Height, weight, BMI, and head circumference plotted against WHO growth standards for the child\'s age.' },
@@ -67,6 +69,7 @@ export default function PediatricsCheckupPage() {
 
   return (
     <main>
+      <JsonLd data={faqSchema(FAQS, '/checkup/pediatrics')} />
       {/* ── Hero ── */}
       <section className="py-20 md:py-28 bg-primary-950 text-white relative overflow-hidden">
         <VideoHeroBackground

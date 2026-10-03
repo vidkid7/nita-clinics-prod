@@ -24,6 +24,8 @@ import { PremiumLandingHero } from '@/components/ui/PremiumLandingHero';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { CTAFooter } from '@/components/ui/CTAFooter';
 import { IconTileList } from '@/components/ui/IconTileList';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { faqSchema } from '@/lib/seo';
 import { FiCalendar, FiPhone } from 'react-icons/fi';
 
 const CHANNELS = [
@@ -135,6 +137,7 @@ export default function PharmacyPage() {
 
   return (
     <main>
+      <JsonLd data={faqSchema(FAQS, '/services/pharmacy')} />
       <PremiumLandingHero
         eyebrow="Pharmacy · Nita Clinic"
         title="The pharmacy that"
