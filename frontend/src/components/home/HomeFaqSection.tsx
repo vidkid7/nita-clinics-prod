@@ -3,8 +3,16 @@ import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
 
 export const HOME_FAQS = [
   {
+    q: 'What is the official Nita Clinics website?',
+    a: 'The official Nita Clinics website is https://nitaclinics.com. Nita Clinic is the independent multi-specialty clinic at Bhimsengola-9, Kathmandu, Nepal. Call +977-01-4533361 or email info@nitaclinics.com for help.',
+  },
+  {
     q: 'Where is Nita Clinic located?',
     a: 'Nita Clinic is located at Bhimsengola-9, Kathmandu, Nepal. Call +977-01-4533361 for directions or visit the Contact page.',
+  },
+  {
+    q: 'How can I find Nita Clinic on Google Maps?',
+    a: 'Search Google Maps for Nita Clinic, Bhimsengola-9, Kathmandu, or use the clinic map location at https://www.google.com/maps/?q=27.7002155,85.3459041. The clinic phone number is +977-01-4533361.',
   },
   {
     q: 'What healthcare services does Nita Clinic provide?',

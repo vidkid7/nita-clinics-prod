@@ -92,7 +92,11 @@ const organizationSchema = {
   '@type': 'MedicalClinic',
   '@id': `${SITE_URL}/#medical-clinic`,
   name: BRAND.name,
-  alternateName: ['Nita Clinics', 'NITA Clinic', 'Nita Laboratory'],
+  alternateName: ['Nita Clinics', 'NITA Clinic'],
+  description:
+    'Official website for Nita Clinic, also known as Nita Clinics, an independent multi-specialty clinic at Bhimsengola-9, Kathmandu, Nepal.',
+  disambiguatingDescription:
+    'Nita Clinic is an independent healthcare clinic in Bhimsengola-9, Kathmandu, with its own website, contact details, map location, doctors, and Nita Laboratory department.',
   url: SITE_URL,
   logo: siteUrl(BRAND.logo),
   image: [DEFAULT_OG_IMAGE],
@@ -128,6 +132,22 @@ const organizationSchema = {
     },
   ],
   sameAs: [BRAND.social.facebook, BRAND.social.instagram, BRAND.social.youtube].filter(Boolean),
+  brand: {
+    '@type': 'Brand',
+    '@id': `${SITE_URL}/#brand`,
+    name: BRAND.name,
+    alternateName: 'Nita Clinics',
+    url: SITE_URL,
+    logo: siteUrl(BRAND.logo),
+  },
+  department: {
+    '@type': 'MedicalOrganization',
+    '@id': `${SITE_URL}/#nita-laboratory`,
+    name: 'Nita Laboratory',
+    description: 'The laboratory and pathology testing department of Nita Clinic in Bhimsengola-9, Kathmandu.',
+    url: siteUrl('/services/laboratory'),
+    parentOrganization: { '@id': `${SITE_URL}/#medical-clinic` },
+  },
   knowsAbout: [
     'medical consultations in Kathmandu',
     'laboratory testing and pathology',

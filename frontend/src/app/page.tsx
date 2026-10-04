@@ -16,11 +16,12 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { faqSchema } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
-  title: 'Nita Clinic | Multi-Specialty Clinic in Kathmandu',
+  title: 'Nita Clinics | Nita Clinic in Bhimsengola, Kathmandu',
   description:
-    'Nita Clinic provides specialist consultations, laboratory tests, health check-up packages, vaccinations, and preventive healthcare in Kathmandu, Nepal.',
+    'Official Nita Clinics website for Nita Clinic at Bhimsengola-9, Kathmandu. Find our doctors, laboratory, services, address, map, phone, and appointments.',
   path: '/',
   keywords: [
+    'nita clinics kathmandu',
     'multi-specialty clinic Kathmandu',
     'doctor consultation Kathmandu',
     'laboratory tests Kathmandu',

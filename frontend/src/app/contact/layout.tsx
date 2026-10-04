@@ -4,9 +4,9 @@ import { BRAND } from '@/lib/brand';
 import { breadcrumbSchema, publicPageMetadata, siteUrl } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
-  title: 'Contact Nita Clinic | Bhimsengola, Kathmandu',
+  title: 'Contact Nita Clinics | Nita Clinic Bhimsengola, Kathmandu',
   description:
-    'Visit Nita Clinic at Bhimsengola-9, Kathmandu, or call +977-01-4533361 for appointments, lab tests, vaccinations, and healthcare enquiries.',
+    'Official Nita Clinics contact page for Nita Clinic at Bhimsengola-9, Kathmandu. Find the address, map, phone, email, opening hours, and appointments.',
   path: '/contact',
   keywords: ['Nita Clinic contact', 'clinic Bhimsengola Kathmandu', 'book clinic appointment Kathmandu'],
 });
