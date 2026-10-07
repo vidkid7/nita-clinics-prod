@@ -22,7 +22,7 @@ import { toTelHref } from '@/lib/contact';
 const links = {
   services: [
     { name: 'Our Services', href: '/services' },
-    { name: 'Laboratory', href: '/services/laboratory' },
+    { name: 'Nita Laboratory', href: '/services/laboratory' },
     { name: 'Vaccination', href: '/services/vaccination' },
     { name: 'Home Visit', href: '/services/home-visit' },
     { name: 'Online Consultation', href: '/services/online-consultation' },
@@ -150,9 +150,9 @@ export function Footer() {
             </div>
 
             <p className="text-primary-200 text-sm leading-relaxed mb-4 max-w-md">
-              Nita Clinic is a trusted multi-specialty clinic in Kathmandu offering pathology
-              labs, specialist consultations, vaccination, and preventive health care at affordable
-              prices.
+              Nita Clinic is an independent multi-specialty clinic at Bhimsengola-9, Kathmandu,
+              offering Nita Laboratory testing, specialist consultations, vaccinations, and
+              preventive healthcare.
             </p>
 
             {/* Our Services CTA */}

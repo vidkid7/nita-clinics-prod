@@ -3,14 +3,14 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, publicPageMetadata, serviceSchema } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
-  title: 'Laboratory Tests in Kathmandu | Nita Clinic',
+  title: 'Nita Laboratory Tests in Kathmandu | Nita Clinic',
   description:
-    'Browse pathology, hematology, biochemistry, serology, microbiology, parasitology, and preventive laboratory tests at Nita Clinic in Kathmandu.',
+    'Browse blood tests, hematology, biochemistry, serology, microbiology and preventive screening at Nita Laboratory, Nita Clinic in Bhimsengola-9, Kathmandu.',
   path: '/diagnostic-test',
   keywords: [
     'lab tests Kathmandu',
     'blood test Kathmandu',
-    'pathology lab Kathmandu',
+    'laboratory Bhimsengola Kathmandu',
     'diagnostic tests Nepal',
     'Nita Laboratory',
   ],

@@ -3,11 +3,11 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema, publicPageMetadata, siteUrl } from '@/lib/seo';
 
 export const metadata: Metadata = publicPageMetadata({
-  title: 'Laboratory and Pathology Tests in Kathmandu | Nita Clinic',
+  title: 'Nita Laboratory in Bhimsengola, Kathmandu | Nita Clinic',
   description:
-    'Explore Nita Laboratory services in Kathmandu, from blood and hematology testing to biochemistry, microbiology, serology, and preventive screening.',
+    'Visit Nita Laboratory at Nita Clinic, Bhimsengola-9, Kathmandu for blood tests, biochemistry, microbiology, serology and preventive screening.',
   path: '/services/laboratory',
-  keywords: ['pathology lab Kathmandu', 'blood test Kathmandu', 'laboratory services Nepal'],
+  keywords: ['Nita Laboratory Kathmandu', 'blood test Bhimsengola', 'laboratory services Kathmandu'],
 });
 
 export default function LaboratoryServiceLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export default function LaboratoryServiceLayout({ children }: { children: React.
         data={breadcrumbSchema([
           { name: 'Home', path: '/' },
           { name: 'Services', path: '/services' },
-          { name: 'Laboratory Services', path: '/services/laboratory' },
+          { name: 'Nita Laboratory', path: '/services/laboratory' },
         ])}
       />
       <JsonLd
@@ -28,7 +28,7 @@ export default function LaboratoryServiceLayout({ children }: { children: React.
           name: 'Nita Laboratory Services',
           serviceType: 'Medical laboratory testing',
           description:
-            'Laboratory and pathology testing in Kathmandu across hematology, biochemistry, microbiology, serology, parasitology, and preventive screening.',
+            'Nita Laboratory at Nita Clinic, Bhimsengola-9, Kathmandu provides hematology, biochemistry, microbiology, serology, parasitology, and preventive screening tests.',
           provider: { '@id': `${siteUrl()}#medical-clinic` },
           areaServed: { '@type': 'City', name: 'Kathmandu' },
           url: siteUrl('/services/laboratory'),

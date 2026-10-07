@@ -30,7 +30,7 @@ const LABORATORY_AREAS = [
 const LABORATORY_FAQS = [
   {
     q: 'Where is Nita Laboratory located?',
-    a: 'Nita Laboratory is part of Nita Clinic at Bhimsengola-9, Kathmandu, Nepal. Call +977-01-4533361 for directions or help before visiting.',
+    a: 'Nita Laboratory is part of Nita Clinic at Bhimsengola-9, Kathmandu, Nepal. Call +977-1-4533361 for directions or help before visiting.',
   },
   {
     q: 'What tests are available at Nita Laboratory?',
@@ -55,7 +55,7 @@ export default function LaboratoryServicePage() {
         eyebrow="Nita Laboratory · Kathmandu"
         title="Clear answers from"
         highlight="careful testing."
-        description="Access laboratory and pathology services in Kathmandu across blood testing, hematology, biochemistry, microbiology, serology, parasitology, and preventive screening."
+        description="Visit Nita Laboratory at Nita Clinic in Bhimsengola-9, Kathmandu for blood testing, hematology, biochemistry, microbiology, serology, parasitology, and preventive screening."
         videoSrc="/videos/hero/diagnostics-lab.mp4"
         posterSrc="/videos/hero/diagnostics-lab.jpg"
         overlayClassName="from-primary-950/[0.9] via-primary-900/[0.7] to-cyan-950/[0.45]"

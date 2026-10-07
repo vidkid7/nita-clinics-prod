@@ -40,7 +40,7 @@ export const HOME_SERVICES_DEFAULT: HomeServicesBlock = {
       iconKey: 'microscope',
       colorKey: 'primary',
       title: 'Nita Laboratory',
-      desc: 'Leading pathology lab offering advanced testing for early disease detection, treatment monitoring, and preventive healthcare.',
+      desc: 'Nita Laboratory at Bhimsengola-9, Kathmandu offers blood testing, preventive screening, and tests to support diagnosis and treatment monitoring.',
       href: '/services/laboratory',
       tag: 'Lab Tests',
     },
@@ -100,11 +100,17 @@ function sanitizeItem(it: Partial<HomeServiceItem>): HomeServiceItem | null {
   const colorKey = COLOR_KEYS.includes(it.colorKey as HomeServiceColorKey)
     ? (it.colorKey as HomeServiceColorKey)
     : 'primary';
+  const title = it.title.trim();
+  const isNitaLaboratory = /^Nita (?:laboratory|path lab|pathology lab)$/i.test(title);
+  const desc = typeof it.desc === 'string' ? it.desc : '';
+  // Saved settings can retain the former generic laboratory wording after deployment.
+  // Migrate only that known legacy copy; preserve all other CMS descriptions.
+  const isLegacyLaboratoryCopy = /^Leading pathology (?:lab|& diagnostic center) offering\b/i.test(desc);
   return {
     iconKey,
     colorKey,
-    title: it.title.trim(),
-    desc: typeof it.desc === 'string' ? it.desc : '',
+    title: isNitaLaboratory ? 'Nita Laboratory' : title,
+    desc: isNitaLaboratory && isLegacyLaboratoryCopy ? HOME_SERVICES_DEFAULT.items[0].desc : desc,
     href,
     tag: typeof it.tag === 'string' ? it.tag : 'Service',
   };

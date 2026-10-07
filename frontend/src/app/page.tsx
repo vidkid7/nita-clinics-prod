@@ -18,7 +18,7 @@ import { faqSchema } from '@/lib/seo';
 export const metadata: Metadata = publicPageMetadata({
   title: 'Nita Clinics | Nita Clinic in Bhimsengola, Kathmandu',
   description:
-    'Official Nita Clinics website for Nita Clinic at Bhimsengola-9, Kathmandu. Find our doctors, laboratory, services, address, map, phone, and appointments.',
+    'Nita Clinic at Bhimsengola-9, Kathmandu offers Nita Laboratory testing, specialist consultations and vaccinations. Find contacts, directions and appointments.',
   path: '/',
   keywords: [
     'nita clinics kathmandu',
