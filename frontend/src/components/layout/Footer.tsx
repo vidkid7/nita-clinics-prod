@@ -101,7 +101,7 @@ export function Footer() {
               />
             </p>
             <p className="text-white/80 text-sm mt-1">
-              Our experts are available Monday to Saturday.
+              Call our clinic for specialist availability.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

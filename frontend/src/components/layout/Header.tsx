@@ -121,7 +121,7 @@ export function Header() {
             </a>
             <span className="hidden items-center gap-1.5 text-primary-100/80 lg:flex">
               <FiMapPin className="w-3 h-3" />
-              {settings.address?.replace(', Nepal', '') || 'Kathmandu, Nepal'}
+              {BRAND.address}
             </span>
           </div>
           <div className="flex items-center gap-5 text-primary-100/90">
@@ -131,7 +131,7 @@ export function Header() {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
-              Open for Care · 24/7
+              Open daily · See hours
             </span>
             <Link href="/services/laboratory" className="flex items-center gap-1 hover:text-white transition-colors hover:underline decoration-teal-400/60 underline-offset-4">
               <FiSearch className="w-3 h-3" /> Find a Lab Test
