@@ -12,7 +12,7 @@ export const HOME_FAQS = [
   },
   {
     q: 'How can I find Nita Clinic on Google Maps?',
-    a: 'Search Google Maps for Nita Clinic, Bhimsengola-9, Kathmandu, or use the clinic map location at https://www.google.com/maps/?q=27.7002155,85.3459041. The clinic phone number is +977-01-4533361.',
+    a: 'Use the map and Get directions link on our Contact page to reach Nita Clinic at Bhimsengola-9, Kathmandu. Call 01-4533361 if you need help finding the clinic.',
   },
   {
     q: 'What healthcare services does Nita Clinic provide?',
@@ -20,7 +20,7 @@ export const HOME_FAQS = [
   },
   {
     q: 'What are Nita Clinic opening hours?',
-    a: 'Nita Clinic is open Monday to Friday from 9:00 AM to 6:00 PM and Saturday from 9:00 AM to 4:00 PM.',
+    a: 'Nita Clinic is open Sunday to Friday from 9:00 AM to 6:00 PM and Saturday from 9:00 AM to 4:00 PM.',
   },
   {
     q: 'How can I book an appointment at Nita Clinic?',

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiCalendar, FiPhone, FiMapPin, FiClock } from 'react-icons/fi';
 import { useHomePageContent } from '@/hooks/useHomePageContent';
+import { BRAND } from '@/lib/brand';
 import {
   DEFAULT_CONTACT,
   splitPrimaryAccentTitle,
@@ -15,7 +16,7 @@ export function CTASection() {
   const { data } = useHomePageContent();
   const contact: HomeContactContent = data?.contact ?? DEFAULT_CONTACT;
   const { first: titleFirst, second: titleAccent } = splitPrimaryAccentTitle(contact.title);
-  const phoneHref = toTelHref(contact.whatsapp || contact.phone);
+  const phoneHref = toTelHref(contact.phone);
 
   const infoCards = [
     {
@@ -45,7 +46,13 @@ export function CTASection() {
       glow: 'rgba(20,184,166,0.35)',
       trace: 'rgba(13,148,136,0.5)',
       icon: FiMapPin,
-      value: <p className="font-semibold text-neutral-900">{contact.address}</p>,
+      value: (
+        <address className="not-italic font-semibold text-neutral-900">
+          <a href={BRAND.directionsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary-600">
+            {contact.address} · Get directions
+          </a>
+        </address>
+      ),
     },
     {
       id: 'hours',
@@ -58,7 +65,7 @@ export function CTASection() {
       icon: FiClock,
       value: (
         <div className="text-sm font-medium text-neutral-800 flex flex-wrap gap-x-4">
-          {contact.workingHours}
+          {BRAND.hours.weekdays} · {BRAND.hours.saturday}
         </div>
       ),
     },

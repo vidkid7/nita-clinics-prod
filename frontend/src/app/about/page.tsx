@@ -447,7 +447,7 @@ export default function AboutPage() {
         subtitle="Experience quality care at Nita Clinic. Our team is ready to support your long-term health."
         actions={[
           { label: 'Book Appointment', href: '/appointments/book' },
-          { label: 'Call Now', href: 'tel:+977014533361' },
+          { label: 'Call Now', href: 'tel:+97714533361' },
         ]}
       />
     </>

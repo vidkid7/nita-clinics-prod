@@ -179,7 +179,7 @@ export default function OrthopedicsCheckupClient() {
                 Book Orthopedic Check-up
               </Link>
               <a
-                href="tel:+977014533361"
+                href="tel:+97714533361"
                 className="group inline-flex items-center gap-2 rounded-xl border border-white/30 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/10"
               >
                 <FiPhone className="h-4 w-4" />
@@ -370,7 +370,7 @@ export default function OrthopedicsCheckupClient() {
             href: '/appointments/book?specialty=orthopedics&type=checkup',
             icon: <FiCalendar className="h-4 w-4" />,
           },
-          { label: 'Call Now', href: 'tel:+977014533361' },
+          { label: 'Call Now', href: 'tel:+97714533361' },
         ]}
       />
     </main>

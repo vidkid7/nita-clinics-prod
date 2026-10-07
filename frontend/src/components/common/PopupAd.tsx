@@ -165,7 +165,7 @@ export function PopupAd() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                   <a
-                    href="tel:+977014533361"
+                    href="tel:+97714533361"
                     onClick={handleDismiss}
                     className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-emerald-500 bg-white px-4 py-3 text-sm font-bold text-emerald-700 transition-all hover:bg-emerald-50"
                   >

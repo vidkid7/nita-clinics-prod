@@ -1,4 +1,6 @@
 import { get } from '@/lib/api';
+import { BRAND } from '@/lib/brand';
+export { toTelHref } from '@/lib/contact';
 
 export type HomeHeroContent = {
   badgeText: string;
@@ -86,12 +88,12 @@ export const DEFAULT_CONTACT: HomeContactContent = {
   title: 'Ready to Start Your|Health Journey?',
   subtitle:
     'From specialist consultations to lab tests and preventive care, our team is here to support your family every step of the way. Book online in minutes.',
-  phone: '+977 01-4533361',
+  phone: BRAND.phone,
   whatsapp: '+9779768523887',
   email: 'info@nitaclinics.com',
   address: 'Bhimsengola-9, Kathmandu',
   mapEmbed: '',
-  workingHours: 'Mon–Fri: 9AM–6PM, Sat: 9AM–4PM',
+  workingHours: 'Sun–Fri: 9AM–6PM, Sat: 9AM–4PM',
 };
 
 function pickHero(c: Record<string, unknown> | undefined): HomeHeroContent {
@@ -170,14 +172,6 @@ export type HomePageContentBundle = {
   servicesHeader: HomeServicesHeaderContent;
   contact: HomeContactContent;
 };
-
-/** Build a tel: href from a human-readable phone or WhatsApp number. */
-export function toTelHref(phone: string): string {
-  const cleaned = phone.replace(/[^\d+]/g, '');
-  if (!cleaned) return 'tel:';
-  if (cleaned.startsWith('+')) return `tel:${cleaned}`;
-  return `tel:+${cleaned}`;
-}
 
 /** Split at `|` for accent span (e.g. CTA headline); no other heuristics. */
 export function splitPrimaryAccentTitle(title: string): { first: string; second: string | null } {

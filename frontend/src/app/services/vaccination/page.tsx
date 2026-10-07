@@ -107,7 +107,7 @@ export default function VaccinationServicePage() {
             <h3 className="mt-5 font-heading text-xl font-bold text-neutral-900">Bring your questions</h3>
             <p className="mt-3 text-sm leading-relaxed text-neutral-600">If you have a previous vaccination record, travel itinerary, or a question about a booster, keep it available for the clinical discussion.</p>
             <div className="mt-6 space-y-3 text-sm font-semibold text-neutral-700">
-              <a href="tel:+977014533361" className="flex items-center gap-3 hover:text-primary-700"><FiPhone className="h-4 w-4 text-primary-600" /> 01-4533361</a>
+              <a href="tel:+97714533361" className="flex items-center gap-3 hover:text-primary-700"><FiPhone className="h-4 w-4 text-primary-600" /> 01-4533361</a>
               <Link href="/contact" className="flex items-center gap-3 hover:text-primary-700"><FileText className="h-4 w-4 text-primary-600" /> Contact the clinic team</Link>
             </div>
           </div>

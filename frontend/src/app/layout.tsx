@@ -114,13 +114,13 @@ const organizationSchema = {
     latitude: BRAND.mapLat,
     longitude: BRAND.mapLng,
   },
-  hasMap: `https://www.google.com/maps/?q=${BRAND.mapLat},${BRAND.mapLng}`,
+  hasMap: BRAND.mapUrl,
   areaServed: { '@type': 'City', name: 'Kathmandu' },
   medicalSpecialty: ['Gynecology', 'Obstetrics', 'Pediatrics', 'Pulmonary Disease'],
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
       opens: '09:00',
       closes: '18:00',
     },
@@ -213,6 +213,7 @@ const websiteSchema = {
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
   name: BRAND.name,
+  alternateName: ['Nita Clinics', 'nitaclinics.com'],
   url: SITE_URL,
   publisher: { '@id': `${SITE_URL}/#medical-clinic` },
 };

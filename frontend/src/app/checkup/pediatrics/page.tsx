@@ -107,7 +107,7 @@ export default function PediatricsCheckupPage() {
                 Book Check-up
               </Link>
               <a
-                href="tel:+977014533361"
+                href="tel:+97714533361"
                 className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-colors"
               >
                 <FiPhone className="w-4 h-4" />
@@ -264,7 +264,7 @@ export default function PediatricsCheckupPage() {
         subtitle="Early screening and preventive care set the foundation for lifelong health."
         actions={[
           { label: 'Book Pediatrics Check-up', href: '/appointments/book?specialty=pediatrics&type=checkup', icon: <Calendar className="h-4 w-4" /> },
-          { label: 'Call Us', href: 'tel:+977014533361' },
+          { label: 'Call Us', href: 'tel:+97714533361' },
         ]}
       />
     </main>

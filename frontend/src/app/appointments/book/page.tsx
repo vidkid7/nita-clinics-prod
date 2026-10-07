@@ -355,7 +355,7 @@ export default function BookAppointmentPage() {
         overlayClassName="from-primary-950/[0.88] via-primary-900/[0.66] to-teal-900/[0.42]"
         actions={[
           { label: 'Start Booking', href: '#booking-steps', icon: <FiCalendar className="h-4 w-4" /> },
-          { label: 'Call for Help', href: 'tel:+977014533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
+          { label: 'Call for Help', href: 'tel:+97714533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
         ]}
         trustPoints={[
           'Consultation, vaccination, and check-up visits',

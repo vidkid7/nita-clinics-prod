@@ -255,7 +255,7 @@ export function SpecialistDetailPage({
               <div className="rounded-2xl border border-dashed border-neutral-300 bg-white px-6 py-10 text-center">
                 <p className="font-heading text-lg font-semibold text-neutral-800">Specialist profiles are being updated.</p>
                 <p className="mt-2 text-sm text-neutral-500">Please call the clinic to book this service.</p>
-                <a href="tel:+977014533361" className="mt-5 inline-flex rounded-xl bg-primary-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700">
+                <a href="tel:+97714533361" className="mt-5 inline-flex rounded-xl bg-primary-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700">
                   Call the clinic
                 </a>
               </div>

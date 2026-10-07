@@ -112,7 +112,7 @@ export default function DoctorsPage() {
         overlayClassName="from-primary-950/[0.88] via-primary-900/[0.64] to-primary-700/[0.42]"
         actions={[
           { label: 'Book Appointment', href: '/appointments/book', icon: <FiCalendar className="h-4 w-4" /> },
-          { label: 'Call Clinic', href: 'tel:+977014533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
+          { label: 'Call Clinic', href: 'tel:+97714533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
         ]}
         trustPoints={[
           'Searchable doctor directory',

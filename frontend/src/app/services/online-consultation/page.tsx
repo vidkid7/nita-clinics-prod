@@ -142,7 +142,7 @@ export default function OnlineConsultationPage() {
         overlayClassName="from-primary-950/[0.88] via-primary-900/[0.66] to-teal-900/[0.42]"
         actions={[
           { label: 'Book a Video Call', href: '#book', icon: <FiCalendar className="h-4 w-4" /> },
-          { label: 'Call Us', href: 'tel:+977014533361', variant: 'secondary' },
+          { label: 'Call Us', href: 'tel:+97714533361', variant: 'secondary' },
         ]}
         trustPoints={[
           'NMC-registered doctors across 6 specialties',
@@ -413,7 +413,7 @@ export default function OnlineConsultationPage() {
               </div>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
                 <p className="text-xs text-neutral-500 flex items-center gap-1.5">
-                  <Phone className="h-3.5 w-3.5" /> Prefer to call? <a href="tel:+977014533361" className="font-semibold text-sky-700">01-4533361</a>
+                  <Phone className="h-3.5 w-3.5" /> Prefer to call? <a href="tel:+97714533361" className="font-semibold text-sky-700">01-4533361</a>
                 </p>
                 <button
                   type="submit"

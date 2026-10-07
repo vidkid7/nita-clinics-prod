@@ -119,15 +119,15 @@ export default function ContactPage() {
     <>
       <PremiumLandingHero
         eyebrow="Contact NITA Clinic"
-        title="Questions, bookings,"
-        highlight="and clinic support."
+        title="Nita Clinic contact"
+        highlight="and directions."
         description={`Visit us at ${BRAND.addressFull}, call ${BRAND.phone}, email ${BRAND.email}, or send a message for appointments, lab tests, vaccinations, and general enquiries.`}
         videoSrc="/videos/hero/doctor-writing-appointment.mp4"
         posterSrc="/videos/hero/doctor-writing-appointment.jpg"
         overlayClassName="from-primary-950/[0.88] via-primary-900/[0.64] to-teal-900/[0.42]"
         actions={[
           { label: 'Send Message', href: '#contact-form', icon: <FiSend className="h-4 w-4" /> },
-          { label: 'Call Clinic', href: `tel:${BRAND.landline.replace(/[^0-9+]/g, '')}`, icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
+          { label: 'Call Clinic', href: BRAND.phoneHref, icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
         ]}
         trustPoints={[
           'Appointment and service enquiries',
@@ -136,7 +136,7 @@ export default function ContactPage() {
           'Helpful routing to the right team',
         ]}
         stats={[
-          { value: BRAND.hours.weekdays.split(' ')[0] || 'Open', label: 'Weekdays' },
+          { value: 'Sun-Fri', label: '9 AM – 6 PM' },
           { value: BRAND.landline, label: 'Clinic Line' },
           { value: '24-48h', label: 'Message Reply' },
         ]}
@@ -197,7 +197,13 @@ export default function ContactPage() {
                         </address>
                       ) : (
                         info.lines.map((line, i) => (
-                          <p key={i} className="text-sm text-neutral-600">{line}</p>
+                          <p key={i} className="text-sm text-neutral-600">
+                            {index === 1 || index === 2 ? (
+                              <a href={index === 1 ? BRAND.phoneHref : `mailto:${BRAND.email}`} className="hover:text-primary-700 hover:underline">
+                                {line}
+                              </a>
+                            ) : line}
+                          </p>
                         ))
                       )}
                     </div>
@@ -221,6 +227,7 @@ export default function ContactPage() {
                 <div className="aspect-video bg-neutral-100">
                   <iframe
                     src={BRAND.mapEmbed}
+                    title="Nita Clinic location in Bhimsengola-9, Kathmandu"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -229,6 +236,10 @@ export default function ContactPage() {
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
+                <a href={BRAND.directionsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white px-5 py-4 text-sm font-semibold text-primary-700 hover:bg-primary-50">
+                  <FiMapPin className="h-4 w-4" aria-hidden="true" />
+                  Get directions to Nita Clinic
+                </a>
               </motion.div>
             </div>
 
@@ -339,7 +350,7 @@ export default function ContactPage() {
         highlight="call or message us directly"
         subtitle="For appointments and urgent clinical queries, our front desk is ready to help."
         actions={[
-          { label: BRAND.phone, href: `tel:${BRAND.phone.replace(/[^0-9+]/g, '')}` },
+          { label: BRAND.phone, href: BRAND.phoneHref },
           { label: 'WhatsApp Us', href: `https://wa.me/${BRAND.whatsapp}`, external: true },
         ]}
         phone={BRAND.phone}

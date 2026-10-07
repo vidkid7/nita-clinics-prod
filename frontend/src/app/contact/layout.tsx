@@ -6,7 +6,7 @@ import { breadcrumbSchema, publicPageMetadata, siteUrl } from '@/lib/seo';
 export const metadata: Metadata = publicPageMetadata({
   title: 'Contact Nita Clinics | Nita Clinic Bhimsengola, Kathmandu',
   description:
-    'Official Nita Clinics contact page for Nita Clinic at Bhimsengola-9, Kathmandu. Find the address, map, phone, email, opening hours, and appointments.',
+    'Contact Nita Clinics at Bhimsengola-9, Kathmandu: 01-4533361 or info@nitaclinics.com. See our map, directions, clinic hours, and appointment information.',
   path: '/contact',
   keywords: ['Nita Clinic contact', 'clinic Bhimsengola Kathmandu', 'book clinic appointment Kathmandu'],
 });
@@ -32,6 +32,7 @@ export default function ContactLayout({ children }: { children: React.ReactNode 
           description:
             'Contact Nita Clinic at Bhimsengola-9, Kathmandu for appointments, laboratory tests, vaccinations, and healthcare enquiries.',
           about: { '@id': clinicId },
+          isPartOf: { '@id': `${siteUrl()}#website` },
           mainEntity: {
             '@type': 'MedicalClinic',
             '@id': clinicId,
@@ -51,11 +52,11 @@ export default function ContactLayout({ children }: { children: React.ReactNode 
               latitude: BRAND.mapLat,
               longitude: BRAND.mapLng,
             },
-            hasMap: `https://www.google.com/maps/?q=${BRAND.mapLat},${BRAND.mapLng}`,
+            hasMap: BRAND.mapUrl,
             openingHoursSpecification: [
               {
                 '@type': 'OpeningHoursSpecification',
-                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                 opens: '09:00',
                 closes: '18:00',
               },

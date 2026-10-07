@@ -139,7 +139,7 @@ export default function HomeVisitPage() {
 
   const homeVisitActions = [
     { label: 'Book a Home Visit', href: '#book', icon: <FiCalendar className="h-4 w-4" />, variant: 'primary' as const },
-    { label: 'Call Us', href: 'tel:+977014533361', variant: 'secondary' as const },
+    { label: 'Call Us', href: 'tel:+97714533361', variant: 'secondary' as const },
   ];
 
   return (
@@ -383,7 +383,7 @@ export default function HomeVisitPage() {
 
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
                 <p className="text-xs text-neutral-500 flex items-center gap-1.5">
-                  <Phone className="h-3.5 w-3.5" /> Prefer to call? <a href="tel:+977014533361" className="font-semibold text-primary-700">01-4533361</a>
+                  <Phone className="h-3.5 w-3.5" /> Prefer to call? <a href="tel:+97714533361" className="font-semibold text-primary-700">01-4533361</a>
                 </p>
                 <button
                   type="submit"

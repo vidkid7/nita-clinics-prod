@@ -17,6 +17,7 @@ import { Plus } from 'lucide-react';
 import { useSettings } from '@/hooks/useSettings';
 import { DoodleHeart } from '@/components/home/TestimonialArtworks';
 import { BRAND } from '@/lib/brand';
+import { toTelHref } from '@/lib/contact';
 
 const links = {
   services: [
@@ -48,7 +49,7 @@ const socials = [
 ];
 
 const NITA_GOOGLE_MAPS_SRC = BRAND.mapEmbed;
-const NITA_GOOGLE_MAPS_LINK = `https://www.google.com/maps/?q=${BRAND.mapLat},${BRAND.mapLng}`;
+const NITA_GOOGLE_MAPS_LINK = BRAND.mapUrl;
 
 export function Footer() {
   const { settings } = useSettings();
@@ -112,7 +113,7 @@ export function Footer() {
               <FiArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <a
-              href="tel:+977014533361"
+              href={BRAND.phoneHref}
               className="group inline-flex items-center gap-2 rounded-xl border border-white/30 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/10"
             >
               <FiPhone className="h-4 w-4 transition-transform duration-300 group-hover:-rotate-12" />
@@ -199,7 +200,7 @@ export function Footer() {
               <ul className="space-y-2.5 text-sm">
                 <li>
                   <a
-                    href={`tel:${(settings.phone || '+977014533361').replace(/[^0-9+]/g, '')}`}
+                    href={toTelHref(settings.phone || BRAND.phone)}
                     className="group flex items-center gap-2.5 text-primary-200 transition-all duration-300 hover:translate-x-0.5 hover:text-white"
                   >
                     <FiPhone className="w-4 h-4 flex-shrink-0 text-primary-300 transition-colors group-hover:text-teal-300" />
@@ -403,7 +404,7 @@ export function Footer() {
               <p className="text-sm text-primary-200 leading-relaxed">
                 Call us at{' '}
                 <a
-                  href="tel:+977014533361"
+                  href={BRAND.phoneHref}
                   className="font-semibold text-teal-200 hover:text-white"
                 >
                   +977-01-4533361

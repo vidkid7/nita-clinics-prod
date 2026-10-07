@@ -26,7 +26,7 @@ export default function LabReportsPage() {
         overlayClassName="from-primary-950/[0.88] via-primary-900/[0.66] to-teal-900/[0.42]"
         actions={[
           { label: 'Sign In to Portal', href: '/patients/login', icon: <Lock className="h-4 w-4" /> },
-          { label: 'Call Lab Desk', href: 'tel:+977014533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
+          { label: 'Call Lab Desk', href: 'tel:+97714533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
         ]}
         trustPoints={[
           'Reports stored securely for 5+ years',
@@ -188,7 +188,7 @@ export default function LabReportsPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               <a
-                href="tel:+977014533361"
+                href="tel:+97714533361"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary-600 text-white text-sm font-semibold px-5 py-2.5 hover:bg-primary-700"
               >
                 <FiPhone className="h-4 w-4" /> +977 01-4533361
@@ -210,7 +210,7 @@ export default function LabReportsPage() {
         subtitle="Walk in to our Bhimsengola-9 clinic or book a home collection — most reports are ready the same day."
         actions={[
           { label: 'Book a Test', href: '/services/laboratory', icon: <FiCalendar className="h-4 w-4" /> },
-          { label: 'Call Now', href: 'tel:+977014533361' },
+          { label: 'Call Now', href: 'tel:+97714533361' },
         ]}
       />
     </main>

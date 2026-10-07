@@ -387,7 +387,7 @@ export default function HealthCardPage() {
                 <Tag className="w-4 h-4" /> Choose Your Card — Free
               </a>
               <a
-                href="tel:+977014533361"
+                href="tel:+97714533361"
                 className="inline-flex items-center gap-2 rounded-2xl border border-white/[0.22] bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:bg-white/[0.18]"
               >
                 <Phone className="w-4 h-4" /> Call to Enquire
@@ -763,7 +763,7 @@ export default function HealthCardPage() {
             href: '#select-card',
             icon: <Zap className="h-4 w-4" />,
           },
-          { label: '+977 01-4533361', href: 'tel:+977014533361' },
+          { label: '+977 01-4533361', href: 'tel:+97714533361' },
         ]}
       />
     </>

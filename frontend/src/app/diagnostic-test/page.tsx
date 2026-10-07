@@ -418,7 +418,7 @@ export default function DiagnosticTestPage() {
         subtitle="Our lab team can recommend the right panel based on your symptoms, age, or doctor advice."
         actions={[
           { label: 'Book a Test', href: '/appointments/book', icon: <FiCalendar className="h-4 w-4" /> },
-          { label: 'Call Lab Desk', href: 'tel:+977014533361', icon: <FiPhone className="h-4 w-4" /> },
+          { label: 'Call Lab Desk', href: 'tel:+97714533361', icon: <FiPhone className="h-4 w-4" /> },
         ]}
       />
     </main>

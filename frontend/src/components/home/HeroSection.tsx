@@ -39,7 +39,7 @@ export function HeroSection() {
   const { data } = useHomePageContent();
   const hero: HomeHeroContent = data?.hero ?? DEFAULT_HERO;
   const contact = data?.contact ?? DEFAULT_CONTACT;
-  const dialHref = toTelHref(contact.whatsapp || contact.phone);
+  const dialHref = toTelHref(contact.phone);
 
   return (
     <section className="relative overflow-hidden bg-primary-950 min-h-[calc(100svh-73px)] md:min-h-[calc(100svh-105px)] flex flex-col">

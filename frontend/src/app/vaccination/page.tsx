@@ -90,7 +90,7 @@ export default function VaccinationPage() {
         overlayClassName="from-primary-950/[0.88] via-primary-900/[0.66] to-emerald-900/[0.42]"
         actions={[
           { label: 'Book Vaccination', href: '/appointments/book?type=vaccination', icon: <FiCalendar className="h-4 w-4" /> },
-          { label: '+977 01-4533361', href: 'tel:+977014533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
+          { label: '+977 01-4533361', href: 'tel:+97714533361', icon: <FiPhone className="h-4 w-4" />, variant: 'secondary' },
         ]}
         trustPoints={[
           'Child, adult, senior, travel categories',

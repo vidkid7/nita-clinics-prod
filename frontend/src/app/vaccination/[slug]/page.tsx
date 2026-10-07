@@ -143,7 +143,7 @@ export default function VaccineDetailPage() {
                 Book Vaccination
               </Link>
               <a
-                href="tel:+977014533361"
+                href="tel:+97714533361"
                 className="inline-flex items-center gap-2 bg-white/15 border border-white/20 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-colors"
               >
                 <FiPhone className="w-4 h-4" />
@@ -335,7 +335,7 @@ export default function VaccineDetailPage() {
                     Book This Vaccine
                   </Link>
                   <a
-                    href="tel:+977014533361"
+                    href="tel:+97714533361"
                     className="w-full inline-flex items-center justify-center gap-2 border border-neutral-200 text-neutral-700 text-sm font-semibold py-3 rounded-xl hover:border-primary-300 hover:text-primary-700 transition-colors"
                   >
                     <Phone className="w-4 h-4" />

@@ -71,7 +71,7 @@ export default function ContentManagementPage() {
     email: 'info@nitaclinics.com',
     address: 'Kathmandu, Nepal',
     mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0391772!2d85.3450!3d27.7172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDQzJzAyLjAiTiA4NcKwMjAnNDIuMCJF!5e0!3m2!1sen!2snp!4v1234567890',
-    workingHours: 'Mon-Fri: 9AM-6PM, Sat: 9AM-4PM',
+    workingHours: 'Sun-Fri: 9AM-6PM, Sat: 9AM-4PM',
   });
 
   const sections = [

@@ -7,6 +7,7 @@ import { FiPhone, FiArrowRight, FiClock, FiMapPin } from 'react-icons/fi';
 import { Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { BRAND } from '@/lib/brand';
+import { toTelHref } from '@/lib/contact';
 
 interface CTAFooterAction {
   label: string;
@@ -44,7 +45,7 @@ export function CTAFooter({
     ? actions
     : [
         { label: 'Book Appointment', href: '/appointments/book', variant: 'primary', icon: <FiArrowRight className="h-4 w-4" /> },
-        { label: 'Call Now', href: `tel:${phone}`, icon: <FiPhone className="h-4 w-4" />, variant: 'outline' },
+        { label: 'Call Now', href: toTelHref(phone), icon: <FiPhone className="h-4 w-4" />, variant: 'outline' },
       ];
 
   const displayPhone = (() => {
@@ -198,7 +199,7 @@ export function CTAFooter({
                     <div>
                       <p className="font-semibold text-white">Reception</p>
                       <a
-                        href={`tel:${phone.replace(/[^0-9+]/g, '')}`}
+                        href={toTelHref(phone)}
                         className="text-primary-200/80 hover:text-teal-200 transition-colors text-xs"
                       >
                         {displayPhone}
