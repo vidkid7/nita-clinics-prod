@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, ArrowRight, Calendar, Phone, Award, Clock, U
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { getDoctorAvailability } from '@/lib/doctor-availability';
+import { toTelHref } from '@/lib/contact';
 
 export interface DoctorCardProps {
   images: string[];
@@ -269,7 +270,7 @@ export function DoctorCard({
         {phone && (
           <motion.div variants={itemVariants}>
             <a
-              href={`tel:${phone.replace(/[^0-9+]/g, '')}`}
+              href={toTelHref(phone)}
               className="flex items-center justify-center gap-1.5 text-xs text-neutral-500 hover:text-primary-600 transition-colors"
             >
               <Phone className="w-3 h-3" />

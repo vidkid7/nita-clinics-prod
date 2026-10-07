@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils';
 import { useSettings } from '@/hooks/useSettings';
 import { CartIconButton } from '@/components/cart/CartDrawer';
 import { BRAND } from '@/lib/brand';
+import { toTelHref } from '@/lib/contact';
 
 interface NavigationItem {
   name: string;
@@ -105,7 +106,7 @@ export function Header() {
         <div className="container-custom relative z-10 flex justify-between items-center">
           <div className="flex items-center gap-6 text-primary-100/90">
             <a
-              href={`tel:${(settings.phone || '+977014533361').replace(/[^0-9+]/g, '')}`}
+              href={toTelHref(settings.phone || BRAND.phone)}
               className="flex items-center gap-1.5 hover:text-white transition-colors hover:underline decoration-teal-400/60 underline-offset-4"
             >
               <FiPhone className="w-3 h-3" />

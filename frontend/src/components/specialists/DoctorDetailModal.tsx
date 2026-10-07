@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { IconTileList } from '@/components/ui/IconTileList';
 import { getDoctorAvailability } from '@/lib/doctor-availability';
+import { toTelHref } from '@/lib/contact';
 
 export interface DoctorDetailData {
   name: string;
@@ -194,7 +195,7 @@ export function DoctorDetailModal({ doctor, onClose }: DoctorDetailModalProps) {
                   </Link>
                   {doctor.phone && (
                     <a
-                      href={`tel:${doctor.phone.replace(/[^0-9+]/g, '')}`}
+                      href={toTelHref(doctor.phone)}
                       className="inline-flex items-center justify-center gap-2 border border-neutral-200 text-neutral-700 font-semibold py-3.5 px-5 rounded-2xl hover:border-primary-300 hover:text-primary-700 transition-colors"
                     >
                       <Phone className="w-4 h-4" />
