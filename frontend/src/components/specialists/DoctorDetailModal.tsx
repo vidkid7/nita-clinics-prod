@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Phone, Award, Clock, Star, MapPin, UserRound } from 'lucide-react';
 import { useEffect } from 'react';
-import { cn } from '@/lib/utils';
 import { IconTileList } from '@/components/ui/IconTileList';
 import { getDoctorAvailability } from '@/lib/doctor-availability';
 import { toTelHref } from '@/lib/contact';
@@ -149,7 +148,7 @@ export function DoctorDetailModal({ doctor, onClose }: DoctorDetailModalProps) {
                   </div>
                   <div className="flex items-center gap-2 text-sm text-neutral-600">
                     <MapPin className="w-4 h-4 text-teal-500" />
-                    <span>NITA Clinic, Maharajgunj, Kathmandu</span>
+                    <span>Nita Clinic, Bhimsengola-9, Kathmandu</span>
                   </div>
                 </div>
 
